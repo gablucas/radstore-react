@@ -17,10 +17,10 @@ const Header = () => {
           <li><a href="">Promoções`</a></li>
         </ul>
 
-        <div>
-          <a href="">Entrar</a>
-          <a href="">Carrinho</a>
-        </div>
+        <ul>
+          <li><a href="">Entrar</a></li>
+          <li><a href="">Carrinho</a></li>
+        </ul>
         
       </Links>
     </Container>
