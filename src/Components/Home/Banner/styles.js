@@ -5,10 +5,14 @@ export const Container = styled.section`
 
     p {
         position: absolute;
-        font: var(--font2-48-bl);
+        font: var(--font2-48-b);
         color: #FFFFFF;
 
         top: 10%;
         left: 30%;
+    }
+
+    img {
+      width: 100vw;
     }
 `

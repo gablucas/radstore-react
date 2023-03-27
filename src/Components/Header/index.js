@@ -1,28 +1,194 @@
 import React from 'react';
-import { Container, Links } from './styles';
-import Logo from '../../Assets/Logo.svg';
+import LogoBlack from '../../assets/logo-black.svg';
+import LoginIMG from '../../assets/login.svg';
+import CartIMG from '../../assets/cart.svg';
+import { Container, Nav, Menu, SubMenu, Cart } from './styles';
+
 
 const Header = () => {
   return (
     <Container>
-      <Links>
-        <a href="/"><img src={Logo} alt="" /></a>
+      <Nav>
+        <a href="/"><img src={LogoBlack} alt="" /></a>
 
         <ul>
-          <li><a href="">Marcas</a></li>
-          <li><a href="">Roupas</a></li>
-          <li><a href="">Calçados</a></li>
-          <li><a href="">Acessórios</a></li>
-          <li><a href="">Esportes</a></li>
-          <li><a href="">Promoções`</a></li>
+          <Menu>
+            <a href="">Marcas</a>
+          </Menu>
+
+          {/* MASCULINO */}
+          <Menu>
+            <a href="">Masculino</a>
+
+            <div>
+              <SubMenu>
+                <h3>Roupas</h3>
+                <ul>
+                  <li>Camisas</li>
+                  <li>Camisetas</li>
+                  <li>Calças</li>
+                  <li>Bermudas</li>
+                  <li>Boardshorts</li>
+                  <li>Moletons</li>
+                  <li>Jaquetas</li>
+                </ul>
+              </SubMenu>
+
+              <SubMenu>
+                <h3>Calçados</h3>
+                <ul>
+                  <li>Tênis</li>
+                  <li>Chinelo</li>
+                  <li>Botas</li>
+                </ul>
+              </SubMenu>
+
+              <SubMenu>
+                <h3>Acessórios</h3>
+                <ul>
+                  <li>Mochilas</li>
+                  <li>Bonés</li>
+                  <li>Carteiras</li>
+                  <li>Cintos</li>
+                  <li>Toucas</li>
+                  <li>Meias</li>
+                  <li>Oculos</li>
+                </ul>
+              </SubMenu>
+            </div>
+
+          </Menu>
+          
+          {/* FEMININO */}
+          <Menu>
+            <a href="">Feminino</a>
+            
+            <div>
+            <SubMenu>
+                <h3>Roupas</h3>
+                <ul>
+                  <li>Camisas</li>
+                  <li>Camisetas</li>
+                  <li>Vestidos</li>
+                  <li>Calças</li>
+                  <li>Bermudas</li>
+                  <li>Moletons</li>
+                  <li>Jaquetas</li>
+                  <li>Saias</li>
+                </ul>
+              </SubMenu>
+
+              <SubMenu>
+                <h3>Calçados</h3>
+                <ul>
+                  <li>Tênis</li>
+                  <li>Chinelo</li>
+                  <li>Botas</li>
+                </ul>
+              </SubMenu>
+
+              <SubMenu>
+                <h3>Acessórios</h3>
+                <ul>
+                  <li>Mochilas</li>
+                  <li>Bonés</li>
+                  <li>Carteiras</li>
+                  <li>Cintos</li>
+                  <li>Toucas</li>
+                  <li>Meias</li>
+                  <li>Oculos</li>
+                </ul>
+              </SubMenu>
+            </div>
+          </Menu>
+
+          {/* KIDS */}
+          <Menu>
+            <a href="">Kids</a>
+            <div>
+            <SubMenu>
+                <h3>Roupas</h3>
+                <ul>
+                  <li>Camisas</li>
+                  <li>Camisetas</li>
+                  <li>Calças</li>
+                  <li>Bermudas</li>
+                  <li>Moletons</li>
+                  <li>Jaquetas</li>
+                </ul>
+              </SubMenu>
+
+              <SubMenu>
+                <h3>Calçados</h3>
+                <ul>
+                  <li>Tênis</li>
+                  <li>Chinelo</li>
+                  <li>Botas</li>
+                </ul>
+              </SubMenu>
+
+              <SubMenu>
+                <h3>Acessórios</h3>
+                <ul>
+                  <li>Mochilas</li>
+                  <li>Bonés</li>
+                  <li>Meias</li>
+                </ul>
+              </SubMenu>
+            </div>
+          </Menu>
+
+          {/* ESPORTES */}
+          <Menu>
+            <a href="">Esportes</a>
+
+            <div>
+              <SubMenu>
+                <h3>Longboard</h3>
+                <ul>
+                  <li>Completo</li>
+                  <li>Shapes</li>
+                  <li>Trucks</li>
+                  <li>Rodas</li>
+                  <li>Rolamentos</li>
+                  <li>Acessórios</li>
+                </ul>
+              </SubMenu>
+
+              <SubMenu>
+                <h3>Skate</h3>
+                <ul>
+                  <li>Completo</li>
+                  <li>Shapes</li>
+                  <li>Trucks</li>
+                  <li>Rodas</li>
+                  <li>Rolamentos</li>
+                  <li>Acessórios</li>
+                </ul>
+              </SubMenu>
+
+              <SubMenu>
+                <h3>BMX</h3>
+                <ul>
+                  <li>Completa</li>
+                  <li>Quadro</li>
+                  <li>Pneus</li>
+                  <li>Peças</li>
+                  <li>Acessórios</li>
+                </ul>
+              </SubMenu>
+            </div>
+          </Menu>
+
+          <li><a href="">Promoções</a></li>
         </ul>
 
         <ul>
-          <li><a href="">Entrar</a></li>
-          <li><a href="">Carrinho</a></li>
+          <li><a href=""><img src={LoginIMG} alt="" /></a></li>
+          <Cart><a href=""><img src={CartIMG} alt="" /></a></Cart>
         </ul>
         
-      </Links>
+      </Nav>
     </Container>
   )
 }

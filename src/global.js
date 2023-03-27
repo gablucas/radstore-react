@@ -4,9 +4,15 @@ const GlobalStyle = createGlobalStyle`
 
   :root {
     --font1-16-sb: 600 1rem/1.1 'Inter';
+    --font1-16-r: 400 1rem/1.1 'Inter';
     --font1-14-m: 500 .875rem/1.1 'Inter';
-    --font2-48-bl: 900 3rem/1 'Rubik';
+    --font1-14-r: 400 .875rem/1.1 'Inter';
+    --font1-12-r: 400 .78rem/1.4 'Inter';
+    --font2-48-b: 800 3rem/1.1 'Rubik';
     --font2-48-m: 500 3rem/1 'Rubik';
+    --font2-32-bl: 900 2rem/1 'Rubik';
+    --font2-18-sb: 600 1.125rem/1.1 'Inter';
+    --font2-8-bl: 900 .5rem/1.1 'Inter';
   }
   
   * {
@@ -41,6 +47,12 @@ const GlobalStyle = createGlobalStyle`
   img {
     max-width: 100%;
     display: block;
+  }
+
+  input {
+    background: none;
+    outline: none;
+    border: none;
   }
 `
 
