@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  padding-left: 40px;
-  padding-right: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #C8C8C8;
 `
 
 export const Nav = styled.nav`
@@ -16,7 +18,7 @@ export const Nav = styled.nav`
     display: flex;
   }
 
-  li > a {
+  & > ul > li > a {
     padding: 40px 20px;
   }
 `
@@ -30,7 +32,7 @@ export const Menu = styled.li`
     gap: 100px;
 
     position: absolute;
-    top: 140px;
+    top: 160px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
@@ -56,7 +58,7 @@ export const Menu = styled.li`
     background: #2B2B2B;
 
     position: absolute;
-    top: 110px;
+    top: 130px;
     left: 0px;
     height: 400px;
     width: 100%;
@@ -108,5 +110,11 @@ export const Cart = styled.li`
     position: absolute;
     right: 20px;
     top: 54px;
+  }
+`
+export const Account = styled.ul`
+
+  a {
+    padding: 33px 20px !important;
   }
 `

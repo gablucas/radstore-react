@@ -2,10 +2,12 @@ import React from 'react';
 import LogoBlack from '../../assets/logo-black.svg';
 import LoginIMG from '../../assets/login.svg';
 import CartIMG from '../../assets/cart.svg';
-import { Container, Nav, Menu, SubMenu, Cart } from './styles';
+import { Container, Nav, Menu, SubMenu, Cart, Account } from './styles';
+import { Link } from 'react-router-dom';
 
 
 const Header = () => {
+
   return (
     <Container>
       <Nav>
@@ -24,8 +26,8 @@ const Header = () => {
               <SubMenu>
                 <h3>Roupas</h3>
                 <ul>
-                  <li>Camisas</li>
-                  <li>Camisetas</li>
+                  <li><Link to='/produtos/roupas/camisas?genre=masculino'>Camisas</Link></li>
+                  <li><Link to='/produtos/roupas/camisetas?genre=masculino'>Camisetas</Link></li>
                   <li>Calças</li>
                   <li>Bermudas</li>
                   <li>Boardshorts</li>
@@ -67,7 +69,7 @@ const Header = () => {
             <SubMenu>
                 <h3>Roupas</h3>
                 <ul>
-                  <li>Camisas</li>
+                  <li><Link to='/produtos/roupas/camisas?genre=feminino'>Camisas</Link></li>
                   <li>Camisetas</li>
                   <li>Vestidos</li>
                   <li>Calças</li>
@@ -183,10 +185,10 @@ const Header = () => {
           <li><a href="">Promoções</a></li>
         </ul>
 
-        <ul>
+        <Account>
           <li><a href=""><img src={LoginIMG} alt="" /></a></li>
           <Cart><a href=""><img src={CartIMG} alt="" /></a></Cart>
-        </ul>
+        </Account>
         
       </Nav>
     </Container>

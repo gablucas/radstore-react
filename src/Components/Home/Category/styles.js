@@ -5,7 +5,6 @@ export const Container = styled.section`
   flex-direction: column;
   align-items: center;
   margin-top: 60px;
-  margin-bottom: 100px;
 
   h2 {
     display: inline-block;
