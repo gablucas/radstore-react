@@ -6,19 +6,22 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Products from "./components/Products";
 import Product from "./components/Product";
+import ContextProvider from "./components/Context";
 
 function App() {
   return (
     <HashRouter>
-      <Notice />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/produtos/:category/:type" element={<Products />} />
-        <Route path="/produto/:id" element={<Product />} />
-      </Routes>
-      <Footer />
-      <GlobalStyle />
+      <ContextProvider>
+        <Notice />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/produtos/:category/:type" element={<Products />} />
+          <Route path="/produto/:id" element={<Product />} />
+        </Routes>
+        <Footer />
+        <GlobalStyle />
+      </ContextProvider>
     </HashRouter>
   );
 }

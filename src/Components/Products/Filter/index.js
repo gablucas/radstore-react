@@ -1,53 +1,24 @@
 import React from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { Container, FilterWrapper, ProductColor, ProductSize } from './styles'
+import { GlobalContext } from '../../Context'
+import FilterColor from './FilterColor'
+import FilterPrice from './FilterPrice'
+import FilterSize from './FilterSize'
+import { Container } from './styles'
+import useFilter from '../../../hooks/useFilter'
 
-const Filter = ({ data }) => {
-  let uniqueColors = data?.map((product) => product.color)
-  let colors = Array.from(new Set(uniqueColors?.map(JSON.stringify)), JSON.parse)
-  const [searchParams, setSearchParams] = useSearchParams();
-  
+const Filter = () => {
+  const { setFilteredData } = React.useContext(GlobalContext);
+  const { filterParams } = useFilter();
 
-  function handleColor(color) {
-    let updatedSearchParams = new URLSearchParams(searchParams.toString());
-    updatedSearchParams.set('color', color)
-    setSearchParams(updatedSearchParams.toString());
-  }
+  React.useEffect(() => {
+    setFilteredData(filterParams({genre: true, size: true, color: true, price: true}));
+  }, [filterParams, setFilteredData])
 
   return (
     <Container>
-
-      {/* TAMANHO DO PRODUTO */}
-      <FilterWrapper>
-        <span>Tamanho</span>
-        
-        <div>
-          <ProductSize><span>PP</span></ProductSize>
-          <ProductSize><span>P</span></ProductSize>
-          <ProductSize><span>M</span></ProductSize>
-          <ProductSize><span>G</span></ProductSize>
-          <ProductSize><span>GG</span></ProductSize>
-        </div>
-
-      </FilterWrapper>
-
-      {/* COR DO PRODUTO */}
-      <FilterWrapper>
-        <span>Cores</span>
-
-        <div>
-          {colors.map((color) => (
-            <ProductColor key={color[0]} color={color[1]} colorName={color[0]} onClick={() => handleColor(color[0])} />
-          ))}
-        </div>
-
-      </FilterWrapper>
-
-      {/* PREÇO DO PRODUTO */}
-      <FilterWrapper>
-        <span>Preço</span>
-      </FilterWrapper>
-
+      <FilterSize />
+      <FilterColor />
+      <FilterPrice />
     </Container>
   )
 }

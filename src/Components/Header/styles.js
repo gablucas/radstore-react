@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Container = styled.header`
   margin-left: 40px;
   margin-right: 40px;
-  margin-bottom: 40px;
   border-bottom: 1px solid #C8C8C8;
 `
 
