@@ -13,7 +13,7 @@ export const useFilter = () => {
 
   const filterParams = useCallback((filter) => {
     if (data) {
-      filterData.current = data;
+      filterData.current = Array.from(data);
 
       if (genre && filter.genre) {
         filterData.current = filterData.current.filter((d) => d.genre === genre);

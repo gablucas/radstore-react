@@ -5,8 +5,8 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --font1-20-b: 800 1.25rem/1.1 'Inter';
     --font1-20-m: 500 1.25rem/1.1 'Inter';
-    --font1-16-sb: 600 1rem/1.1 'Inter';
-    --font1-16-sm: 700 1rem/1.1 'Inter';
+    --font1-18-sb: 700 1.125rem/1.1 'Inter';
+    --font1-16-sb: 700 1rem/1.1 'Inter';
     --font1-16-r: 400 1rem/1.1 'Inter';
     --font1-14-m: 500 .875rem/1.1 'Inter';
     --font1-14-r: 400 .875rem/1.1 'Inter';

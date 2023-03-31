@@ -45,16 +45,11 @@ export const ProductSize = styled(ProductLabel)`
   display: flex;
   justify-content: center;
   align-items: center;
+  font: var(--font1-20-m);
 
-  span {
-    font: var(--font1-20-m);
-  }
 
   &:hover {
     background-color: #FFA700;
-  }
-
-  &:hover span {
     font-weight: 700;
   }
 
