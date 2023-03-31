@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     --font2-48-b: 800 3rem/1.1 'Rubik';
     --font2-48-m: 500 3rem/1 'Rubik';
     --font2-32-bl: 900 2rem/1 'Rubik';
+    --font2-24-b: 800 1.5rem/1.1 'Rubik';
     --font2-18-sb: 600 1.125rem/1.1 'Inter';
     --font2-8-bl: 900 .5rem/1.1 'Inter';
   }

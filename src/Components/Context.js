@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 export const GlobalContext = React.createContext();
 
 const ContextProvider = ({ children }) => {
+  const [userLogged, setUserLogged] = React.useState(false);
   const [data, setData] = React.useState();
   const [filteredData, setFilteredData] = useState()
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,8 +18,9 @@ const ContextProvider = ({ children }) => {
     tenis: ["33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"],
   }
 
+
   return (
-    <GlobalContext.Provider value={{data, setData, filteredData, setFilteredData, searchParams, setSearchParams, measures}}>
+    <GlobalContext.Provider value={{userLogged, setUserLogged, data, setData, filteredData, setFilteredData, searchParams, setSearchParams, measures}}>
       {children}
     </GlobalContext.Provider>
   )

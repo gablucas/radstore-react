@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Products from "./components/Products";
 import Product from "./components/Product";
 import ContextProvider from "./components/Context";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/produtos/:category/:type" element={<Products />} />
           <Route path="/produto/:id" element={<Product />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
         <GlobalStyle />

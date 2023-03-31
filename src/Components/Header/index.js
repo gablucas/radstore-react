@@ -186,7 +186,7 @@ const Header = () => {
         </ul>
 
         <Account>
-          <li><a href=""><img src={LoginIMG} alt="" /></a></li>
+          <li><Link to="/login"><img src={LoginIMG} alt="" /></Link></li>
           <Cart><a href=""><img src={CartIMG} alt="" /></a></Cart>
         </Account>
         

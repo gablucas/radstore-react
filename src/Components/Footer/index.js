@@ -4,9 +4,12 @@ import LogoWhite from '../../assets/logo-white.svg';
 import { ReactComponent as WhatsappIMG } from '../../assets/social/whatsapp.svg';
 import { ReactComponent as InstagramIMG } from '../../assets/social/instagram.svg';
 import { ReactComponent as FacebookIMG } from '../../assets/social/facebook.svg';
+import { GlobalContext } from '../Context';
 
 const Footer = () => {
   const [email,  setEmail] = React.useState('');
+  const { isLoginPage } = React.useContext(GlobalContext);
+  
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,7 +20,7 @@ const Footer = () => {
   }
 
   return (
-    <Container email={email} >
+    <Container email={email} isLoginPage={isLoginPage}>
       <img src={LogoWhite} alt="" width='140' />
 
       <Links>
