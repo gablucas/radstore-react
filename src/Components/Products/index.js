@@ -4,16 +4,12 @@ import { GlobalContext } from '../Context';
 import Filter from './Filter';
 import Product from './Product';
 import { Container, ShowProducts } from './styles';
+import useLogged from '../../hooks/useLogged';
 
 const Products = () => {
-  const {setData, filteredData} = React.useContext(GlobalContext);
-  let {category, type} = useParams();
-
-  React.useEffect(() => {
-    fetch(`https://gablucas.github.io/jsonapi/radstore/${category}/${type}.json`)
-    .then(response => response.json())
-    .then(json => setData(json[type]))
-  }, [category, type, setData])
+  const { filteredData } = React.useContext(GlobalContext);
+  const { type } = useParams();
+  useLogged();
 
   return (
     <Container>

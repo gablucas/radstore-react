@@ -4,10 +4,12 @@ import { useSearchParams } from 'react-router-dom';
 export const GlobalContext = React.createContext();
 
 const ContextProvider = ({ children }) => {
-  const [userLogged, setUserLogged] = React.useState(false);
+  const [loggedUser, setLoggedUser] = React.useState(false);
   const [data, setData] = React.useState();
   const [filteredData, setFilteredData] = useState()
   const [searchParams, setSearchParams] = useSearchParams();
+  const [cartQuantity, setCartQuantity] = React.useState(0);
+
   const measures = {
     camisas: ["PP", "P", "M", "G", "GG"],
     camisetas: ["PP", "P", "M", "G", "GG"],
@@ -20,7 +22,7 @@ const ContextProvider = ({ children }) => {
 
 
   return (
-    <GlobalContext.Provider value={{userLogged, setUserLogged, data, setData, filteredData, setFilteredData, searchParams, setSearchParams, measures}}>
+    <GlobalContext.Provider value={{loggedUser, setLoggedUser, data, setData, filteredData, setFilteredData, searchParams, setSearchParams, measures, cartQuantity, setCartQuantity}}>
       {children}
     </GlobalContext.Provider>
   )

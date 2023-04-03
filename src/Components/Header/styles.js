@@ -22,9 +22,9 @@ export const Nav = styled.nav`
   }
 `
 
-export const Menu = styled.li`
+export const Menus = styled.ul`
 
-  & > div {
+  & > li > div {
     display: none;
     grid-template-columns: repeat(3, 120px);
     justify-content: center;
@@ -38,20 +38,16 @@ export const Menu = styled.li`
     color: #FFFFFF;
   }
 
-  & > div h3 {
+  & > li h3 {
     margin-bottom: 8px;
     text-transform: uppercase;
   }
 
-  &:hover > div {
-    display: grid;
-  }
-
-  &:hover {
+  & > li:hover {
     color: rgba(0, 0, 0, .6);
   }
 
-  &:hover::after {
+  & > li:hover::after {
     content: '';
     display: block;
     background: #2B2B2B;
@@ -63,40 +59,85 @@ export const Menu = styled.li`
     width: 100%;
     z-index: 999;
   }
+
+  & > li:hover > div {
+    display: grid;
+  }
 `
 
-export const SubMenu = styled.div`
-  display: flex;
-  flex-direction: column;
+export const SubMenus = styled.div`
 
-   ul {
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+   div ul {
     display: flex;
     flex-direction: column;
    }
 
-   li {
+   div li {
     font: var(--font1-16-r);
     color: #C8C8C8;
    }
 
-   li + li {
+   div li + li {
     margin-top: 12px;
    }
 
-   li:hover {
+   div li:hover {
     color: #F7F7F7;
     cursor: pointer;
    }
 `
 
-export const Cart = styled.li`
+export const Account = styled.div`
+
+  div > a {
+    padding: 33px 20px !important;
+  }
+`
+
+export const Login = styled.div`
+  position: relative;
+
+  & > a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #FFFFFF;
+
+    position: absolute;
+    bottom: -132px;
+    left: 0px;
+    z-index: 999;
+  }
+
+  &:hover ul {
+    display: flex;
+  }
+
+  li a {
+    padding: 10px;
+  }
+`
+
+export const Cart = styled.div`
+
+  background: #FFA700;
   
   a {
     position: relative;
   }
   
-  a::after {
-    content: '0';
+  span {
     font: var(--font2-8-bl);
     height: 20px;
     width: 20px;
@@ -111,9 +152,4 @@ export const Cart = styled.li`
     top: 54px;
   }
 `
-export const Account = styled.ul`
 
-  a {
-    padding: 33px 20px !important;
-  }
-`

@@ -3,14 +3,15 @@ import { ButtonAccount, LoginWrapper } from './styles';
 import Input from '../Forms/Input';
 import useForm from '../../hooks/useForm';
 import useLocalStorage from '../../hooks/useLocalStorage';
-import { GlobalContext } from '../Context';
+import { useNavigate } from 'react-router-dom';
+
 
 const LoginAccount = () => {
-  const { setUserLogged } = React.useContext(GlobalContext);
+  const loginUser = useLocalStorage();
   const { getValue } = useLocalStorage();
   const [error, setError] = React.useState(false);
+  const navigate = useNavigate();
   
-
   const email = useForm('email');
   const password = useForm('password');
 
@@ -18,12 +19,15 @@ const LoginAccount = () => {
     e.preventDefault();
 
     const users = JSON.parse(getValue('users')) || [];
+    const user = users.find((user) => user.email === email.value && user.password === password.value);
+    console.log(user)
 
-    if (email.validate() && password.validate() && users.some((user) => user.email === email.value && user.password === password.value)) {
-      setError('')
-      setUserLogged(true)
+    if (user) {
+      setError('');
+      loginUser.setValue('loggeduser', JSON.stringify(user))
+      navigate('/');
     } else {
-      setError('Email ou senha incorretos')
+      setError('Email ou senha incorretos');
     }
   }
 

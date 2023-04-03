@@ -44,13 +44,16 @@ export const MeasureButton = styled.li`
   height: 42px;
   width: 42px;
   font: var(--font1-20-m);
+  font-weight: ${props => props.selectedMeasure && "700"};
   border: 2px solid #000000;
+  background-color: ${props => props.selectedMeasure && "#FFA700"};
   cursor: pointer;
 
   &:hover {
     background-color: #FFA700;
     font-weight: 700;
   }
+
 `
 
 export const ButtonWrapper = styled.div`
