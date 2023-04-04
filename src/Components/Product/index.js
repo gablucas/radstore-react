@@ -4,21 +4,25 @@ import { AboutWrapper, ButtonWrapper, BuyButton, CartButton, Container, InfoWrap
 import { GlobalContext } from '../Context';
 import useLogged from '../../hooks/useLogged';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { useQuery } from 'react-query';
+import { api } from '../../services/api';
 
 const Product = () => {
-  const { setData, data, measures, setCartQuantity } = React.useContext(GlobalContext);
+  const { measures, setCartQuantity } = React.useContext(GlobalContext);
   const { getValue, setValue, pushValue } = useLocalStorage();
+  const [product, setProduct] = React.useState();
   const [selectedMeasure, setSelectedMeasure] = React.useState('');
   const [error, setError] = React.useState("");
   const { id } = useParams();
   const navigate = useNavigate();
   useLogged();
 
-  React.useEffect(() => {
-    fetch(`https://gablucas.github.io/jsonapi/radstore/data.json`)
-    .then(response => response.json())
-    .then(json => setData(json.find((p) => p.id === id)))
-  }, [setData, id])
+  const query = useQuery('products', async () => {
+    const { data } = await api.get('data.json');
+
+    setProduct(data.find((p) => p.id === id));
+  })
+
 
   function handleBuy(type) {
     if (!getValue('cart')) {
@@ -30,12 +34,28 @@ const Product = () => {
     }
 
     if (selectedMeasure) {
-      setError("")  
-      pushValue('cart', id)
+      setError("")
+
+      let cart = JSON.parse(getValue('cart'));
+      if (cart.find((f) => f.id === id && f.measure === selectedMeasure)) {
+        cart = cart.map((m) => {
+          if (m.id === id && m.measure === selectedMeasure) {
+            return {...m, quantity: m.quantity + 1};
+          }
+
+          return m;
+        })
+
+        setValue('cart', JSON.stringify(cart));
+        
+      } else {
+        pushValue('cart', {id, measure: selectedMeasure, quantity: 1});
+      }
+
       setCartQuantity(JSON.parse(getValue('cart')).length)
 
       if (type === 'buy') {
-        navigate('/cart')
+        navigate('/carrinho')
       }
 
       if (type === 'cart') {
@@ -45,22 +65,22 @@ const Product = () => {
   }
 
 
-  if (data) return (
+  if (product) return (
     <Container>
       <div>
-        <img src={data.image} alt="" width="700" />
+        <img src={product.image} alt="" width="700" />
       </div>
 
       <InfoWrapper>
-        <h1>{data.name}</h1>
-        <Price>R$ {data.price}</Price>
-        <Installments>ou 12x de R$ {Math.floor(parseInt(data.price) / 12)},00 sem juros</Installments>
+        <h1>{product.name}</h1>
+        <Price>R$ {product.price}</Price>
+        <Installments>ou 12x de R$ {Math.floor(parseInt(product.price) / 12)},00 sem juros</Installments>
 
         <div>
           <span>Escolha um tamanho</span>
 
           <ul>
-          {measures[data.type]?.map((measure) => (
+          {measures[product.type]?.map((measure) => (
             <MeasureButton key={measure} onClick={() => setSelectedMeasure(measure)} selectedMeasure={selectedMeasure === measure} >{measure}</MeasureButton>
           ))}
           </ul>
@@ -75,7 +95,7 @@ const Product = () => {
 
         <AboutWrapper>
           <span>Sobre</span>
-          <p>{data.description}</p>
+          <p>{product.description}</p>
         </AboutWrapper>
 
         </InfoWrapper>

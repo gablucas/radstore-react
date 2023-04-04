@@ -15,10 +15,10 @@ const useLogged = () => {
   }, [getValue, setLoggedUser])
 
   React.useEffect(() => {
-    setCartQuantity(JSON.parse(getValue('cart')).length)
+    setCartQuantity(JSON.parse(getValue('cart'))?.length || 0)
   }, [getValue, setCartQuantity])
 
 
 }
-
+  
 export default useLogged;

@@ -3,10 +3,14 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 
   :root {
+    --font1-24-b: 800 1.5rem/1.1 'Inter';
+    --font1-24-sb: 700 1.5rem/1.1 'Inter';
     --font1-20-b: 800 1.25rem/1.1 'Inter';
     --font1-20-m: 500 1.25rem/1.1 'Inter';
     --font1-18-sb: 700 1.125rem/1.1 'Inter';
+    --font1-18-m: 500 1.125rem/1.1 'Inter';
     --font1-16-sb: 700 1rem/1.1 'Inter';
+    --font1-16-b: 800 1rem/1.1 'Inter';
     --font1-16-r: 400 1rem/1.1 'Inter';
     --font1-14-m: 500 .875rem/1.1 'Inter';
     --font1-14-r: 400 .875rem/1.1 'Inter';
@@ -15,8 +19,8 @@ const GlobalStyle = createGlobalStyle`
     --font2-48-m: 500 3rem/1 'Rubik';
     --font2-32-bl: 900 2rem/1 'Rubik';
     --font2-24-b: 800 1.5rem/1.1 'Rubik';
-    --font2-18-sb: 600 1.125rem/1.1 'Inter';
-    --font2-8-bl: 900 .5rem/1.1 'Inter';
+    --font2-18-sb: 600 1.125rem/1.1 'Rubik';
+    --font2-8-bl: 900 .5rem/1.1 'Rubik';
   }
   
   * {

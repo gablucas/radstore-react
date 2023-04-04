@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-
+  margin: 0 auto;
+  width: 1440px;
+  display: grid;
+  grid-template-columns: 1000px 400px;
+  align-items: start;
+  column-gap: 40px;
 `
 
 export const BuySteps = styled.div`
+  grid-column: 1/-1;
   display: flex;
   gap: 100px;
   padding: 20px;
