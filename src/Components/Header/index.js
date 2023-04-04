@@ -208,7 +208,7 @@ const Header = () => {
           </Login>
 
           <Cart>
-            <a href="/carrinho"><img src={CartIMG} alt="" /><span>{cartQuantity}</span></a>
+            <Link to="/carrinho"><img src={CartIMG} alt="" /><span>{cartQuantity}</span></Link> 
           </Cart>
         </Account>
 

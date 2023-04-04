@@ -8,6 +8,7 @@ import Products from "./components/Products";
 import Product from "./components/Product";
 import ContextProvider from "./components/Context";
 import Login from "./components/Login";
+import Cart from "./components/Cart";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/produtos/:category/:type" element={<Products />} />
           <Route path="/produto/:id" element={<Product />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/carrinho/*" element={<Cart />} />
         </Routes>
         <Footer />
         <GlobalStyle />
