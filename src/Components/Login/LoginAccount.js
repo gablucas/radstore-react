@@ -20,7 +20,6 @@ const LoginAccount = () => {
 
     const users = JSON.parse(getValue('users')) || [];
     const user = users.find((user) => user.email === email.value && user.password === password.value);
-    console.log(user)
 
     if (user) {
       setError('');

@@ -6,7 +6,7 @@ export const GlobalContext = React.createContext();
 const ContextProvider = ({ children }) => {
   const [cartStorage, setCartStorage] = React.useState();
   const [cart, setCart] = React.useState();
-  const [loggedUser, setLoggedUser] = React.useState(false);
+  const [loggedUser, setLoggedUser] = React.useState();
   const [data, setData] = React.useState();
   const [filteredData, setFilteredData] = useState()
   const [searchParams, setSearchParams] = useSearchParams();

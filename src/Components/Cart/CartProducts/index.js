@@ -23,7 +23,7 @@ const CartProducts = () => {
 
   
   React.useEffect(() => {
-    if (data) {
+    if (data && cartStorage) {
       const cartProducts = cartStorage.map((m) =>  ({...m, data: data.find((f) => f.id === m.id)}));
       setCart(cartProducts);
     }
