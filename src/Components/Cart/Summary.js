@@ -1,6 +1,7 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import { GlobalContext } from '../Context';
 
 const Container = styled.div`
@@ -53,33 +54,41 @@ const Container = styled.div`
 `
 
 const Summary = ({ backStep, selectedPage }) => {
-  const { cart } = React.useContext(GlobalContext);
-  const [subTotal, setSubtTotal] = React.useState();
+  const { selectedAddress, selectedPayment, selectedCard, shipping, total, cart, installments, loggedUser } = React.useContext(GlobalContext);
+  const { getValue, setValue } = useLocalStorage();
+
   const navigate = useNavigate();
-  
-  React.useEffect(() => {
-    if(cart) {
-      setSubtTotal(cart.reduce((acc, cur) => acc + cur.quantity * parseInt(cur.data.price), 0))
-    }
-  }, [cart])
-  
-  
+
   function handleBuy() {
     if (!selectedPage) {
       backStep.current.entrega = true;
       navigate('entrega');
-    } else if (selectedPage === 'entrega') {
+    } else if (selectedPage === 'entrega' && selectedAddress) {
       backStep.current.pagamento = true;
       navigate('pagamento');
+    } else if ((selectedPage === 'pagamento' && selectedPayment !== 'cartao') || (selectedPage === 'pagamento' && selectedPayment === 'cartao' && selectedCard)) {
+
+      const user = loggedUser;
+      user.orders.push({id: Object.keys(user.orders).length + 1, cart, payment: {type: selectedPayment, value: {total, shipping, installments}}});
+
+      const users = JSON.parse(getValue('users')).map((m) => {
+        if (m.email === user.email) {
+          return user;
+        }
+        return m;
+      })
+      
+      
+      setValue('loggeduser', JSON.stringify(user));
+      setValue('users', JSON.stringify(users));
     }
   } 
 
   return (
     <Container>
-      <div><span>Subtotal</span> <span>R$ {subTotal || 0},00</span></div>
-      <div><span>Frete</span> <span>R$ 0,00</span></div>
-      <div><span>Cupom</span> <span>R$ 0,00</span></div>
-      <div><span>Total</span> <span>R$ {subTotal || 0},00</span></div>
+      <div><span>Subtotal</span> <span>R$ {total},00</span></div>
+      <div><span>Frete</span> <span>R$ {shipping},00</span></div>
+      <div><span>Total</span> <span>R$ {total + shipping},00</span></div>
 
       <button onClick={handleBuy}>{!selectedPage || selectedPage === 'entrega' ? 'Continuar compra' : 'Finalizar compra'}</button>
     </Container>

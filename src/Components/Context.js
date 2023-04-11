@@ -11,6 +11,12 @@ const ContextProvider = ({ children }) => {
   const [filteredData, setFilteredData] = useState()
   const [searchParams, setSearchParams] = useSearchParams();
   const [cartQuantity, setCartQuantity] = React.useState(0);
+  const [selectedAddress, setSelectedAddress] = React.useState();
+  const [selectedPayment, setSelectedPayment] = React.useState();
+  const [selectedCard, setSelectedCard] = React.useState();
+  const [shipping, setShipping] = React.useState(0);
+  const [installments, setInstallments] = React.useState(1);
+  const [total, setTotal] = React.useState(0);
 
   const measures = {
     camisas: ["PP", "P", "M", "G", "GG"],
@@ -24,7 +30,7 @@ const ContextProvider = ({ children }) => {
 
 
   return (
-    <GlobalContext.Provider value={{loggedUser, setLoggedUser, data, setData, filteredData, setFilteredData, searchParams, setSearchParams, measures, cartQuantity, setCartQuantity, cart, setCart, cartStorage, setCartStorage}}>
+    <GlobalContext.Provider value={{loggedUser, setLoggedUser, data, setData, filteredData, setFilteredData, searchParams, setSearchParams, measures, cartQuantity, setCartQuantity, cart, setCart, cartStorage, setCartStorage, selectedAddress, setSelectedAddress, selectedPayment, setSelectedPayment, selectedCard, setSelectedCard, shipping, setShipping, installments, setInstallments, total, setTotal}}>
       {children}
     </GlobalContext.Provider>
   )

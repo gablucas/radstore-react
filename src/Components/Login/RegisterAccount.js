@@ -21,7 +21,7 @@ const RegisterAccount = () => {
     const users = JSON.parse(getValue('users')) || [];
       
     if (!users.some((user) => user.email === email.value) && email.validate() && password.validate() && confirmPassword.validate() && name.validate() && lastName.validate()) {
-      users.push({email: email.value, password: password.value, name: name.value, lastName: lastName.value, addresses: [], orders: []})
+      users.push({email: email.value, password: password.value, name: name.value, lastName: lastName.value, addresses: [], payment: [], orders: []})
 
       setValue('users', JSON.stringify(users));
       setError('');

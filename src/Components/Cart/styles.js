@@ -58,3 +58,12 @@ export const BuySteps = styled.div`
     left: -80px;
   }
 `
+
+export const Title = styled.h1`
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font: var(--font2-16-m);
+  text-transform: uppercase;
+  border-top: 1px solid #C8C8C8;
+  border-bottom: 1px solid #C8C8C8;
+`
