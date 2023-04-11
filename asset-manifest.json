@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/radstore-react/static/js/main.ca2e65b1.js",
+    "main.js": "/radstore-react/static/js/main.09afd42c.js",
     "static/media/Banner.png": "/radstore-react/static/media/Banner.3b228aba4a1c2e358840.png",
     "static/media/BGLogin.jpg": "/radstore-react/static/media/BGLogin.2c1740b8cdd842bfdd78.jpg",
     "static/media/kids.jpg": "/radstore-react/static/media/kids.7d908f434e6f57ed585d.jpg",
@@ -17,9 +17,9 @@
     "static/media/instagram.svg": "/radstore-react/static/media/instagram.af84923c555d5fde9a4808a66f0cd037.svg",
     "index.html": "/radstore-react/index.html",
     "static/media/facebook.svg": "/radstore-react/static/media/facebook.80a4ac51973eafa34480627ac6485396.svg",
-    "main.ca2e65b1.js.map": "/radstore-react/static/js/main.ca2e65b1.js.map"
+    "main.09afd42c.js.map": "/radstore-react/static/js/main.09afd42c.js.map"
   },
   "entrypoints": [
-    "static/js/main.ca2e65b1.js"
+    "static/js/main.09afd42c.js"
   ]
 }
