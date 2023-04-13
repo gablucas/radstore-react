@@ -4,12 +4,10 @@ import { GlobalContext } from '../Context';
 import Filter from './Filter';
 import Product from './Product';
 import { Container, ShowProducts } from './styles';
-import useLogged from '../../hooks/useLogged';
 
 const Products = () => {
   const { filteredData } = React.useContext(GlobalContext);
   const { type } = useParams();
-  useLogged();
 
   return (
     <Container>

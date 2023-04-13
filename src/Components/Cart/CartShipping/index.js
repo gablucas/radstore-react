@@ -1,5 +1,4 @@
 import React from 'react'
-import useLogged from '../../../hooks/useLogged'
 import AddressForm from '../../AddressForm'
 import { GlobalContext } from '../../Context'
 import { Title } from '../styles'
@@ -8,7 +7,6 @@ import { Addresses, AddressWrapper, RegisterAddress } from './styles'
 const CartShipping = () => {
   const { loggedUser, selectedAddress, setSelectedAddress } = React.useContext(GlobalContext);
   const [altTab, setAltTab] = React.useState(false);
-  useLogged();
 
   function handleSelectAddress(address) {
 

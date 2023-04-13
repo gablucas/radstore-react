@@ -9,8 +9,9 @@ const GlobalStyle = createGlobalStyle`
     --font1-20-m: 500 1.25rem/1.1 'Inter';
     --font1-18-sb: 700 1.125rem/1.1 'Inter';
     --font1-18-m: 500 1.125rem/1.1 'Inter';
-    --font1-16-sb: 700 1rem/1.1 'Inter';
     --font1-16-b: 800 1rem/1.1 'Inter';
+    --font1-16-sb: 700 1rem/1.1 'Inter';
+    --font1-16-m: 500 1rem/1.1 'Inter';
     --font1-16-r: 400 1rem/1.1 'Inter';
     --font1-14-b: 800 .875rem/1.1 'Inter';
     --font1-14-m: 500 .875rem/1.1 'Inter';
@@ -33,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    background: ${props => props.color ? '#F7F7F7' : '#FFFFFF'};
     margin: 0 auto;
     -webkit-font-smoothing: antialised;
   }
@@ -59,11 +61,24 @@ const GlobalStyle = createGlobalStyle`
     display: block;
   }
 
+  label {
+    display: block;
+  }
+
   input {
     background: none;
     outline: none;
-    border: none;
+
+    width: 300px;
+    height: 46px;
+    margin-top: 6px;
+    padding-left: 8px;
+    font: var(--font1-16-r);
+    border: 1px solid #2B2B2B;
+    background-color: #F7F7F7;
   }
+
+
 `
 
 export { GlobalStyle }

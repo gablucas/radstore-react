@@ -64,11 +64,11 @@ const CreditCardForm = ({ goback, savePayment }) => {
   const { loggedUser } = React.useContext(GlobalContext);
   const { getValue, setValue } = useLocalStorage();
 
-  const cardnumber = useForm('text');
-  const cardname = useForm('number');
-  const validityMonth = useForm('text');
-  const validityYear = useForm('number');
-  const cvv = useForm('text');
+  const cardnumber = useForm({type: 'text', empty: true, regex: true});
+  const cardname = useForm({type: 'number', empty: true, regex: true});
+  const validityMonth = useForm({type: 'text', empty: true, regex: true});
+  const validityYear = useForm({type: 'number', empty: true, regex: true});
+  const cvv = useForm({type: 'text', empty: true, regex: true});
 
   function handleBack() {
     goback();

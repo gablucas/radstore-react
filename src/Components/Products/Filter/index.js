@@ -12,7 +12,6 @@ const Filter = () => {
   const { filterParams } = useFilter();
   const { type } = useParams();
   const genre = searchParams.get('genre');
-  console.log(useParams())
 
   React.useEffect(() => {
     fetch(`https://gablucas.github.io/jsonapi/radstore/data.json`)

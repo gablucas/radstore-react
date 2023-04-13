@@ -32,16 +32,6 @@ export const Container = styled.section`
     color: #FFFFFF;
   }
 
-  input {
-    width: 300px;
-    height: 46px;
-    margin-top: 6px;
-    padding-left: 8px;
-    font: var(--font1-16-r);
-    border: 1px solid #2B2B2B;
-    background-color: #F7F7F7;
-  }
-
   &::before {
     content: "";
     display: block;

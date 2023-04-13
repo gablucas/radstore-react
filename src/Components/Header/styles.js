@@ -4,6 +4,7 @@ export const Container = styled.header`
   margin-left: 40px;
   margin-right: 40px;
   border-bottom: 1px solid #C8C8C8;
+  background: #FFFFFF;
 `
 
 export const Nav = styled.nav`

@@ -5,6 +5,7 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import { GlobalContext } from '../Context';
 
 const Container = styled.div`
+  width: 400px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -54,7 +55,7 @@ const Container = styled.div`
 `
 
 const Summary = ({ backStep, selectedPage }) => {
-  const { selectedAddress, selectedPayment, selectedCard, shipping, total, cart, installments, loggedUser } = React.useContext(GlobalContext);
+  const { selectedAddress, selectedPayment, selectedCard, shipping, total, cart, installments, loggedUser , order } = React.useContext(GlobalContext);
   const { getValue, setValue } = useLocalStorage();
 
   const navigate = useNavigate();
@@ -67,9 +68,12 @@ const Summary = ({ backStep, selectedPage }) => {
       backStep.current.pagamento = true;
       navigate('pagamento');
     } else if ((selectedPage === 'pagamento' && selectedPayment !== 'cartao') || (selectedPage === 'pagamento' && selectedPayment === 'cartao' && selectedCard)) {
-
+      
+      const orderDate = new Date();
       const user = loggedUser;
-      user.orders.push({id: Object.keys(user.orders).length + 1, cart, payment: {type: selectedPayment, value: {total, shipping, installments}}});
+      const newOrder = {id: Object.keys(user.orders).length + 1, date:`${orderDate.getDate()}/${orderDate.getMonth()}/${orderDate.getFullYear()}` ,cart, payment: {type: selectedPayment, value: {total, shipping, installments}}}
+      order.current = newOrder;
+      user.orders.push(newOrder);
 
       const users = JSON.parse(getValue('users')).map((m) => {
         if (m.email === user.email) {
@@ -81,6 +85,10 @@ const Summary = ({ backStep, selectedPage }) => {
       
       setValue('loggeduser', JSON.stringify(user));
       setValue('users', JSON.stringify(users));
+      setValue('cart', JSON.stringify([]));
+      backStep.current.entrega = false;
+      backStep.current.pagamento = false;
+      navigate('pedido-realizado');
     }
   } 
 

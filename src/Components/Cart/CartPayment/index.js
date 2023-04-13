@@ -3,13 +3,12 @@ import { Title } from '../styles';
 import { CardWrapper, PaymentWrapper } from './styles';
 import { GlobalContext } from '../../Context';
 import CreditCardForm from '../../CreditCardForm';
-import useLogged from '../../../hooks/useLogged';
+
 import Select from '../../Forms/Select';
 
 const CartPayment = () => {
   const { selectedPayment, setSelectedPayment, setInstallments, selectedCard, setSelectedCard, loggedUser, total } = React.useContext(GlobalContext);
   const [altTab, setAltTab] = React.useState(false);
-  useLogged();
   const installments = React.useRef([]);
 
   function handleSelectPayment(payment) {

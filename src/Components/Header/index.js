@@ -9,7 +9,7 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 
 
 const Header = () => {
-  const { loggedUser, setLoggedUser, cartQuantity } = React.useContext(GlobalContext);
+  const { cartQuantity, loggedUser, setLoggedUser } = React.useContext(GlobalContext);
   const { removeValue } = useLocalStorage();
 
   function handleLogout() {
@@ -197,12 +197,12 @@ const Header = () => {
 
         <Account>
           <Login>
-            <Link to='/login'><img src={LoginIMG} alt="" /><span>Olá, {loggedUser ? loggedUser.name : 'Visitante'}</span></Link>
+            <Link to='/login'><img src={LoginIMG} alt="" /><span>Olá, {loggedUser?.name ? loggedUser.name : 'Visitante'}</span></Link>
 
             {loggedUser && (<ul>
-              <li><Link>Minha conta</Link></li>
-              <li><Link>Meus pedidos</Link></li>
-              <li><Link>Meus endereços</Link></li>
+              <li><Link to='/minha-conta'>Minha conta</Link></li>
+              <li><Link to='/minha-conta/pedidos'>Meus pedidos</Link></li>
+              <li><Link to='/minha-conta/endereços'>Meus endereços</Link></li>
               <li><button onClick={handleLogout}>Sair</button></li>
             </ul>)}
           </Login>

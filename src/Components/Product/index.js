@@ -2,7 +2,6 @@ import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AboutWrapper, ButtonWrapper, BuyButton, CartButton, Container, InfoWrapper, Installments, MeasureButton, Price } from './styles';
 import { GlobalContext } from '../Context';
-import useLogged from '../../hooks/useLogged';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { useQuery } from 'react-query';
 import { api } from '../../services/api';
@@ -15,7 +14,6 @@ const Product = () => {
   const [error, setError] = React.useState("");
   const { id } = useParams();
   const navigate = useNavigate();
-  useLogged();
 
   const query = useQuery('products', async () => {
     const { data } = await api.get('data.json');

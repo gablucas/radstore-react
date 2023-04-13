@@ -4,7 +4,8 @@ export const Container = styled.section`
   margin: 0 auto;
   width: 1440px;
   display: grid;
-  grid-template-columns: 1000px 400px;
+  grid-template-columns: ${props => props.selectedPage !== 'pedido-realizado' ? '1000px 400px' : '800px'};
+  justify-content: center;
   align-items: start;
   column-gap: 40px;
 `

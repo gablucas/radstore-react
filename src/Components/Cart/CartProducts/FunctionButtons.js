@@ -14,7 +14,7 @@ const Container = styled.div`
 `
 
 const FunctionButtons = ({ index }) => {
-  const { setCartStorage } = React.useContext(GlobalContext);
+  const { setCartStorage, setCartQuantity } = React.useContext(GlobalContext);
   const { getValue, setValue } = useLocalStorage();
 
   function handleRemove() {
@@ -22,8 +22,8 @@ const FunctionButtons = ({ index }) => {
     cart = cart.filter((f, i) => i !== index);
     setValue('cart', JSON.stringify(cart));
     setCartStorage(cart);
+    setCartQuantity(cart.lenght || 0)
   }
-
 
 
   return (

@@ -67,17 +67,17 @@ const AddressForm = ({ goback, saveAddress }) => {
   const { loggedUser } = React.useContext(GlobalContext);
   const { getValue, setValue } = useLocalStorage();
 
-  const identificacao = useForm('text');
-  const cep = useForm('number');
-  const endereco = useForm('text');
-  const numero = useForm('number');
-  const cidade = useForm('text');
-  const bairro = useForm('text');
-  const uf = useForm('text');
-  const complemento = useForm(false);
-  const referencia = useForm(false);
-  const nome = useForm('text');
-  const telefone = useForm('number');
+  const identificacao = useForm({type: 'text', empty: true, regex: true});
+  const cep = useForm({type: 'number', empty: true, regex: true});
+  const endereco = useForm({type: 'text', empty: true, regex: true});
+  const numero = useForm({type: 'number', empty: true, regex: true});
+  const cidade = useForm({type: 'text', empty: true, regex: true});
+  const bairro = useForm({type: 'text', empty: true, regex: true});
+  const uf = useForm({type: 'text', empty: true, regex: true});
+  const complemento = useForm({type: false});
+  const referencia = useForm({type: false});
+  const nome = useForm({type: 'text', empty: true, regex: true});
+  const telefone = useForm({type: 'number', empty: true, regex: true});
 
   function handleBack() {
     goback();

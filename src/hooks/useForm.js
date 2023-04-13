@@ -19,7 +19,7 @@ const types = {
   }
 }
 
-const useForm = ({ type, password }) => {
+const useForm = ({ type, password, empty, regex }) => {
   const [value, setValue] = React.useState("");
   const [error, setError] = React.useState();
 
@@ -29,12 +29,10 @@ const useForm = ({ type, password }) => {
     if(type === 'confirmpassword' && value !== password) {
       setError('As senhas não estão iguais')
       return false;
-    }
-
-    if(type !== 'confirmpassword' && value.length === 0) {
+    }else if(empty && value.length === 0) {
       setError('Preencha um valor.');
       return false;
-    } else if (types[type] && !types[type].regex.test(value)) {
+    } else if (regex && types[type] && !types[type].regex.test(value)) {
       setError(types[type].message);
       return false;
     } else {
