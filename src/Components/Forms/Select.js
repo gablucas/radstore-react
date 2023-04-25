@@ -3,7 +3,7 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import { GlobalContext } from '../Context';
 
 const Select = ({saveValue, options, initialValue, index, names }) => {
-  const { setCartStorage } = React.useContext(GlobalContext);
+  const { setCart } = React.useContext(GlobalContext);
   const [quantity, setQuantity] = React.useState();
   const { getValue, setValue } = useLocalStorage();
 
@@ -24,16 +24,19 @@ const Select = ({saveValue, options, initialValue, index, names }) => {
     })
 
     setValue('cart', JSON.stringify(cart));
-    setCartStorage(cart);
+    setCart(cart);
   }
 
+  React.useEffect(() => {
+    setQuantity(initialValue)
+  }, [initialValue])
 
 
   return (
     <div>
       <select value={quantity} onChange={(e) => handleSelect(e)}>
       {options.map((m, i) => (
-        <option key={m}>{names?.[i] || m}</option>
+        <option key={m} value={m} >{names?.[i] || m}</option>
       ))}
 
       </select>

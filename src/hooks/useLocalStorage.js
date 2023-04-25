@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
 const useLocalStorage = () => {
-  
+
   const setValue = useCallback((key, value) => {
     localStorage.setItem(key, value)
   }, []);

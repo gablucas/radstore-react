@@ -64,11 +64,11 @@ const CreditCardForm = ({ goback, savePayment }) => {
   const { loggedUser } = React.useContext(GlobalContext);
   const { getValue, setValue } = useLocalStorage();
 
-  const cardnumber = useForm({type: 'text', empty: true, regex: true});
-  const cardname = useForm({type: 'number', empty: true, regex: true});
-  const validityMonth = useForm({type: 'text', empty: true, regex: true});
+  const cardnumber = useForm({type: 'number', empty: true, regex: true});
+  const cardname = useForm({type: 'text', empty: true, regex: true});
+  const validityMonth = useForm({type: 'number', empty: true, regex: true});
   const validityYear = useForm({type: 'number', empty: true, regex: true});
-  const cvv = useForm({type: 'text', empty: true, regex: true});
+  const cvv = useForm({type: 'number', empty: true, regex: true});
 
   function handleBack() {
     goback();
@@ -76,9 +76,8 @@ const CreditCardForm = ({ goback, savePayment }) => {
 
   function handleSave() {
     if(cardnumber.validate() && cardname.validate() && validityMonth.validate() && validityYear.validate() && cvv.validate()) {
-      const card = { id: 'teste', cardnumber: cardnumber.value, cardname: cardname.value, validity: [validityMonth.value, validityYear.value], cvv: cvv.value }
-
       const user = loggedUser;
+      const card = { id: user.payment[user.payment.length - 1]?.id + 1 || 1, cardnumber: cardnumber.value, cardname: cardname.value, validity: [validityMonth.value, validityYear.value], cvv: cvv.value }
       user.payment.push(card);
 
       const users = JSON.parse(getValue('users')).map((m) => {

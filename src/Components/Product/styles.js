@@ -7,6 +7,11 @@ export const Container = styled.section`
   gap: 40px;
   margin-top: 40px;
 `
+
+export const ImageWrapper = styled.div`
+  position: relative;
+`
+
 export const InfoWrapper = styled.div`
 
   h1 {

@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const Container = styled.section`
+  margin: 0 auto;
+  width: 1440px;
+  display: grid;
+  grid-template-columns: 1000px 400px;
+  justify-content: center;
+  align-items: start;
+  column-gap: 40px;
+`
+
 const containerGrid = styled.div`
   display: grid;
   grid-template-columns: 3fr repeat(4, 1fr);

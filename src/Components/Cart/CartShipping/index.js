@@ -5,13 +5,13 @@ import { Title } from '../styles'
 import { Addresses, AddressWrapper, RegisterAddress } from './styles'
 
 const CartShipping = () => {
-  const { loggedUser, selectedAddress, setSelectedAddress } = React.useContext(GlobalContext);
+  const { loggedUser, setCheckout, checkout } = React.useContext(GlobalContext);
   const [altTab, setAltTab] = React.useState(false);
 
   function handleSelectAddress(address) {
 
-    if (selectedAddress !== address) {
-      setSelectedAddress(address)
+    if (checkout.address !== address) {
+      setCheckout(checkout => ({...checkout, address, payment: {...checkout.payment, shipping: 30}}))
     }
   }
 
@@ -23,7 +23,7 @@ const CartShipping = () => {
           
           <div>
             {loggedUser?.addresses.map((m, index) => (
-              <AddressWrapper key={index} onClick={() => handleSelectAddress(m.address)} selectedAddress={selectedAddress === m.address}>
+              <AddressWrapper key={index} onClick={() => handleSelectAddress(m.id)} selectedAddress={checkout.address === m.id}>
                 <span>{m.identification}</span>
                 <span>Destinatário: {m.name}</span>
                 <span>{m.address}, {m.number} - {m.city}, {m.neighborhood} - {m.uf} - {m.cep} </span>

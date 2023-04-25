@@ -7,32 +7,34 @@ import Summary from './Summary';
 import CartPayment from './CartPayment';
 import { GlobalContext } from '../Context';
 import CartOrder from './CartOrder';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const Cart = () => {
-  const { cart, setShipping, setTotal } = React.useContext(GlobalContext);
+  const { setBgColor, cart, products } = React.useContext(GlobalContext);
+  const [productsDetails, setProductsDetails] = React.useState([]);
+  const { getValue } = useLocalStorage();
   const selectedPage = useParams()["*"];
   const backStep = useRef({entrega: false, pagamento: false});
   const navigate = useNavigate();
 
 
   React.useEffect(() => {
+    if (products.length) {
+      setProductsDetails(cart.map((m) =>  ({...m, data: products.find((f) => f.id === m.id)})));
+    }
+  }, [getValue, products, cart])
+
+
+  React.useEffect(() => {
     if((selectedPage === 'entrega' && !backStep.current.entrega) || (selectedPage === 'pagamento' && !backStep.current.pagamento)) {
-      navigate('/carrinho')
+      navigate('/carrinho');
     }
   }, [navigate, selectedPage])
 
-  React.useEffect(() => {
-    if(cart) {
-      setTotal(cart.reduce((acc, cur) => acc + cur.quantity * parseInt(cur.data.price), 0));
-    }
-  }, [cart, setTotal])
-  
 
   React.useEffect(() => {
-    if (selectedPage === 'entrega') {
-      setShipping(30);
-    }
-  }, [selectedPage, setShipping])
+    setBgColor(true);
+  }, [setBgColor])
 
   return (
     <Container selectedPage={selectedPage}>
@@ -43,10 +45,10 @@ const Cart = () => {
         </BuySteps>)}
       
       <Routes>
-        <Route path='/' element={<CartProducts />} />
+        <Route path='/' element={<CartProducts productsDetails={productsDetails}/>} />
         <Route path='entrega' element={<CartShipping />} />
         <Route path='pagamento' element={<CartPayment />} />
-        <Route path='pedido-realizado' element={<CartOrder />} />
+        <Route path='pedido-realizado' element={<CartOrder productsDetails={productsDetails}/>} />
       </Routes>
       
       {selectedPage !== 'pedido-realizado' && (<Summary backStep={backStep} selectedPage={selectedPage} />)}

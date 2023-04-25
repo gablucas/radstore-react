@@ -24,5 +24,25 @@ export const Menu = styled.div`
     padding: 10px 0px;
     border-top: 1px solid #D9D9D9;
   }
+
+  a.active {
+    font-weight: 600;
+  }
 `
+
+export const DataContainer = styled.div`
+  display: grid;
+  padding: 20px;
+  background: #FFFFFF;
+
+  h1 {
+    grid-column: 1/-1;
+    margin-bottom: 6px;
+    font: var(--font1-16-b);
+    text-transform: uppercase;
+  }
+
+`
+
+
 

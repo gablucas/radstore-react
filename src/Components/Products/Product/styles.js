@@ -5,6 +5,8 @@ export const Container = styled.div`
   width: 320px;
   height: 320px;
 
+  position: relative;
+
   a {
     display: flex;
     flex-direction: column;
@@ -17,5 +19,13 @@ export const Container = styled.div`
 
   span:nth-child(3) {
     font: var(--font1-16-r);
+  }
+
+  button {
+    display: none;
+  }
+
+  &:hover button {
+    display: initial;
   }
 `

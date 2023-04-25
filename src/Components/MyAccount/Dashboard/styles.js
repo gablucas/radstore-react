@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DataContainer } from "../styles";
 
 export const Container = styled.div`
   display: grid;
@@ -6,8 +7,7 @@ export const Container = styled.div`
   gap: 20px;
 `
 
-export const AccountWrapper = styled.div`
-  display: grid;
+export const AccountWrapper = styled(DataContainer)`
   align-content: space-between;
   padding: 20px;
   background: #FFFFFF;
@@ -23,13 +23,6 @@ export const AccountWrapper = styled.div`
 
   li span {
     font: var(--font1-16-r);
-  }
-
-
-  h1 {
-    margin-bottom: 6px;
-    font: var(--font1-16-b);
-    text-transform: uppercase;
   }
 
   a {

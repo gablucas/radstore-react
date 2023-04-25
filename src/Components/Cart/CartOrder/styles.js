@@ -15,7 +15,7 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 20px;
   
-  button {
+  a {
     flex: 1;
     padding: 10px 0px;
     font: var(--font1-16-b);
@@ -24,7 +24,7 @@ export const ButtonsWrapper = styled.div`
     background: #2B2B2B;
   }
 
-  button:hover {
+  a:hover {
     color: #2B2B2B;
     background: #FFA700;
   }

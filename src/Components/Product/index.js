@@ -1,13 +1,12 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { AboutWrapper, ButtonWrapper, BuyButton, CartButton, Container, InfoWrapper, Installments, MeasureButton, Price } from './styles';
+import { AboutWrapper, ButtonWrapper, BuyButton, CartButton, Container, ImageWrapper, InfoWrapper, Installments, MeasureButton, Price } from './styles';
 import { GlobalContext } from '../Context';
 import useLocalStorage from '../../hooks/useLocalStorage';
-import { useQuery } from 'react-query';
-import { api } from '../../services/api';
+import Favorite from '../Favorite';
 
 const Product = () => {
-  const { measures, setCartQuantity } = React.useContext(GlobalContext);
+  const { measures, products, setCart } = React.useContext(GlobalContext);
   const { getValue, setValue, pushValue } = useLocalStorage();
   const [product, setProduct] = React.useState();
   const [selectedMeasure, setSelectedMeasure] = React.useState('');
@@ -15,11 +14,10 @@ const Product = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const query = useQuery('products', async () => {
-    const { data } = await api.get('data.json');
 
-    setProduct(data.find((p) => p.id === id));
-  })
+  React.useEffect(() => {
+    setProduct(products.find((p) => p.id === id));
+  }, [setProduct, products, id])
 
 
   function handleBuy(type) {
@@ -45,12 +43,12 @@ const Product = () => {
         })
 
         setValue('cart', JSON.stringify(cart));
-        
+
       } else {
         pushValue('cart', {id, measure: selectedMeasure, quantity: 1});
       }
-
-      setCartQuantity(JSON.parse(getValue('cart')).length)
+      
+      setCart(JSON.parse(getValue('cart')));
 
       if (type === 'buy') {
         navigate('/carrinho')
@@ -65,9 +63,10 @@ const Product = () => {
 
   if (product) return (
     <Container>
-      <div>
+      <ImageWrapper>
+        <Favorite id={id} />
         <img src={product.image} alt="" width="700" />
-      </div>
+      </ImageWrapper>
 
       <InfoWrapper>
         <h1>{product.name}</h1>

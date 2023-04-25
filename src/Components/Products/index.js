@@ -6,7 +6,7 @@ import Product from './Product';
 import { Container, ShowProducts } from './styles';
 
 const Products = () => {
-  const { filteredData } = React.useContext(GlobalContext);
+  const { filteredProducts } = React.useContext(GlobalContext);
   const { type } = useParams();
 
   return (
@@ -16,7 +16,7 @@ const Products = () => {
       <Filter />
 
       <ShowProducts>
-      {filteredData?.map(product => (
+      {filteredProducts?.map(product => (
         <Product key={product.id} product={product} />
       ))}
       </ShowProducts>

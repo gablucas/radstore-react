@@ -34,7 +34,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${props => props.color ? '#F7F7F7' : '#FFFFFF'};
     margin: 0 auto;
     -webkit-font-smoothing: antialised;
   }

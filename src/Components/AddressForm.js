@@ -63,7 +63,7 @@ const FormWrapper = styled.div`
 
 `
 
-const AddressForm = ({ goback, saveAddress }) => {
+const AddressForm = ({ goback, saveAddress, editAddress }) => {
   const { loggedUser } = React.useContext(GlobalContext);
   const { getValue, setValue } = useLocalStorage();
 
@@ -84,25 +84,55 @@ const AddressForm = ({ goback, saveAddress }) => {
   }
 
   function handleSave() {
-    if(identificacao.validate() && cep.validate() && endereco.validate() && numero.validate() && cidade.validate() && bairro.validate() && uf.validate() && nome.validate() && telefone.validate()) {
-      const address = { id: 'teste', identification: identificacao.value, cep: cep.value, address: endereco.value, number: numero.value, city: cidade.value, neighborhood: bairro.value, uf: uf.value, complement: complemento.value, reference: referencia.value, name: nome.value}
-      
-      const user = loggedUser;
-      user.addresses.push(address);
+    if (identificacao.validate() && cep.validate() && endereco.validate() && numero.validate() && cidade.validate() && bairro.validate() && uf.validate() && nome.validate() && telefone.validate()) {
 
-      const users = JSON.parse(getValue('users')).map((m) => {
+      const user = loggedUser;
+      const users = JSON.parse(getValue('users'));
+      const address = {identification: identificacao.value, cep: cep.value, address: endereco.value, number: numero.value, city: cidade.value, neighborhood: bairro.value, uf: uf.value, complement: complemento.value, reference: referencia.value, name: nome.value, phone: telefone.value};
+
+      if (!editAddress?.edit) {
+        address.id = user.addresses[user.addresses.length - 1]?.id + 1 || 1;
+        user.addresses.push(address);
+      } else {
+        address.id = editAddress.address.id;
+        user.addresses = user.addresses.map((m) => {
+          if (m.id === editAddress.address.id) {
+            return address;
+          }
+          return m;
+        })
+      }
+
+      
+      users.map((m) => {
         if (m.email === user.email) {
           return user;
         }
         return m;
       })
       
-      
       setValue('loggeduser', JSON.stringify(user));
       setValue('users', JSON.stringify(users));
       saveAddress()    
     }
   }
+
+  // NÃO ESTA SENDO POSSÍVEL ALTERAR O VALOR DO INPUT QUANDO É ADICIONADO AS EDITADDRESS COMO DEPENDENCIA
+  React.useEffect(() => {
+    if (editAddress?.edit) {
+      identificacao.setValue(editAddress.address.identification)
+      cep.setValue(editAddress.address.cep)
+      endereco.setValue(editAddress.address.address)
+      numero.setValue(editAddress.address.number)
+      cidade.setValue(editAddress.address.city)
+      bairro.setValue(editAddress.address.neighborhood)
+      uf.setValue(editAddress.address.uf)
+      complemento.setValue(editAddress.address.complement)
+      referencia.setValue(editAddress.address.reference)
+      nome.setValue(editAddress.address.name)
+      telefone.setValue(editAddress.address.phone)
+    }
+  }, [])
 
 
   return (

@@ -3,18 +3,19 @@ import LogoBlack from '../../assets/logo-black.svg';
 import LoginIMG from '../../assets/login.svg';
 import CartIMG from '../../assets/cart.svg';
 import { Container, Nav, Cart, Account, Login, Menus, SubMenus } from './styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../Context';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
-
 const Header = () => {
-  const { cartQuantity, loggedUser, setLoggedUser } = React.useContext(GlobalContext);
+  const { cart, loggedUser, setLoggedUser } = React.useContext(GlobalContext);
   const { removeValue } = useLocalStorage();
+  const navigate =useNavigate();
 
   function handleLogout() {
     removeValue('loggeduser');
     setLoggedUser(false);
+    navigate('/');
   }
 
   return (
@@ -30,7 +31,7 @@ const Header = () => {
 
           {/* MASCULINO */}
           <li>
-            <a href="">Masculino</a>
+            <Link>Masculino</Link>
 
             <SubMenus>
               <div>
@@ -197,10 +198,10 @@ const Header = () => {
 
         <Account>
           <Login>
-            <Link to='/login'><img src={LoginIMG} alt="" /><span>Olá, {loggedUser?.name ? loggedUser.name : 'Visitante'}</span></Link>
+            <Link to={loggedUser ? '/minha-conta/resumo' : '/login'}><img src={LoginIMG} alt="" /><span>Olá, {loggedUser ? loggedUser.name : 'Visitante'}</span></Link>
 
             {loggedUser && (<ul>
-              <li><Link to='/minha-conta'>Minha conta</Link></li>
+              <li><Link to='/minha-conta/resumo'>Minha conta</Link></li>
               <li><Link to='/minha-conta/pedidos'>Meus pedidos</Link></li>
               <li><Link to='/minha-conta/endereços'>Meus endereços</Link></li>
               <li><button onClick={handleLogout}>Sair</button></li>
@@ -208,7 +209,7 @@ const Header = () => {
           </Login>
 
           <Cart>
-            <Link to="/carrinho"><img src={CartIMG} alt="" /><span>{cartQuantity}</span></Link> 
+            <Link to="/carrinho"><img src={CartIMG} alt="" /><span>{cart?.map((m) => m.quantity).reduce((acc, cur) => acc + cur, 0) || 0}</span></Link> 
           </Cart>
         </Account>
 

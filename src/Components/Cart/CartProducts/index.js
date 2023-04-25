@@ -1,35 +1,17 @@
 import React from 'react';
 import { ListTitle, Product, ProductInfo } from './styles';
-import useLocalStorage from '../../../hooks/useLocalStorage'
-import { useQuery } from 'react-query';
-import { api } from '../../../services/api';
 import Select from '../../Forms/Select';
 import FunctionButtons from './FunctionButtons';
 import { GlobalContext } from '../../Context';
 
-const CartProducts = () => {
-  const { cartStorage, setCartStorage, cart, setCart } = React.useContext(GlobalContext);
-  const { getValue } = useLocalStorage();
-
-  const { data } = useQuery('products', async () => {
-    const { data } = await api.get('data.json');
-
-    return data;
-  })
+const CartProducts = ({ productsDetails }) => {
+  const { setCheckout } = React.useContext(GlobalContext);
 
   React.useEffect(() => {
-    setCartStorage(JSON.parse(getValue('cart')))
-  }, [getValue, setCartStorage])
 
-  
-  React.useEffect(() => {
-    if (data && cartStorage) {
-      const cartProducts = cartStorage.map((m) =>  ({...m, data: data.find((f) => f.id === m.id)}));
-      setCart(cartProducts);
-    }
-  }, [getValue, data, cartStorage, setCart])
+    setCheckout(checkout => ({...checkout, payment: {...checkout.payment, subtotal: productsDetails.reduce((acc, cur) => acc + cur.quantity * parseInt(cur.data.price), 0)}}))
+  }, [setCheckout, productsDetails])
 
-  
   return (
     <div>
       <ListTitle>
@@ -41,7 +23,7 @@ const CartProducts = () => {
       </ListTitle>
 
 
-    {cart?.map((m, index) => (
+    {productsDetails?.map((m, index) => (
       <Product key={index} >
 
         <ProductInfo>
@@ -53,7 +35,7 @@ const CartProducts = () => {
           </div>
         </ProductInfo>
 
-        <Select options={[1,2,3,4,5,6,7]} initialValue={m.quantity} index={index} />
+        <Select options={[1,2,3,4,5,6,7]} initialValue={1} index={index} />
 
         <div>
           <span>R$ {m.data.price}</span>

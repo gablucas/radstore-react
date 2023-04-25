@@ -1,35 +1,17 @@
 import React from 'react'
-import { useQuery } from 'react-query';
-import { api } from '../../../services/api';
 import { ButtonsWrapper, Container, InfoWrapper, Products } from './styles';
 import { GlobalContext } from '../../Context';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const CartOrder = () => {
-  const { order } = React.useContext(GlobalContext);
+const CartOrder = ({ productsDetails }) => {
+  const { checkout } = React.useContext(GlobalContext);
   const navigate = useNavigate();
 
-  const { data } = useQuery('products', async () => {
-    const { data } = await api.get('data.json');
-
-    return data;
-  })
-
-  function handleNavigate(navigateTo) {
-    if (navigateTo === 'continuar-compra') {
-      navigate('/');
-    } else if (navigateTo === 'ver-pedidos') {
-      navigate('/');
-    }
-
-    order.current = {};
-  }
-
   React.useEffect(() => {
-    if (!order.current.cart) {
+    if (!productsDetails.length) {
       navigate('/');
     }
-  }, [order, navigate])
+  }, [productsDetails.length, navigate])
 
 
   return (
@@ -37,17 +19,17 @@ const CartOrder = () => {
       <h1>Pedido efetuado com sucesso</h1>
 
       <ButtonsWrapper>
-        <button onClick={() => handleNavigate('continuar-compra')}>Continuar compra</button>
-        <button onClick={() => handleNavigate('ver-pedidos')}>Ver meus pedidos</button>
+        <Link to='/'>Continuar compra</Link>
+        <Link to='/minha-conta/pedidos'>Ver meus pedidos</Link>
       </ButtonsWrapper>
 
       <InfoWrapper>
         <h2>Pagamento</h2>
         <ul>
-          <li>Forma de pagamento: <span>Boleto</span></li>
-          <li>Subtotal: <span>R$ 3000,00</span></li>
-          <li>Frete: <span>R$ 30,00</span></li>
-          <li>Total: <span>R$ 3030,00</span></li>
+          <li>Forma de pagamento: <span>{checkout.payment.type}{checkout.payment.type === 'cartao' && ` - ${checkout.payment.installments}x de R$ ${(checkout.payment.total + checkout.payment.shipping) / checkout.payment.installments}`}</span></li>
+          <li>Subtotal: <span>R$ {checkout.payment.subtotal},00</span></li>
+          <li>Frete: <span>R$ {checkout.payment.shipping},00</span></li>
+          <li>Total: <span>R$ {checkout.payment.subtotal + checkout.payment.shipping},00</span></li>
         </ul>
       </InfoWrapper>
 
@@ -70,16 +52,16 @@ const CartOrder = () => {
           <span>Quantidade</span>
         </div>
 
-        {order.current.cart?.map((m) => (
+        {checkout.items.map((m, i) => (
           <Products key={m.id}>
             <div>
-              <img src={data.find((f) => f.id === m.id).image} alt="" width='100px'/>
-              <span>{data.find((f) => f.id === m.id).name}</span>
+              <img src={productsDetails[i].data.image} alt="" width='100px'/>
+              <span>{productsDetails[i].data.name}</span>
             </div>
 
-            <span>R$ {data.find((f) => f.id === m.id).price}</span>
+            <span>R$ {productsDetails[i].data.price}</span>
             <span>{m.measure}</span>
-            <span>{data.find((f) => f.id === m.id).color[0]}</span>
+            <span>{productsDetails[i].data.color[0]}</span>
             <span>{m.quantity}</span>
 
           </Products>

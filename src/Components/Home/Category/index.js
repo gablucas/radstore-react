@@ -8,7 +8,6 @@ import SkateIMG from '../../../assets/category/skate.jpg';
 import BmxIMG from '../../../assets/category/bmx.jpg';
 import CategoryType from './CategoryType';
 
-
 const Category = () => {
   return (
     <Container>

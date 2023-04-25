@@ -1,10 +1,11 @@
 import React, { useCallback, useRef } from 'react'
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { GlobalContext } from '../components/Context';
 
 export const useFilter = () => {
-  const { data } = React.useContext(GlobalContext);
+  const { products } = React.useContext(GlobalContext);
   const [searchParams] = useSearchParams();
+  const { type } = useParams();
   const genre = searchParams.get('genre');
   const size = searchParams.get('size');
   const color = searchParams.get('color');
@@ -12,8 +13,12 @@ export const useFilter = () => {
   let filterData = useRef();
 
   const filterParams = useCallback((filter) => {
-    if (data) {
-      filterData.current = Array.from(data);
+    if (products) {
+      filterData.current = Array.from(products);
+
+      if (type && filter.type) {
+        filterData.current = filterData.current.filter((d) => d.type === type);
+      }
 
       if (genre && filter.genre) {
         filterData.current = filterData.current.filter((d) => d.genre === genre);
@@ -33,7 +38,7 @@ export const useFilter = () => {
       }
     }
     return filterData.current;
-  }, [color, data, genre, price, size])
+  }, [products, type, genre, size, price, color])
 
   return {filterParams, genre, size, color, price}
 }

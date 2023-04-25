@@ -4,11 +4,12 @@ import Input from '../Forms/Input';
 import useForm from '../../hooks/useForm';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { useNavigate } from 'react-router-dom';
+import { GlobalContext } from '../Context';
 
 
 const LoginAccount = () => {
-  const loginUser = useLocalStorage();
-  const { getValue } = useLocalStorage();
+  const { setLoggedUser } = React.useContext(GlobalContext);
+  const { getValue, setValue } = useLocalStorage();
   const [error, setError] = React.useState(false);
   const navigate = useNavigate();
   
@@ -23,7 +24,8 @@ const LoginAccount = () => {
 
     if (user) {
       setError('');
-      loginUser.setValue('loggeduser', JSON.stringify(user))
+      setValue('loggeduser', JSON.stringify(user));
+      setLoggedUser(user);
       navigate('/');
     } else {
       setError('Email ou senha incorretos');

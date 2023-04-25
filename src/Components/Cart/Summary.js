@@ -55,25 +55,22 @@ const Container = styled.div`
 `
 
 const Summary = ({ backStep, selectedPage }) => {
-  const { selectedAddress, selectedPayment, selectedCard, shipping, total, cart, installments, loggedUser , order } = React.useContext(GlobalContext);
+  const { selectedCard, loggedUser, checkout, cart } = React.useContext(GlobalContext);
   const { getValue, setValue } = useLocalStorage();
 
   const navigate = useNavigate();
-
+  
   function handleBuy() {
     if (!selectedPage) {
       backStep.current.entrega = true;
       navigate('entrega');
-    } else if (selectedPage === 'entrega' && selectedAddress) {
+    } else if (selectedPage === 'entrega' && checkout.address) {
       backStep.current.pagamento = true;
       navigate('pagamento');
-    } else if ((selectedPage === 'pagamento' && selectedPayment !== 'cartao') || (selectedPage === 'pagamento' && selectedPayment === 'cartao' && selectedCard)) {
-      
+    } else if ((selectedPage === 'pagamento' && checkout.payment.type !== 'cartao') || (selectedPage === 'pagamento' && checkout.payment.type === 'cartao' && selectedCard)) {
       const orderDate = new Date();
       const user = loggedUser;
-      const newOrder = {id: Object.keys(user.orders).length + 1, date:`${orderDate.getDate()}/${orderDate.getMonth()}/${orderDate.getFullYear()}` ,cart, payment: {type: selectedPayment, value: {total, shipping, installments}}}
-      order.current = newOrder;
-      user.orders.push(newOrder);
+      user.orders.unshift({...checkout, id: Object.keys(user.orders).length + 1, date:`${orderDate.getDate()}/${orderDate.getMonth()}/${orderDate.getFullYear()}`, items: cart});
 
       const users = JSON.parse(getValue('users')).map((m) => {
         if (m.email === user.email) {
@@ -82,9 +79,8 @@ const Summary = ({ backStep, selectedPage }) => {
         return m;
       })
       
-      
-      setValue('loggeduser', JSON.stringify(user));
       setValue('users', JSON.stringify(users));
+      setValue('loggeduser', JSON.stringify(user));
       setValue('cart', JSON.stringify([]));
       backStep.current.entrega = false;
       backStep.current.pagamento = false;
@@ -94,9 +90,9 @@ const Summary = ({ backStep, selectedPage }) => {
 
   return (
     <Container>
-      <div><span>Subtotal</span> <span>R$ {total},00</span></div>
-      <div><span>Frete</span> <span>R$ {shipping},00</span></div>
-      <div><span>Total</span> <span>R$ {total + shipping},00</span></div>
+      <div><span>Subtotal</span> <span>R$ {checkout.payment.subtotal},00</span></div>
+      <div><span>Frete</span> <span>R$ {checkout.payment.shipping},00</span></div>
+      <div><span>Total</span> <span>R$ {checkout.payment.subtotal + checkout.payment.shipping},00</span></div>
 
       <button onClick={handleBuy}>{!selectedPage || selectedPage === 'entrega' ? 'Continuar compra' : 'Finalizar compra'}</button>
     </Container>

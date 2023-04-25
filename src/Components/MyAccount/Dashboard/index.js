@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { AccountWrapper } from './styles';
 import { Container } from './styles';
 import { GlobalContext } from '../../Context';
@@ -18,7 +18,7 @@ const Dashboard = () => {
           <li>Email: <span>{loggedUser?.email}</span></li>
           <li>Telefone: <span>{loggedUser?.phone}</span></li>
         </ul>
-        <Link to='dados'>Editar dados</Link>
+        <NavLink to='/minha-conta/dados'>Editar dados</NavLink>
       </AccountWrapper>
 
       <AccountWrapper>
@@ -35,23 +35,23 @@ const Dashboard = () => {
         ) : (
           <p>Sem endereços cadastrados</p>
         )}
-        <Link to='enderecos'>Ver endereços</Link>
+        <NavLink to='/minha-conta/enderecos'>Ver endereços</NavLink>
       </AccountWrapper>
 
       <AccountWrapper>
         <h1>Último pedido</h1>
-        {loggedUser?.orders[0] ? (
+        {loggedUser?.orders ? (
           <ul>
-            <li>Codigo: <span>{loggedUser.orders[0]?.id}</span></li>
-            <li>Data: <span>{loggedUser.orders[0]?.date}</span></li>
-            <li>Quantidade: <span>{loggedUser.orders[0]?.cart.length}</span></li>
-            <li>Valor: <span>R$ {loggedUser.orders[0]?.payment.value.total + loggedUser.orders[0]?.payment.value.shipping},00</span></li>
+            <li>Codigo: <span>{loggedUser.orders[0].id}</span></li>
+            <li>Data: <span>{loggedUser.orders[0].date}</span></li>
+            <li>Quantidade: <span>{loggedUser.orders[0].items.map((m) => m.quantity).reduce((acc, cur) => acc + cur)}</span></li>
+            <li>Valor: <span>R$ {loggedUser.orders[0].payment.subtotal + loggedUser.orders[0]?.payment.shipping},00</span></li>
             <li>Estado do pedido: <span>Aguardando pagamento</span></li>
           </ul>
         ) : (
           <p>Sem pedidos feitos</p>
         )}
-        <Link to='pedidos'>Ver pedidos</Link>
+        <NavLink to='/minha-conta/pedidos'>Ver pedidos</NavLink>
       </AccountWrapper>
 
     </Container>

@@ -1,24 +1,19 @@
-import React, { useRef, useState } from 'react'
-import { useSearchParams } from 'react-router-dom';
 
+import React from 'react'
+import { useSearchParams } from 'react-router-dom';
+import useLocalStorage from '../hooks/useLocalStorage';
+import { api } from '../services/api';
 export const GlobalContext = React.createContext();
 
 const ContextProvider = ({ children }) => {
+  const [products, setProducts] = React.useState([]);
+  const [filteredProducts, setFilteredProducts] = React.useState()
   const [bgColor, setBgColor] = React.useState(true);
-  const [cartStorage, setCartStorage] = React.useState();
-  const [cart, setCart] = React.useState();
+  const [cart, setCart] = React.useState([]);
   const [loggedUser, setLoggedUser] = React.useState();
-  const [data, setData] = React.useState();
-  const [filteredData, setFilteredData] = useState()
   const [searchParams, setSearchParams] = useSearchParams();
-  const [cartQuantity, setCartQuantity] = React.useState(0);
-  const [selectedAddress, setSelectedAddress] = React.useState();
-  const [selectedPayment, setSelectedPayment] = React.useState();
-  const [selectedCard, setSelectedCard] = React.useState();
-  const [shipping, setShipping] = React.useState(0);
-  const [installments, setInstallments] = React.useState(1);
-  const [total, setTotal] = React.useState(0);
-  const order = useRef({});
+  const { getValue, setValue } = useLocalStorage();
+  const [checkout, setCheckout] = React.useState({order: [], address: 0, payment: {subtotal: 0, shipping: 0, installments: 0}});
 
   const measures = {
     camisas: ["PP", "P", "M", "G", "GG"],
@@ -31,6 +26,22 @@ const ContextProvider = ({ children }) => {
   }
 
   React.useEffect(() => {
+    const cartStorage = getValue('cart');
+
+    if (cartStorage) {
+      setCart(JSON.parse(cartStorage));
+    } else {
+      setValue('cart', [])
+    }
+
+  }, [setCart, getValue, setValue])
+
+  
+  React.useEffect(() => {
+    api.get('data.json').then(response => setProducts(response.data));
+  }, [])
+
+  React.useEffect(() => {
     const user = JSON.parse(window.localStorage.getItem('loggeduser'));
 
     if (user) {
@@ -40,17 +51,12 @@ const ContextProvider = ({ children }) => {
   }, [])
 
   React.useEffect(() => {
-    setCartQuantity(JSON.parse(window.localStorage.getItem('cart'))?.length || 0)
-  }, [])
-
-  React.useEffect(() => {
-    console.log(bgColor)
     document.body.style.backgroundColor = bgColor ? '#FFFFFF' : "#F7F7F7";
   }, [bgColor])
 
 
   return (
-    <GlobalContext.Provider value={{bgColor, setBgColor, loggedUser, setLoggedUser, data, setData, filteredData, setFilteredData, searchParams, setSearchParams, measures, cartQuantity, setCartQuantity, cart, setCart, cartStorage, setCartStorage, selectedAddress, setSelectedAddress, selectedPayment, setSelectedPayment, selectedCard, setSelectedCard, shipping, setShipping, installments, setInstallments, total, setTotal, order}}>
+    <GlobalContext.Provider value={{bgColor, setBgColor, loggedUser, setLoggedUser, filteredProducts, setFilteredProducts, searchParams, setSearchParams, measures, cart, setCart, checkout, setCheckout, products, setProducts}}>
       {children}
     </GlobalContext.Provider>
   )
