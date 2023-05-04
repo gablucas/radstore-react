@@ -1,10 +1,62 @@
 import styled from "styled-components";
 
-export const Container = styled.header`
-  margin-left: 40px;
-  margin-right: 40px;
+export const HeaderBG = styled.header`
   border-bottom: 1px solid #C8C8C8;
   background: #FFFFFF;
+`
+
+export const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  margin-left: 40px;
+  margin-right: 40px;
+
+  @media (max-width: 768px) {
+    padding: 10px 0px;
+  }
+`
+
+export const MenuMobile = styled.button`
+  display: none;
+  position: relative;
+
+  @media (max-width: 768px) {
+    display: initial;
+    justify-self: end;
+    
+    height: 4px;
+    width: 40px;
+    background: ${props => props.toggleMenuMobile ? '#FFFFFF' : '#000000'};
+    transition: all .1s;
+    
+    &::after {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 4px;
+      background: #000000;
+      transition: all .3s;
+
+      position: absolute;
+      top: ${props => props.toggleMenuMobile ? '0px' : '-10px'};
+      transform: ${props => props.toggleMenuMobile && 'rotate(45deg)'};
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 4px;
+      background: #000000;
+      transition: all .3s;
+
+      position: absolute;
+      bottom: ${props => props.toggleMenuMobile ? '0px' : '-10px'};
+      transform: ${props => props.toggleMenuMobile && 'rotate(-45deg)'};
+    }
+  }
+
 `
 
 export const Nav = styled.nav`
@@ -12,36 +64,69 @@ export const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   font: var(--font1-16-sb);
+  height: 100%;
 
-
-  ul, div {
-    display: flex;
+  @media (max-width: 768px) {
+    display: ${props => props.toggleMenuMobile ? "flex" : "none"};
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    background: #F7F7F7;
+    
+    position: fixed;
+    top: 116px;
+    left: 0px;
+    height: 100vh;
+    width: 100vw;
+    z-index: 9999;
   }
+`
 
-  & > ul > li > a {
-    padding: 40px 20px;
+export const Account = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
+  
+  div > a {
+    padding: 33px 20px !important;
+  }
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    grid-template-columns: 1fr auto; 
+    background: #F7F7F7;
   }
 `
 
 export const Menus = styled.ul`
+  display: flex;
 
-  & > li > div {
-    display: none;
-    grid-template-columns: repeat(3, 120px);
-    justify-content: center;
-    gap: 100px;
-
-    position: absolute;
-    top: 160px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    color: #FFFFFF;
+  & > li {
+    cursor: pointer;
   }
 
-  & > li h3 {
-    margin-bottom: 8px;
-    text-transform: uppercase;
+  & > li > h3 {
+    position: relative;
+    padding: 40px 20px;
+    font: var(--font1-16-sb)
+  }
+
+  & > li:hover > h3::before {
+    content: "";
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid #2B2B2B;
+    width: 0px;
+    height: 0px;
+    
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+  }
+
+  & > li:hover > div {
+    display: grid;
   }
 
   & > li:hover {
@@ -61,42 +146,90 @@ export const Menus = styled.ul`
     z-index: 999;
   }
 
-  & > li:hover > div {
-    display: grid;
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+
+    & > li > h3 {
+      font: var(--font1-20-b);
+      border-bottom: 1px solid #B2B2B2;
+    }
+
+    & > li:hover > h3::before {
+      display: none;
+    }
+
+    & > li:hover::after {
+      display: none;
+    }
   }
 `
 
 export const SubMenus = styled.div`
+  display: none;
+  grid-template-columns: repeat(3, 120px);
+  justify-content: center;
+  gap: 100px;
+
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  color: #FFFFFF;
 
   div {
     display: flex;
     flex-direction: column;
   }
 
-   div ul {
-    display: flex;
-    flex-direction: column;
-   }
-
-   div li {
-    font: var(--font1-16-r);
-    color: #C8C8C8;
-   }
-
-   div li + li {
-    margin-top: 12px;
-   }
-
-   div li:hover {
-    color: #F7F7F7;
-    cursor: pointer;
-   }
+  span {
+    text-transform: uppercase;
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    justify-content: start;
+    gap: 0px;
+    background: #2B2B2B;
+    
+    position: relative;
+    top: 0px;
+    left: 0px;
+    transform: none;
+    
+    span {
+      padding: 20px;
+      border-top: 1px solid #B2B2B2;
+    }
+  }
 `
 
-export const Account = styled.div`
+export const Links = styled.ul`
+  display: flex;
+  flex-direction: column;
 
-  div > a {
-    padding: 33px 20px !important;
+  li {
+    font: var(--font1-16-r);
+    color: #C8C8C8;
+  }
+
+  li:hover {
+    color: #FFA700;
+    cursor: pointer;
+  }
+
+  a {
+    padding: 10px 0;
+  }
+  
+  @media (max-width: 768px) {
+    display: ${props => props.toggleSubMenu ? 'flex' : 'none'};
+    
+    a {
+      padding: 14px;
+      border-top: 1px solid #414141;
+    }
   }
 `
 
@@ -113,20 +246,39 @@ export const Login = styled.div`
     display: none;
     flex-direction: column;
     width: 100%;
+    box-shadow: 0px 0px 7px 5px rgba(0, 0, 0, .1);
     background: #FFFFFF;
 
     position: absolute;
-    bottom: -132px;
+    bottom: -150px;
     left: 0px;
     z-index: 999;
   }
-
+  
+  ul::before {
+    content: "";
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid #FFFFFF;
+    width: 0px;
+    height: 0px;
+    
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%)
+  }
+  
   &:hover ul {
     display: flex;
   }
 
   li a {
-    padding: 10px;
+    padding: 12px;
+  }
+
+  li:hover a {
+    background: #FFA700;
   }
 `
 

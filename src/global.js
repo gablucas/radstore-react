@@ -14,13 +14,19 @@ const GlobalStyle = createGlobalStyle`
     --font1-16-m: 500 1rem/1.1 'Inter';
     --font1-16-r: 400 1rem/1.1 'Inter';
     --font1-14-b: 800 .875rem/1.1 'Inter';
+    --font1-14-sb: 700 .875rem/1.1 'Inter';
     --font1-14-m: 500 .875rem/1.1 'Inter';
     --font1-14-r: 400 .875rem/1.1 'Inter';
+    --font1-12-sb: 700 .78rem/1.4 'Inter';
     --font1-12-r: 400 .78rem/1.4 'Inter';
+    --font1-10-sb: 700 .625rem/1.4 'Inter';
     --font2-48-b: 800 3rem/1.1 'Rubik';
     --font2-48-m: 500 3rem/1 'Rubik';
     --font2-32-bl: 900 2rem/1 'Rubik';
+    --font2-32-b: 800 2rem/1 'Rubik';
+    --font2-24-bl: 900 1.5rem/1.1 'Rubik';
     --font2-24-b: 800 1.5rem/1.1 'Rubik';
+    --font2-24-sb: 600 1.5rem/1.1 'Rubik';
     --font2-18-sb: 600 1.125rem/1.1 'Rubik';
     --font2-16-m: 500 1.125rem/1.1 'Rubik';
     --font2-8-bl: 900 .5rem/1.1 'Rubik';
@@ -76,8 +82,6 @@ const GlobalStyle = createGlobalStyle`
     border: 1px solid #2B2B2B;
     background-color: #F7F7F7;
   }
-
-
 `
 
 export { GlobalStyle }

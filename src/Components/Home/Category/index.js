@@ -11,7 +11,7 @@ import CategoryType from './CategoryType';
 const Category = () => {
   return (
     <Container>
-        <h2>Categoria</h2>
+        <h2>Categorias</h2>
 
         <div>
           <CategoryType type='Homens' img={MensIMG} />

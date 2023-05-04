@@ -5,12 +5,12 @@ import FunctionButtons from './FunctionButtons';
 import { GlobalContext } from '../../Context';
 
 const CartProducts = ({ productsDetails }) => {
-  const { setCheckout } = React.useContext(GlobalContext);
+  const { cart, setCheckout } = React.useContext(GlobalContext);
 
   React.useEffect(() => {
 
-    setCheckout(checkout => ({...checkout, payment: {...checkout.payment, subtotal: productsDetails.reduce((acc, cur) => acc + cur.quantity * parseInt(cur.data.price), 0)}}))
-  }, [setCheckout, productsDetails])
+    setCheckout(checkout => ({...checkout, items: cart, payment: {...checkout.payment, subtotal: productsDetails.reduce((acc, cur) => acc + cur.quantity * parseInt(cur.data.price), 0)}}))
+  }, [cart, setCheckout, productsDetails])
 
   return (
     <div>

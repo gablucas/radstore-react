@@ -17,6 +17,7 @@ export const ButtonsWrapper = styled.div`
   
   a {
     flex: 1;
+    text-align: center;
     padding: 10px 0px;
     font: var(--font1-16-b);
     letter-spacing: 1px;

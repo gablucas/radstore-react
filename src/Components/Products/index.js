@@ -6,12 +6,16 @@ import Product from './Product';
 import { Container, ShowProducts } from './styles';
 
 const Products = () => {
-  const { filteredProducts } = React.useContext(GlobalContext);
-  const { type } = useParams();
+  const { filteredProducts, setToggleMenuMobile } = React.useContext(GlobalContext);
+  const { category, subcategory } = useParams();
+
+  React.useEffect(() => {
+    setToggleMenuMobile('');
+  }, [setToggleMenuMobile])
 
   return (
     <Container>
-      <h1>{type}</h1>
+      <h1>{subcategory ? subcategory : category}</h1>
 
       <Filter />
 

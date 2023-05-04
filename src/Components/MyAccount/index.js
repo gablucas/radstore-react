@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Route, Routes, useNavigate } from 'react-router-dom';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { GlobalContext } from '../Context';
 import Dashboard from './Dashboard';
@@ -12,8 +12,8 @@ import MyPayments from './MyPayments';
 import { Container, Menu } from './styles';
 
 const MyAccount = () => {
-  const { loggedUser, setBgColor } = React.useContext(GlobalContext);
-  const { getValue } = useLocalStorage();
+  const { loggedUser, setLoggedUser, setBgColor } = React.useContext(GlobalContext);
+  const { getValue, removeValue } = useLocalStorage();
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -26,6 +26,11 @@ const MyAccount = () => {
     setBgColor(false);
   }, [setBgColor])
 
+  function handleLogout() {
+    removeValue('loggeduser');
+    setLoggedUser(false);
+  }
+
   return (
     <Container>
       <Menu>
@@ -37,7 +42,7 @@ const MyAccount = () => {
           <li><NavLink to='pedidos'>Meus pedidos</NavLink></li>
           <li><NavLink to='favoritos'>Meus favoritos</NavLink></li>
           <li><NavLink to='pagamentos'>Pagamentos</NavLink></li>
-          <li>Sair</li>
+          <li><Link to='/' onClick={handleLogout}>Sair</Link></li>
         </ul>
       </Menu>
 

@@ -45,8 +45,6 @@ const Favorite = ({ id }) => {
     setValue('users', JSON.stringify(users));
   }
 
-  console.log(loggedUser)
-
   React.useEffect(() => {
     if (loggedUser && loggedUser.favorites.some((s) => s === id)) {
       setFavorite(true);

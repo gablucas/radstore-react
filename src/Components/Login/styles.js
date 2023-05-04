@@ -32,14 +32,14 @@ export const Container = styled.section`
     color: #FFFFFF;
   }
 
-  &::before {
-    content: "";
-    display: block;
-    width: 10px;
-    height: 100px;
-    position: absolute;
-    top: 100px; 
-    left: 10px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: auto;
+    justify-content: center;
+
+    &::before {
+      display: none;
+    }
   }
 `
 
@@ -72,6 +72,12 @@ export const LoginWrapper = styled.div`
     position: absolute;
     top: 162px;
     left: 50%;
+  }
+
+  @media (max-width: 768px) {
+    &::after {
+      display: none;
+    }
   }
 `
 

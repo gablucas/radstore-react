@@ -28,7 +28,7 @@ const FilterColor = () => {
 
   React.useEffect(() => {
     if (color) selectedColor.current = color;
-    colors.current = filterParams({gender: true, size: true, price: true, color: false})
+    colors.current = filterParams({subcategory: true, gender: true, size: true, price: true, color: false})
     colors.current = colors.current?.map((product) => product.color)
     colors.current = Array.from(new Set(colors.current?.map(JSON.stringify)), JSON.parse)
 

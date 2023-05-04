@@ -7,10 +7,11 @@ import useFilter from '../../../hooks/useFilter';
 
 const FilterSize = () => {
   const { searchParams , setSearchParams, measures } = React.useContext(GlobalContext);
+  const selectedMeasure = useRef([]);
   const selectedSize = useRef('');
   const { size } = useFilter();
 
-  let { type } = useParams();
+  let { category, subcategory } = useParams();
 
   function handleSize(size) {
     const param = searchParams.get('size');
@@ -31,14 +32,21 @@ const FilterSize = () => {
     if (size) selectedSize.current = size;
   }, [size])
 
+  React.useEffect(() => {
+    if (subcategory) {
+      selectedMeasure.current = measures[subcategory];
+    } else {
+      selectedMeasure.current = measures[category];
+    }
+  }, [measures, subcategory, category])
+
   return (
     <FilterWrapper>
     <span>Tamanho</span>
     
     <div>
-      {measures[type].map((measure => (
-        <ProductSize key={measure} onClick={() => handleSize(measure)} selected={selectedSize.current === measure}>{measure}</ProductSize>
-      )))}
+      {selectedMeasure.current.map((measure => (
+        <ProductSize key={measure} onClick={() => handleSize(measure)} selected={selectedSize.current === measure}>{measure}</ProductSize>)))}
     </div>
 
   </FilterWrapper>

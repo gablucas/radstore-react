@@ -28,5 +28,14 @@ export const Container = styled(DataContainer)`
     color: #F7F7F7;
     background: #2B2B2B;
   }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+
+    & > div:nth-of-type(1) {
+      grid-template-columns: 1fr;
+      margin-bottom: 40px;
+    }
+  }
 `
 

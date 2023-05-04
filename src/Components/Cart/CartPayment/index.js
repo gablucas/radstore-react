@@ -11,9 +11,9 @@ const CartPayment = () => {
   const [altTab, setAltTab] = React.useState(false);
   const installments = React.useRef([]);
 
-  function handleSelectPayment(payment) {
-    if (payment !== checkout.payment.type) {
-      setCheckout(checkout => ({...checkout, payment: {type: payment, subtotal: checkout.payment.subtotal, shipping: checkout.payment.shipping}}));
+  function handleSelectPayment(type) {
+    if (type !== checkout.payment.type) {
+      setCheckout(checkout => ({...checkout, payment: {...checkout.payment, type}}));
     }
   }
 
@@ -23,8 +23,9 @@ const CartPayment = () => {
     }
   }
 
-  function saveInstallments(value) {
-    setCheckout(checkout => ({...checkout.payment, installments: value}))
+  // Callback do componente Select
+  function saveInstallments(installments) {
+    setCheckout(checkout => ({...checkout, payment: {...checkout.payment, installments}}))
   }
 
   React.useEffect(() => {
@@ -38,7 +39,7 @@ const CartPayment = () => {
       <Title>SELECIONE UMA FORMA DE PAGAMENTO</Title>
 
       <div>
-        <PaymentWrapper onClick={() => handleSelectPayment('boleto')} selectedPayment={checkout.payment.type === 'boleto'} >
+        <PaymentWrapper onClick={() => handleSelectPayment('Boleto')} selectedPayment={checkout.payment.type === 'Boleto'} >
           <h2>Boleto</h2>
 
           <div>
@@ -48,7 +49,7 @@ const CartPayment = () => {
           </div>
         </PaymentWrapper>
 
-        <PaymentWrapper onClick={() => handleSelectPayment('pix')} selectedPayment={checkout.payment.type === 'pix'} >
+        <PaymentWrapper onClick={() => handleSelectPayment('Pix')} selectedPayment={checkout.payment.type === 'Pix'} >
           <h2>Pix</h2>
 
           <div>
@@ -58,7 +59,7 @@ const CartPayment = () => {
           </div>
         </PaymentWrapper>
 
-        <PaymentWrapper onClick={() => handleSelectPayment('cartao')} selectedPayment={checkout.payment.type === 'cartao'} >
+        <PaymentWrapper onClick={() => handleSelectPayment('Cartão')} selectedPayment={checkout.payment.type === 'Cartão'} >
           {!altTab ? (
             <>
               <h2>Cartão de crédito</h2>
@@ -69,7 +70,7 @@ const CartPayment = () => {
                     <span>{m.cardname}</span>
                     <span>Numero: {m.cardnumber}</span>
                     <span>Vencimento: {m.validity[0] + '/' + m.validity[1]}</span>
-                    {checkout.payment.card === m.cardnumber && <Select saveValue={saveInstallments} options={installments.current.map((m, index) => index)} initialValue='1' names={installments.current} />}
+                    {checkout.payment.card === m.cardnumber && <Select saveValue={saveInstallments} options={installments.current} />}
                   </CardWrapper>
                 ))}
               <button onClick={() => setAltTab(true)}>+ Adicionar novo cartão</button>

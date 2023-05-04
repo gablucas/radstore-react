@@ -24,18 +24,6 @@ const Footer = () => {
       <img src={LogoWhite} alt="" width='140' />
 
       <Links>
-        <h3>Categorias</h3>
-        <ul>
-          <li>Marcas</li>
-          <li>Roupas</li>
-          <li>Calçados</li>
-          <li>Acessórios</li>
-          <li>Esportes</li>
-          <li>Promoções</li>
-        </ul>
-      </Links>
-
-      <Links>
         <h3>Conta</h3>
         <ul>
           <li>Minha Conta</li>

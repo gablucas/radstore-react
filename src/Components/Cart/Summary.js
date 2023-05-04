@@ -55,7 +55,7 @@ const Container = styled.div`
 `
 
 const Summary = ({ backStep, selectedPage }) => {
-  const { selectedCard, loggedUser, checkout, cart } = React.useContext(GlobalContext);
+  const { loggedUser, checkout, cart } = React.useContext(GlobalContext);
   const { getValue, setValue } = useLocalStorage();
 
   const navigate = useNavigate();
@@ -67,10 +67,10 @@ const Summary = ({ backStep, selectedPage }) => {
     } else if (selectedPage === 'entrega' && checkout.address) {
       backStep.current.pagamento = true;
       navigate('pagamento');
-    } else if ((selectedPage === 'pagamento' && checkout.payment.type !== 'cartao') || (selectedPage === 'pagamento' && checkout.payment.type === 'cartao' && selectedCard)) {
+    } else if ((selectedPage === 'pagamento' && checkout.payment.type !== 'Cartão') || (selectedPage === 'pagamento' && checkout.payment.type === 'Cartão' && checkout.payment.card)) {
       const orderDate = new Date();
       const user = loggedUser;
-      user.orders.unshift({...checkout, id: Object.keys(user.orders).length + 1, date:`${orderDate.getDate()}/${orderDate.getMonth()}/${orderDate.getFullYear()}`, items: cart});
+      user.orders.unshift({...checkout, id: Object.keys(user.orders).length + 1, date:`${orderDate.getDate()}/${orderDate.getMonth()}/${orderDate.getFullYear()}`});
 
       const users = JSON.parse(getValue('users')).map((m) => {
         if (m.email === user.email) {

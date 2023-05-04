@@ -60,5 +60,9 @@ export const AddressWrapper = styled.div`
   span {
     color: #2B2B2B;
   }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr auto;
+  }
 `
 

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const MyOrders = () => {
   const { loggedUser } = React.useContext(GlobalContext);
-  console.log(loggedUser)
 
   return (
     <Container>

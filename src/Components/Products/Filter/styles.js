@@ -1,9 +1,31 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  justify-content: center;
+  align-content: start;
   gap: 41px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    & > div {
+      display: ${props => props.toggleFilterMobile ? 'initial' : 'none'};
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+
+    & > div:nth-of-type(3) {
+      grid-column: 1/-1;
+    }
+  }
+
+  @media (max-width: 425px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `
 
 export const FilterWrapper = styled.div`
@@ -12,6 +34,7 @@ export const FilterWrapper = styled.div`
   position: relative;
 
   & > span {
+    display: block;
     font: var(--font1-20-b);
     text-transform: uppercase;
     margin-bottom: 8px;
@@ -32,6 +55,12 @@ export const FilterWrapper = styled.div`
 
     position: absolute;
     top: -21px;
+  }
+
+  @media (max-width: 1024px) {
+    &::before {
+      display: none;
+    }
   }
 `
 
@@ -81,9 +110,11 @@ export const ProductColor = styled(ProductLabel)`
 `
 
 export const ProductPrice = styled.div`
-  display: flex !important;
-  flex-direction: column;
-  align-items: start;
+  grid-template-columns: 1fr !important;
+
+  @media (min-width: 425px) and (max-width: 1024px) {
+    grid-template-columns: auto auto !important;
+  }
 `
 
 export const ButtonPrice = styled.button`
@@ -93,4 +124,17 @@ export const ButtonPrice = styled.button`
   font: var(--font1-14-m);
   border: 2px solid #000000;
   background-color: ${props => props.selected ? "#FFA700" : "none"};
+`
+
+export const FilterMobile = styled.button`
+  display: none;
+  grid-column: 1/-1;
+  padding: 4px;
+  font: var(--font1-16-sb);
+  border: 2px solid #000000;
+
+
+  @media (max-width: 1024px) {
+    display: initial;
+  }
 `

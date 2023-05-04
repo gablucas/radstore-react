@@ -26,7 +26,7 @@ const CartOrder = ({ productsDetails }) => {
       <InfoWrapper>
         <h2>Pagamento</h2>
         <ul>
-          <li>Forma de pagamento: <span>{checkout.payment.type}{checkout.payment.type === 'cartao' && ` - ${checkout.payment.installments}x de R$ ${(checkout.payment.total + checkout.payment.shipping) / checkout.payment.installments}`}</span></li>
+          <li>Forma de pagamento: <span>{checkout.payment.type}{checkout.payment.type === 'Cartão' && ` - ${checkout.payment.installments}x de R$ ${Math.round((checkout.payment.subtotal + checkout.payment.shipping) / checkout.payment.installments)},00`}</span></li>
           <li>Subtotal: <span>R$ {checkout.payment.subtotal},00</span></li>
           <li>Frete: <span>R$ {checkout.payment.shipping},00</span></li>
           <li>Total: <span>R$ {checkout.payment.subtotal + checkout.payment.shipping},00</span></li>

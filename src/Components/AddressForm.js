@@ -29,6 +29,12 @@ const Container = styled.div`
     color: #F7F7F7;
     background: #2B2B2B;
   }
+
+  @media (max-width: 1024px) {
+      button:last-of-type {
+      padding: 0px 40px;
+    }
+  }
 `
 
 const FormWrapper = styled.div`
@@ -39,8 +45,8 @@ const FormWrapper = styled.div`
 
   input {
     display: block;
-    height: 40px;
     width: 100%;
+    height: 40px;
     padding-left: 10px;
     border: 1px solid #C8C8C8;
   }
@@ -55,12 +61,21 @@ const FormWrapper = styled.div`
     grid-column: 1/3;
   }
 
+
   div:nth-of-type(2),
   div:nth-of-type(9),
   div:nth-of-type(11) {
     grid-column: 4/7;
   }
 
+  @media (max-width: 1440px) {
+    gap: 10px 20px;
+  }
+
+  @media (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 const AddressForm = ({ goback, saveAddress, editAddress }) => {

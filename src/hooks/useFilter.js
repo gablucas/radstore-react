@@ -5,23 +5,24 @@ import { GlobalContext } from '../components/Context';
 export const useFilter = () => {
   const { products } = React.useContext(GlobalContext);
   const [searchParams] = useSearchParams();
-  const { type } = useParams();
+  const { subcategory } = useParams();
   const genre = searchParams.get('genre');
   const size = searchParams.get('size');
   const color = searchParams.get('color');
   const price = searchParams.get('price');
   let filterData = useRef();
 
+
   const filterParams = useCallback((filter) => {
     if (products) {
       filterData.current = Array.from(products);
 
-      if (type && filter.type) {
-        filterData.current = filterData.current.filter((d) => d.type === type);
+      if (subcategory && filter.subcategory) {
+        filterData.current = filterData.current.filter((d) => d.subcategory === subcategory);
       }
 
       if (genre && filter.genre) {
-        filterData.current = filterData.current.filter((d) => d.genre === genre);
+        filterData.current = filterData.current.filter((d) => d.genre === genre || d.genre === 'unissex');
       }
 
       if (size && filter.size) {
@@ -38,7 +39,7 @@ export const useFilter = () => {
       }
     }
     return filterData.current;
-  }, [products, type, genre, size, price, color])
+  }, [products, subcategory, genre, size, price, color])
 
   return {filterParams, genre, size, color, price}
 }

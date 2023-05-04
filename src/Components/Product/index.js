@@ -65,7 +65,7 @@ const Product = () => {
     <Container>
       <ImageWrapper>
         <Favorite id={id} />
-        <img src={product.image} alt="" width="700" />
+        <img src={product.image} alt="" />
       </ImageWrapper>
 
       <InfoWrapper>
@@ -77,7 +77,7 @@ const Product = () => {
           <span>Escolha um tamanho</span>
 
           <ul>
-          {measures[product.type]?.map((measure) => (
+          {measures[product.subcategory]?.map((measure) => (
             <MeasureButton key={measure} onClick={() => setSelectedMeasure(measure)} selectedMeasure={selectedMeasure === measure} >{measure}</MeasureButton>
           ))}
           </ul>

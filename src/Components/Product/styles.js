@@ -2,14 +2,26 @@ import styled from "styled-components"
 
 export const Container = styled.section`
   display: grid;
-  grid-template-columns: auto 600px;
+  grid-template-columns: 700px 600px;
   justify-content: center;
-  gap: 40px;
   margin-top: 40px;
+  padding: 0px 40px;
+  gap: 40px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: auto;
+    gap: 20px;
+  }
+  
+  @media (max-width: 425px) {
+    padding: 0px 20px;
+    gap: 10px;
+  }
 `
 
 export const ImageWrapper = styled.div`
   position: relative;
+
 `
 
 export const InfoWrapper = styled.div`
@@ -26,6 +38,12 @@ export const InfoWrapper = styled.div`
 
   div > span {
     font: var(--font1-20-b);
+  }
+
+  @media (max-width: 425px) {
+    h1 {
+    font: var(--font2-24-bl);
+  }
   }
 `
 

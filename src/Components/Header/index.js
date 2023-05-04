@@ -2,220 +2,234 @@ import React from 'react';
 import LogoBlack from '../../assets/logo-black.svg';
 import LoginIMG from '../../assets/login.svg';
 import CartIMG from '../../assets/cart.svg';
-import { Container, Nav, Cart, Account, Login, Menus, SubMenus } from './styles';
-import { Link, useNavigate } from 'react-router-dom';
+import { Container, Nav, Cart, Account, Login, Menus, SubMenus, HeaderBG, MenuMobile, Links } from './styles';
+import { Link } from 'react-router-dom';
 import { GlobalContext } from '../Context';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 const Header = () => {
-  const { cart, loggedUser, setLoggedUser } = React.useContext(GlobalContext);
+  const { cart, loggedUser, setLoggedUser, toggleMenuMobile, setToggleMenuMobile } = React.useContext(GlobalContext);
   const { removeValue } = useLocalStorage();
-  const navigate =useNavigate();
+  const [toggleSubMenu, setToggleSubMenu] = React.useState('');
 
   function handleLogout() {
     removeValue('loggeduser');
     setLoggedUser(false);
-    navigate('/');
+  }
+
+
+  function handleToggleSubMenu(subMenu) {
+    if (subMenu === toggleSubMenu) {
+      setToggleSubMenu('');
+    } else {
+      setToggleSubMenu(subMenu);
+    }
   }
 
   return (
-    <Container>
-      <Nav>
-        <a href="/"><img src={LogoBlack} alt="" /></a>
+    <HeaderBG>
+      <Container>
+          <a href="/"><img src={LogoBlack} alt="" /></a>
+          <MenuMobile onClick={() => setToggleMenuMobile(!toggleMenuMobile)} toggleMenuMobile={toggleMenuMobile}></MenuMobile>
 
-        <Menus>
-          {/* MARCAS */}
-          <li>
-            <a href="">Marcas</a>
-          </li>
+        <Nav toggleMenuMobile={toggleMenuMobile}>
+          <Menus>
+            {/* MASCULINO */}
+            <li>
+              <h3>Masculino</h3>
 
-          {/* MASCULINO */}
-          <li>
-            <Link>Masculino</Link>
+              <SubMenus>
+                <div>
+                  <span onClick={() => handleToggleSubMenu('masculino-roupas')}>Roupas</span>
 
-            <SubMenus>
-              <div>
-                <h3>Roupas</h3>
-                <ul>
-                  <li><Link to='/produtos/roupas/camisas?genre=masculino'>Camisas</Link></li>
-                  <li><Link to='/produtos/roupas/camisetas?genre=masculino'>Camisetas</Link></li>
-                  <li><Link to='/produtos/roupas/calcas?genre=masculino'>Calças</Link></li>
-                  <li><Link to='/produtos/roupas/bermudas?genre=masculino'>Bermudas</Link></li>
-                  <li><Link to='/produtos/roupas/boardshorts?genre=masculino'>Boardshorts</Link></li>
-                  <li><Link to='/produtos/roupas/moletons?genre=masculino'>Moletons</Link></li>
-                  <li><Link to='/produtos/roupas/jaquetas?genre=masculino'>Jaquetas</Link></li>
-                </ul>
-              </div>
+                  <Links toggleSubMenu={toggleSubMenu === 'masculino-roupas'}>
+                    <li><Link to='/produtos/roupas/camisas?genre=masculino'>Camisas</Link></li>
+                    <li><Link to='/produtos/roupas/camisetas?genre=masculino'>Camisetas</Link></li>
+                    <li><Link to='/produtos/roupas/calcas?genre=masculino'>Calças</Link></li>
+                    <li><Link to='/produtos/roupas/bermudas?genre=masculino'>Bermudas</Link></li>
+                    <li><Link to='/produtos/roupas/moletons?genre=masculino'>Moletons</Link></li>
+                    <li><Link to='/produtos/roupas/jaquetas?genre=masculino'>Jaquetas</Link></li>
+                  </Links>
+                </div>
 
-              <div>
-                <h3>Calçados</h3>
-                <ul>
-                  <li><Link to='/produtos/calçados/tenis?genre=masculino'>Tênis</Link></li>
-                  <li><Link to='/produtos/calçados/chinelos?genre=masculino'>Chinelos</Link></li>
-                  <li><Link to='/produtos/calçados/botas?genre=masculino'>Botas</Link></li>
-                </ul>
-              </div>
+                <div>
+                <span onClick={() => handleToggleSubMenu('masculino-calcados')}>Calçados</span>
 
-              <div>
-                <h3>Acessórios</h3>
-                <ul>
-                  <li><Link to='/produtos/acessorios/mochilas?genre=masculino'>Mochilas</Link></li>
-                  <li><Link to='/produtos/acessorios/bones?genre=masculino'>Bones</Link></li>
-                  <li><Link to='/produtos/acessorios/carteiras?genre=masculino'>Carteiras</Link></li>
-                  <li><Link to='/produtos/acessorios/cintos?genre=masculino'>Cintos</Link></li>
-                  <li><Link to='/produtos/acessorios/toucas?genre=masculino'>Toucas</Link></li>
-                  <li><Link to='/produtos/acessorios/meias?genre=masculino'>Meias</Link></li>
-                  <li><Link to='/produtos/acessorios/oculos?genre=masculino'>Oculos</Link></li>
-                </ul>
-              </div>
-            </SubMenus>
-          </li>
-          
-          {/* FEMININO */}
-          <li>
-            <a href="">Feminino</a>
+                  <Links toggleSubMenu={toggleSubMenu === 'masculino-calcados'}>
+                    <li><Link to='/produtos/calçados/tenis?genre=masculino'>Tênis</Link></li>
+                    <li><Link to='/produtos/calçados/chinelos?genre=masculino'>Chinelos</Link></li>
+                    <li><Link to='/produtos/calçados/botas?genre=masculino'>Botas</Link></li>
+                  </Links>
+                </div>
+
+                <div>
+                <span onClick={() => handleToggleSubMenu('masculino-acessorios')}>Acessórios</span>
+                  
+                  <Links toggleSubMenu={toggleSubMenu === 'masculino-acessorios'}>
+                    <li><Link to='/produtos/acessorios/mochilas?genre=masculino'>Mochilas</Link></li>
+                    <li><Link to='/produtos/acessorios/bones?genre=masculino'>Bones</Link></li>
+                    <li><Link to='/produtos/acessorios/carteiras?genre=masculino'>Carteiras</Link></li>
+                    <li><Link to='/produtos/acessorios/cintos?genre=masculino'>Cintos</Link></li>
+                    <li><Link to='/produtos/acessorios/toucas?genre=masculino'>Toucas</Link></li>
+                    <li><Link to='/produtos/acessorios/meias?genre=masculino'>Meias</Link></li>
+                    <li><Link to='/produtos/acessorios/oculos?genre=masculino'>Oculos</Link></li>
+                  </Links>
+                </div>
+              </SubMenus>
+            </li>
             
-            <SubMenus>
-              <div>
-                <h3>Roupas</h3>
-                  <ul>
-                    <li><Link to='/produtos/roupas/camisas?genre=feminino'>Camisas</Link></li>
-                    <li>Camisetas</li>
-                    <li>Vestidos</li>
-                    <li>Calças</li>
-                    <li>Bermudas</li>
-                    <li>Moletons</li>
-                    <li>Jaquetas</li>
-                    <li>Saias</li>
-                  </ul>
+            {/* FEMININO */}
+            <li>
+              <h3>Feminino</h3>
+              
+              <SubMenus>
+                <div>
+                  <span onClick={() => handleToggleSubMenu('feminino-roupas')}>Roupas</span>
+                    
+                    <Links toggleSubMenu={toggleSubMenu === 'feminino-roupas'}>
+                      <li><Link to='/produtos/roupas/camisas?genre=feminino'>Camisas</Link></li>
+                      <li><Link to='/produtos/roupas/camisetas?genre=feminino'>Camisetas</Link></li>
+                      <li><Link to='/produtos/roupas/camisetas?genre=feminino'>Camisetas</Link></li>
+                      <li><Link to='/produtos/roupas/vestidos?genre=feminino'>Vestidos</Link></li>
+                      <li><Link to='/produtos/roupas/calcas?genre=feminino'>Calças</Link></li>
+                      <li><Link to='/produtos/roupas/bermudas?genre=feminino'>Bermudas</Link></li>
+                      <li><Link to='/produtos/roupas/moletons?genre=feminino'>Moletons</Link></li>
+                      <li><Link to='/produtos/roupas/jaquetas?genre=feminino'>Jaquetas</Link></li>
+                      <li><Link to='/produtos/roupas/saias?genre=feminino'>Saias</Link></li>
+                    </Links>
+                  </div>
+
+                  <div>
+                  <span onClick={() => handleToggleSubMenu('feminino-calcados')}>Calçados</span>
+                    
+                    <Links toggleSubMenu={toggleSubMenu === 'feminino-calcados'}>
+                      <li><Link to='/produtos/calcados/tenis?genre=feminino'>Tênis</Link></li>
+                      <li><Link to='/produtos/calcados/chinelo?genre=feminino'>Chinelos</Link></li>
+                      <li><Link to='/produtos/calcados/botas?genre=feminino'>Botas</Link></li>
+                    </Links>
+                  </div>
+
+                  <div>
+                  <span onClick={() => handleToggleSubMenu('feminino-acessorios')}>Acessórios</span>
+                    
+                    <Links toggleSubMenu={toggleSubMenu === 'feminino-acessorios'}>
+                      <li><Link to='/produtos/acessorios/mochilas?genre=feminino'>Mochilas</Link></li>
+                      <li><Link to='/produtos/acessorios/bones?genre=feminino'>Bonés</Link></li>
+                      <li><Link to='/produtos/acessorios/carteiras?genre=feminino'>Carteiras</Link></li>
+                      <li><Link to='/produtos/acessorios/cintos?genre=feminino'>Cintos</Link></li>
+                      <li><Link to='/produtos/acessorios/toucas?genre=feminino'>Toucas</Link></li>
+                      <li><Link to='/produtos/acessorios/meias?genre=feminino'>Meias</Link></li>
+                      <li><Link to='/produtos/acessorios/oculos?genre=feminino'>Oculos</Link></li>
+                    </Links>
+                </div>
+              </SubMenus>
+            </li>
+
+            {/* KIDS */}
+            <li>
+              <h3>Kids</h3>
+
+              <SubMenus>
+                <div>
+                  <span onClick={() => handleToggleSubMenu('kids-roupas')}>Kids</span>
+                  
+                  <Links toggleSubMenu={toggleSubMenu === 'kids-roupas'}>
+                      <li><Link to='/produtos/roupas/camisas?genre=kids'>Camisas</Link></li>
+                      <li><Link to='/produtos/roupas/camisetas?genre=kids'>Camisetas</Link></li>
+                      <li><Link to='/produtos/roupas/calcas?genre=kids'>Calças</Link></li>
+                      <li><Link to='/produtos/roupas/bermudas?genre=kids'>Bermudas</Link></li>
+                      <li><Link to='/produtos/roupas/moletons?genre=kids'>Moletons</Link></li>
+                      <li><Link to='/produtos/roupas/jaquetas?genre=kids'>Jaquetas</Link></li>
+                  </Links>
                 </div>
 
                 <div>
-                  <h3>Calçados</h3>
-                  <ul>
-                    <li>Tênis</li>
-                    <li>Chinelo</li>
-                    <li>Botas</li>
-                  </ul>
+                  <span onClick={() => handleToggleSubMenu('kids-calcados')}>Calçados</span>
+                  
+                  <Links toggleSubMenu={toggleSubMenu === 'kids-calcados'}>
+                    <li><Link to='/produtos/calcados/tenis?genre=kids'>Tênis</Link></li>
+                    <li><Link to='/produtos/calcados/chinelo?genre=kids'>Chinelos</Link></li>
+                    <li><Link to='/produtos/calcados/botas?genre=kids'>Botas</Link></li>
+                  </Links>
                 </div>
 
                 <div>
-                  <h3>Acessórios</h3>
-                  <ul>
-                    <li>Mochilas</li>
-                    <li>Bonés</li>
-                    <li>Carteiras</li>
-                    <li>Cintos</li>
-                    <li>Toucas</li>
-                    <li>Meias</li>
-                    <li>Oculos</li>
-                  </ul>
-              </div>
-            </SubMenus>
-          </li>
+                  <span onClick={() => handleToggleSubMenu('kids-acessorios')}>Kids</span>
+                  
+                  <Links toggleSubMenu={toggleSubMenu === 'kids-acessorios'}>
+                    <li><Link to='/produtos/acessorios/mochilas?genre=kids'>Mochilas</Link></li>
+                    <li><Link to='/produtos/acessorios/bones?genre=kids'>Bonés</Link></li>
+                    <li><Link to='/produtos/acessorios/meias?genre=kids'>Meias</Link></li>
+                  </Links>
+                </div>
+              </SubMenus>
+            </li>
 
-          {/* KIDS */}
-          <li>
-            <a href="">Kids</a>
+            {/* ESPORTES */}
+            <li>  
+              <h3>Esportes</h3>
 
-            <SubMenus>
-              <div>
-                <h3>Roupas</h3>
-                <ul>
-                  <li>Camisas</li>
-                  <li>Camisetas</li>
-                  <li>Calças</li>
-                  <li>Bermudas</li>
-                  <li>Moletons</li>
-                  <li>Jaquetas</li>
-                </ul>
-              </div>
+              <SubMenus>
+                <div>
+                  <span onClick={() => handleToggleSubMenu('longboard')}>Longboard</span>
+                  
+                  <Links toggleSubMenu={toggleSubMenu === 'longboard'}>
+                    <li><Link to='/produtos/longboard/completo'>Completo</Link></li>
+                    <li><Link to='/produtos/longboard/shapes'>Shapes</Link></li>
+                    <li><Link to='/produtos/longboard/trucks'>Trucks</Link></li>
+                    <li><Link to='/produtos/longboard/rodas'>Rodas</Link></li>
+                    <li><Link to='/produtos/longboard/rolamentos'>Rolamentos</Link></li>
+                    <li><Link to='/produtos/longboard/acessorios'>Acessórios</Link></li>
+                  </Links>
+                </div>
 
-              <div>
-                <h3>Calçados</h3>
-                <ul>
-                  <li>Tênis</li>
-                  <li>Chinelo</li>
-                  <li>Botas</li>
-                </ul>
-              </div>
+                <div>
+                  <span onClick={() => handleToggleSubMenu('skate')}>Skate</span>
+                  
+                  <Links toggleSubMenu={toggleSubMenu === 'skate'}>
+                    <li><Link to='/produtos/skate/completo'>Completo</Link></li>
+                    <li><Link to='/produtos/skate/shapes'>Shapes</Link></li>
+                    <li><Link to='/produtos/skate/trucks'>Trucks</Link></li>
+                    <li><Link to='/produtos/skate/rodas'>Rodas</Link></li>
+                    <li><Link to='/produtos/skate/rolamentos'>Rolamentos</Link></li>
+                    <li><Link to='/produtos/skate/acessorios'>Acessórios</Link></li>
+                  </Links>
+                </div>
 
-              <div>
-                <h3>Acessórios</h3>
-                <ul>
-                  <li>Mochilas</li>
-                  <li>Bonés</li>
-                  <li>Meias</li>
-                </ul>
-              </div>
-            </SubMenus>
-          </li>
+                <div>
+                  <span onClick={() => handleToggleSubMenu('bmx')}>Bmx</span>
+                  
+                  <Links toggleSubMenu={toggleSubMenu === 'bmx'}>
+                    <li><Link to='/produtos/bmx/completo'>Completo</Link></li>
+                    <li><Link to='/produtos/bmx/quadro'>Quadro</Link></li>
+                    <li><Link to='/produtos/bmx/pneus'>Pneus</Link></li>
+                    <li><Link to='/produtos/bmx/pecas'>Peças</Link></li>
+                    <li><Link to='/produtos/bmx/acessorios'>Acessórios</Link></li>
+                  </Links>
+                </div>
+              </SubMenus>
+            </li>
+          </Menus>
 
-          {/* ESPORTES */}
-          <li>  
-            <a href="">Esportes</a>
+          <Account>
+            <Login>
+              <Link to={loggedUser ? '/minha-conta/resumo' : '/login'}><img src={LoginIMG} alt="" /><span>{loggedUser ? loggedUser.name : `Entrar/Criar Conta`}</span></Link>
 
-            <SubMenus>
-              <div>
-                <h3>Longboard</h3>
-                <ul>
-                  <li>Completo</li>
-                  <li>Shapes</li>
-                  <li>Trucks</li>
-                  <li>Rodas</li>
-                  <li>Rolamentos</li>
-                  <li>Acessórios</li>
-                </ul>
-              </div>
+              {loggedUser && (<ul>
+                <li><Link to='/minha-conta/resumo'>Minha conta</Link></li>
+                <li><Link to='/minha-conta/pedidos'>Meus pedidos</Link></li>
+                <li><Link to='/minha-conta/enderecos'>Meus endereços</Link></li>
+                <li><Link to='/' onClick={handleLogout}>Sair</Link></li>
+              </ul>)}
+            </Login>
 
-              <div>
-                <h3>Skate</h3>
-                <ul>
-                  <li>Completo</li>
-                  <li>Shapes</li>
-                  <li>Trucks</li>
-                  <li>Rodas</li>
-                  <li>Rolamentos</li>
-                  <li>Acessórios</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3>BMX</h3>
-                <ul>
-                  <li>Completa</li>
-                  <li>Quadro</li>
-                  <li>Pneus</li>
-                  <li>Peças</li>
-                  <li>Acessórios</li>
-                </ul>
-              </div>
-            </SubMenus>
-          </li>
-
-          <li><a href="">Promoções</a></li>
-        </Menus>
-
-        <Account>
-          <Login>
-            <Link to={loggedUser ? '/minha-conta/resumo' : '/login'}><img src={LoginIMG} alt="" /><span>Olá, {loggedUser ? loggedUser.name : 'Visitante'}</span></Link>
-
-            {loggedUser && (<ul>
-              <li><Link to='/minha-conta/resumo'>Minha conta</Link></li>
-              <li><Link to='/minha-conta/pedidos'>Meus pedidos</Link></li>
-              <li><Link to='/minha-conta/endereços'>Meus endereços</Link></li>
-              <li><button onClick={handleLogout}>Sair</button></li>
-            </ul>)}
-          </Login>
-
-          <Cart>
-            <Link to="/carrinho"><img src={CartIMG} alt="" /><span>{cart?.map((m) => m.quantity).reduce((acc, cur) => acc + cur, 0) || 0}</span></Link> 
-          </Cart>
-        </Account>
-
-        
-      </Nav>
-    </Container>
+            <Cart>
+              <Link to="/carrinho"><img src={CartIMG} alt="" /><span>{cart?.map((m) => m.quantity).reduce((acc, cur) => acc + cur, 0) || 0}</span></Link> 
+            </Cart>
+          </Account>
+        </Nav>
+      </Container>
+    </HeaderBG>
   )
 }
 

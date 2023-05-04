@@ -24,6 +24,10 @@ const WrapperGrid = styled.div`
   padding-bottom: 20px;
   text-align: center;
   font: var(--font1-14-r);
+
+  @media (max-width: 425px) {
+    font: var(--font1-12-r);
+  }
 `
 
 export const ListTitle = styled(WrapperGrid)`
@@ -43,6 +47,11 @@ export const OrderResume = styled(WrapperGrid)`
 
   a:hover {
     font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns:repeat(3, auto);
+    gap: 4px;
   }
 `
 

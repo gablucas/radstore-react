@@ -40,7 +40,7 @@ const Dashboard = () => {
 
       <AccountWrapper>
         <h1>Último pedido</h1>
-        {loggedUser?.orders ? (
+        {loggedUser?.orders[0] ? (
           <ul>
             <li>Codigo: <span>{loggedUser.orders[0].id}</span></li>
             <li>Data: <span>{loggedUser.orders[0].date}</span></li>

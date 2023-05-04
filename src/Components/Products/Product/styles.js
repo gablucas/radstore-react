@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
-  width: 320px;
-  height: 320px;
-
   position: relative;
 
   a {
@@ -12,12 +8,18 @@ export const Container = styled.div`
     flex-direction: column;
   }
   
-  span:nth-child(2) {
+  span:first-of-type {
     margin-top: 4px;
-    font: var(--font1-16-sm);
+    font: var(--font1-14-sb);
+    text-transform: uppercase;
+    
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  span:nth-child(3) {
+  span:last-of-type {
+    margin-top: 4px;
     font: var(--font1-16-r);
   }
 
@@ -27,5 +29,18 @@ export const Container = styled.div`
 
   &:hover button {
     display: initial;
+  }
+
+
+  @media (max-width: 425px) {
+
+    span:first-of-type {
+      font: var(--font1-12-sb);
+    }
+
+    span:last-of-type {
+      margin-top: 0px;
+      font: var(--font1-14-r);
+    }
   }
 `

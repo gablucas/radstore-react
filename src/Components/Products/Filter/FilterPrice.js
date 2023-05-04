@@ -28,7 +28,7 @@ const FilterPrice = () => {
 
   React.useEffect(() => {
     
-    quantityPerPrice.current = filterParams({genre: true, size: true, color: true, price: false});
+    quantityPerPrice.current = filterParams({subcategory: true, genre: true, size: true, color: true, price: false});
     if (quantityPerPrice.current) {
       quantityPerPrice.current = pricerange.map((pr) => [quantityPerPrice.current.filter((prf) => parseInt(prf.price) >= pr[0] && parseInt(prf.price) <= pr[1]).length])
     }

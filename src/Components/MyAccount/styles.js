@@ -2,11 +2,24 @@ import styled from "styled-components";
 
 export const Container = styled.section`
   display: grid;
-  grid-template-columns: 300px 1100px;
-  justify-content: center;
+  grid-template-columns: minmax(200px, 300px) minmax(700px, 1000px);
   align-items: start;
+  justify-content: center;
+  padding-left: 40px;
+  padding-right: 40px;
   gap: 40px;
   margin-top: 40px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: minmax(200px, 300px) minmax(300px, 600px);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding-left: 20px;
+    padding-right: 20px;
+
+  }
 `
 
 export const Menu = styled.div`

@@ -25,13 +25,13 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/produtos/:category/:type" element={<Products />} />
+            <Route path="/produtos/:category/:subcategory?" element={<Products />} />
             <Route path="/produto/:id" element={<Product />} />
             <Route path="/login" element={<Login />} />
             <Route path="/carrinho/*" element={<Cart />} />
             <Route path="/minha-conta/*" element={<MyAccount />} />
           </Routes>
-          <Footer />
+          <Footer /> 
           <GlobalStyle />
         </ContextProvider>
       </QueryClientProvider>

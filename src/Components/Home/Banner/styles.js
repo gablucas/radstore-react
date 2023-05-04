@@ -15,4 +15,18 @@ export const Container = styled.section`
     img {
       width: 100vw;
     }
+
+    @media (max-width: 768px) {
+      p {
+        font: var(--font2-32-b);
+        left: 30%;
+      }
+    }
+
+    @media (max-width: 425px) {
+      p {
+        font: var(--font2-24-sb);
+        left: 48%;
+      }
+    }
 `

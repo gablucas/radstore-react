@@ -11,7 +11,7 @@ const Product = ({ product }) => {
       <Link to={`/produto/${product.id}`}>
         <img src={product.image} alt="" />
         <span>{product.name}</span>
-        <span>{product.price}</span>
+        <span>{parseInt(product.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
       </Link>
     </Container>
   )
