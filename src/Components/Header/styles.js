@@ -250,7 +250,7 @@ export const Login = styled.div`
     background: #FFFFFF;
 
     position: absolute;
-    bottom: -150px;
+    bottom: -160px;
     left: 0px;
     z-index: 999;
   }

@@ -48,4 +48,17 @@ export const AddressWrapper = styled.div`
   span {
     color: #2B2B2B;
   }
+
+  @media (max-width: 425px) {
+
+    span {
+      font: var(--font1-14-r);
+    }
+
+    span:nth-of-type(1) {
+      margin-bottom: 2px;
+      font: var(--font1-16-sb);
+      color: initial;
+    }
+  }
 `

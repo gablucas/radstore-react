@@ -44,25 +44,20 @@ const CartOrder = ({ productsDetails }) => {
       <InfoWrapper>
         <h2>Produtos</h2>
 
-        <div>
-          <span>Produto</span>
-          <span>Preço</span>
-          <span>Tamanho</span>
-          <span>Cor</span>
-          <span>Quantidade</span>
-        </div>
-
         {checkout.items.map((m, i) => (
           <Products key={m.id}>
             <div>
               <img src={productsDetails[i].data.image} alt="" width='100px'/>
-              <span>{productsDetails[i].data.name}</span>
+              <div>
+                <span>Produto</span>
+                <span>{productsDetails[i].data.name}</span>
+              </div>
             </div>
 
-            <span>R$ {productsDetails[i].data.price}</span>
-            <span>{m.measure}</span>
-            <span>{productsDetails[i].data.color[0]}</span>
-            <span>{m.quantity}</span>
+            <div><span>Preço</span><span>R$ {productsDetails[i].data.price}</span></div>
+            <div><span>Tamanho</span><span>{m.measure}</span></div>
+            <div><span>Cor</span><span>{productsDetails[i].data.color[0]}</span></div>
+            <div><span>Quantidade</span><span>{m.quantity}</span></div>
 
           </Products>
         ))}

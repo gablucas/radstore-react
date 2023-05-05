@@ -5,7 +5,6 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import { GlobalContext } from '../Context';
 
 const Container = styled.div`
-  width: 400px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -52,10 +51,27 @@ const Container = styled.div`
   button:hover {
     filter: brightness(1.2);
   }
+
+  @media (max-width: 1240px) {
+    margin-top: 40px;
+  }
+
+  @media (max-width: 425px) {
+    font: var(--font1-16-m);
+
+    div:last-of-type {
+      font: var(--font1-20-sb);
+    }
+
+    button {
+      font: var(--font1-14-b);
+      padding: 16px 0px;
+    }
+  }
 `
 
 const Summary = ({ backStep, selectedPage }) => {
-  const { loggedUser, checkout, cart } = React.useContext(GlobalContext);
+  const { loggedUser, checkout } = React.useContext(GlobalContext);
   const { getValue, setValue } = useLocalStorage();
 
   const navigate = useNavigate();

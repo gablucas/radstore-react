@@ -14,11 +14,13 @@ export const Container = styled.footer`
 
   form {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr auto;
+    justify-content: start;
     margin-top: 6px;
   }
 
   input {
+    width: 100%;
     margin-top: 0px;
     padding: 10px 10px;
     background-color: #FFFFFF;

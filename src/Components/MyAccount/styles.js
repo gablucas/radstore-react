@@ -18,7 +18,11 @@ export const Container = styled.section`
     grid-template-columns: 1fr;
     padding-left: 20px;
     padding-right: 20px;
+  }
 
+  @media (max-width: 425px) {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 `
 

@@ -213,7 +213,7 @@ const Header = () => {
 
           <Account>
             <Login>
-              <Link to={loggedUser ? '/minha-conta/resumo' : '/login'}><img src={LoginIMG} alt="" /><span>{loggedUser ? loggedUser.name : `Entrar/Criar Conta`}</span></Link>
+              <Link to={loggedUser ? '/minha-conta/resumo' : '/login'}><img src={LoginIMG} alt="" /><span>{loggedUser ? loggedUser.name : `Entrar/Criar`}</span></Link>
 
               {loggedUser && (<ul>
                 <li><Link to='/minha-conta/resumo'>Minha conta</Link></li>

@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.section`
   margin: 0 auto;
-  width: 1440px;
   display: grid;
-  grid-template-columns: 1000px 400px;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: start;
   column-gap: 40px;
@@ -17,18 +16,35 @@ const containerGrid = styled.div`
   gap: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
-`
 
-export const ListTitle = styled(containerGrid)`
-  grid-column: 1;
-  border-top: 1px solid #C8C8C8;
-  border-bottom: 1px solid #C8C8C8;
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 425px) {
+    grid-template-columns: repeat(4, auto);
+    gap: 10px;
+  }
 `
 
 export const Product = styled(containerGrid)`
   grid-column: 1;
-  border-bottom: 1px solid #C8C8C8;
+  border-top: 1px solid #C8C8C8;
+  
+  & > div {
+    display: grid;
+    justify-items: center;
+  }
 
+  & > div > span {
+    margin-bottom: 4px;
+  }
+
+  div > span:first-of-type{
+    display: block;
+    font: var(--font1-12-sb);
+    text-transform: uppercase;
+  }
 
   select {
     padding: 8px 16px;
@@ -37,27 +53,37 @@ export const Product = styled(containerGrid)`
   & > div:nth-child(n+2) {
     align-self: center;
   }
+
+  @media (max-width: 425px) {
+
+    div > span:first-of-type{
+      font: var(--font1-10-sb);
+    }
+
+    div > span:nth-of-type(n+2) {
+      font: var(--font1-12-r);
+    }
+  }
 `
 
 export const ProductInfo = styled.div`
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: minmax(80px, 180px) auto;
+  justify-self: start;
   gap: 20px;
-
   
-  div:nth-child(2) {
+  div:nth-of-type(2) {
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
 
-  span:first-child {
-    font: var(--font2-18-sb);
+  @media (max-width: 1024px) {
+    grid-column: 1/-1;
   }
 
-  span:nth-child(n+2) {
-    font: var(--font1-16-r);
-    color: #2B2B2B;
+  @media (max-width: 425px) {
+    gap: 10px;
   }
 `
 

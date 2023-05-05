@@ -51,6 +51,21 @@ export const PaymentWrapper = styled.div`
     padding-top: 20px;
     border-top: 1px solid #C8C8C8;
   }
+
+  @media (max-width: 768px) {
+    h2 {
+      gap: 10px;
+      font: var(--font1-16-sb);
+    }
+
+    span:nth-of-type(1) {
+      font: var(--font1-16-sb);
+    }
+
+    p {
+      font: var(--font1-14-r);
+    }
+  }
 `
 
 export const PaymentTitle = styled.div`

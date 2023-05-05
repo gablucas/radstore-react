@@ -35,28 +35,19 @@ const Order = () => {
       </OrderInfo>
 
       <OrderProducts>
-
-        <div>
-          <span>Produto</span>
-          <span>Preço</span>
-          <span>Tamanho</span>
-          <span>Cor</span>
-          <span>Quantidade</span>
-          <span>Total</span>
-        </div>
-
         {products.length && order.items.map((m) => (
           <OrderProduct key={m.id + m.measure}>
+
             <div>
               <img src={products.find((f) => f.id === m.id).image} alt="" width="100" />
-              <span>{products.find((f) => f.id === m.id).name}</span>
+              <div><span>Produto</span><span>{products.find((f) => f.id === m.id).name}</span></div>
             </div>
 
-            <span>R$ {products.find((f) => f.id === m.id).price}</span>
-            <span>{m.measure}</span>
-            <span>{products.find((f) => f.id === m.id).color[0]}</span>
-            <span>{m.quantity}</span>
-            <span>R$ {parseInt(products.find((f) => f.id === m.id).price) * m.quantity},00</span>
+            <div><span>Preço</span><span>R$ {products.find((f) => f.id === m.id).price}</span></div>
+            <div><span>Tamanho</span><span>{m.measure}</span></div>
+            <div><span>Cor</span><span>{products.find((f) => f.id === m.id).color[0]}</span></div>
+            <div><span>Quant</span><span>{m.quantity}</span></div>
+            <div><span>Total</span><span>R$ {parseInt(products.find((f) => f.id === m.id).price) * m.quantity},00</span></div>
           </OrderProduct>))}
       </OrderProducts>
 

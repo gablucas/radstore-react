@@ -31,6 +31,12 @@ const Container = styled.div`
     color: #F7F7F7;
     background: #2B2B2B;
   }
+
+  @media (max-width: 1024px) {
+      button:last-of-type {
+      padding: 0px 40px;
+    }
+  }
 `
 
 const FormWrapper = styled.div`
@@ -51,13 +57,22 @@ const FormWrapper = styled.div`
     grid-column: 1/4;
   }
 
+  div:nth-of-type(2) {
+    grid-column: 4/7;
+  }
+
   div:nth-of-type(3) {
     grid-column: 1/2;
   }
 
-  div:nth-of-type(2) {
-    grid-column: 4/7;
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr;
+
+    div:nth-of-type(2) {
+      grid-column: 1/4;
+    }
   }
+
 `
 
 const CreditCardForm = ({ goback, savePayment }) => {
@@ -98,7 +113,7 @@ const CreditCardForm = ({ goback, savePayment }) => {
       <FormWrapper>
         <Input label="Número do cartão" type='number' name='cardnumber' placeholder='' {...cardnumber} />
         <Input label="Nome do titular" type='text' name='cardname' {...cardname} />
-        <Input label="Validade - Mês" type='number' name='validityMonth' {...validityMonth} />
+        <Input label="Mês" type='number' name='validityMonth' {...validityMonth} />
         <Input label="Ano" type="text" name="number" {...validityYear} />
         <Input label="CVV" type='text' name='city' {...cvv} />
       </FormWrapper>
