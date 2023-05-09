@@ -31,6 +31,12 @@ export const Container = styled.div`
     display: initial;
   }
 
+  @media (max-width: 768px) {
+    button {
+      display: initial;
+    }
+  }
+
 
   @media (max-width: 425px) {
 

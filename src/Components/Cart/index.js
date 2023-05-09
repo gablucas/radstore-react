@@ -10,13 +10,16 @@ import CartOrder from './CartOrder';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 const Cart = () => {
-  const { setBgColor, cart, products } = React.useContext(GlobalContext);
+  const { setBgColor, cart, products, setToggleMenuMobile } = React.useContext(GlobalContext);
   const [productsDetails, setProductsDetails] = React.useState([]);
   const { getValue } = useLocalStorage();
   const selectedPage = useParams()["*"];
   const backStep = useRef({entrega: false, pagamento: false});
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+    setToggleMenuMobile('');
+  }, [setToggleMenuMobile])
 
   React.useEffect(() => {
     if (products.length) {
@@ -35,6 +38,8 @@ const Cart = () => {
   React.useEffect(() => {
     setBgColor(true);
   }, [setBgColor])
+
+  
 
   return (
     <Container selectedPage={selectedPage}>

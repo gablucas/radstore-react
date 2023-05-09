@@ -3,17 +3,23 @@ import styled from "styled-components";
 export const HeaderBG = styled.header`
   border-bottom: 1px solid #C8C8C8;
   background: #FFFFFF;
+  z-index: 999;
 `
 
 export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-left: 40px;
   margin-right: 40px;
 
   @media (max-width: 768px) {
-    padding: 10px 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    & > a:first-of-type img {
+      width: 80px;
+    }
   }
 `
 
@@ -56,7 +62,6 @@ export const MenuMobile = styled.button`
       transform: ${props => props.toggleMenuMobile && 'rotate(-45deg)'};
     }
   }
-
 `
 
 export const Nav = styled.nav`
@@ -64,7 +69,7 @@ export const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   font: var(--font1-16-sb);
-  height: 100%;
+  width: 60%;
 
   @media (max-width: 768px) {
     display: ${props => props.toggleMenuMobile ? "flex" : "none"};
@@ -72,24 +77,27 @@ export const Nav = styled.nav`
     align-items: start;
     justify-content: start;
     background: #F7F7F7;
+    overflow-y: scroll !important;
     
     position: fixed;
-    top: 116px;
+    top: 103px;
     left: 0px;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     z-index: 9999;
+    padding-bottom: 200px;
   }
 `
 
 export const Account = styled.div`
   display: grid;
   grid-template-columns: auto auto;
-  
-  div > a {
-    padding: 33px 20px !important;
+  gap: 10px;
+
+  a {
+    padding: 33px 20px;
   }
-  
+
   @media (max-width: 768px) {
     width: 100%;
     grid-template-columns: 1fr auto; 
@@ -250,7 +258,7 @@ export const Login = styled.div`
     background: #FFFFFF;
 
     position: absolute;
-    bottom: -160px;
+    bottom: -170px;
     left: 0px;
     z-index: 999;
   }
@@ -280,14 +288,29 @@ export const Login = styled.div`
   li:hover a {
     background: #FFA700;
   }
+
+  @media (max-width: 768px) {
+    &:hover ul {
+      display: none;
+    }
+
+    ul::before {
+      display: none;
+    }
+  }
 `
 
 export const Cart = styled.div`
-
+ 
   background: #FFA700;
   
   a {
     position: relative;
+    display: flex;
+    align-content: center;
+    height: 100%;
+    padding: 0px 20px;
+
   }
   
   span {
@@ -302,7 +325,7 @@ export const Cart = styled.div`
     align-items: center;
     position: absolute;
     right: 20px;
-    top: 54px;
+    top: 48px;
   }
 `
 

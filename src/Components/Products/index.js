@@ -10,7 +10,7 @@ const Products = () => {
   const { category, subcategory } = useParams();
 
   React.useEffect(() => {
-    setToggleMenuMobile('');
+    setToggleMenuMobile(false);
   }, [setToggleMenuMobile])
 
   return (

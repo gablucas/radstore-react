@@ -12,7 +12,7 @@ import MyPayments from './MyPayments';
 import { Container, Menu } from './styles';
 
 const MyAccount = () => {
-  const { loggedUser, setLoggedUser, setBgColor } = React.useContext(GlobalContext);
+  const { loggedUser, setLoggedUser, setBgColor, setToggleMenuMobile } = React.useContext(GlobalContext);
   const { getValue, removeValue } = useLocalStorage();
   const navigate = useNavigate();
 
@@ -21,6 +21,10 @@ const MyAccount = () => {
       navigate('/')
     }
   }, [navigate, getValue])
+
+  React.useEffect(() => {
+    setToggleMenuMobile('');
+  }, [setToggleMenuMobile])
 
   React.useEffect(() => {
     setBgColor(false);

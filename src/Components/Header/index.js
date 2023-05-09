@@ -26,6 +26,14 @@ const Header = () => {
     }
   }
 
+  React.useEffect(() => {
+    if (toggleMenuMobile) {
+      document.body.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = 'initial';
+    }
+  }, [toggleMenuMobile])
+
   return (
     <HeaderBG>
       <Container>
@@ -89,13 +97,10 @@ const Header = () => {
                     <Links toggleSubMenu={toggleSubMenu === 'feminino-roupas'}>
                       <li><Link to='/produtos/roupas/camisas?genre=feminino'>Camisas</Link></li>
                       <li><Link to='/produtos/roupas/camisetas?genre=feminino'>Camisetas</Link></li>
-                      <li><Link to='/produtos/roupas/camisetas?genre=feminino'>Camisetas</Link></li>
-                      <li><Link to='/produtos/roupas/vestidos?genre=feminino'>Vestidos</Link></li>
                       <li><Link to='/produtos/roupas/calcas?genre=feminino'>Calças</Link></li>
-                      <li><Link to='/produtos/roupas/bermudas?genre=feminino'>Bermudas</Link></li>
+                      <li><Link to='/produtos/roupas/shorts?genre=feminino'>Shorts</Link></li>
                       <li><Link to='/produtos/roupas/moletons?genre=feminino'>Moletons</Link></li>
                       <li><Link to='/produtos/roupas/jaquetas?genre=feminino'>Jaquetas</Link></li>
-                      <li><Link to='/produtos/roupas/saias?genre=feminino'>Saias</Link></li>
                     </Links>
                   </div>
 
@@ -213,7 +218,7 @@ const Header = () => {
 
           <Account>
             <Login>
-              <Link to={loggedUser ? '/minha-conta/resumo' : '/login'}><img src={LoginIMG} alt="" /><span>{loggedUser ? loggedUser.name : `Entrar/Criar`}</span></Link>
+              <Link to={loggedUser ? '/minha-conta/resumo' : '/login'}><img src={LoginIMG} alt="" /><span>{loggedUser ? loggedUser.name.split(' ')[0] : `Entrar/Criar`}</span></Link>
 
               {loggedUser && (<ul>
                 <li><Link to='/minha-conta/resumo'>Minha conta</Link></li>
