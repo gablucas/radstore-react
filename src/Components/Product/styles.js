@@ -65,7 +65,6 @@ export const MeasureButton = styled.li`
   justify-content: center;
   align-items: center;
   height: 42px;
-  width: 42px;
   font: var(--font1-20-m);
   font-weight: ${props => props.selectedMeasure && "700"};
   border: 2px solid #000000;

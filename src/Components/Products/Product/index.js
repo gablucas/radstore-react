@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Favorite from '../../Favorite'
+import Image from '../../Helper/Image'
 import { Container } from './styles'
 
 const Product = ({ product }) => {
@@ -9,9 +10,9 @@ const Product = ({ product }) => {
     <Container>
       <Favorite id={product.id} />
       <Link to={`/produto/${product.id}`}>
-        <img src={product.image} alt="" />
+        <Image url={product.image} />
         <span>{product.name}</span>
-        <span>{parseInt(product.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
+        <span>{parseInt(product.price).toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}</span>
       </Link>
     </Container>
   )

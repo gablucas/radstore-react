@@ -4,9 +4,10 @@ import { AboutWrapper, ButtonWrapper, BuyButton, CartButton, Container, ImageWra
 import { GlobalContext } from '../Context';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import Favorite from '../Favorite';
+import Image from '../Helper/Image';
 
 const Product = () => {
-  const { measures, products, setCart } = React.useContext(GlobalContext);
+  const { products, setCart } = React.useContext(GlobalContext);
   const { getValue, setValue, pushValue } = useLocalStorage();
   const [product, setProduct] = React.useState();
   const [selectedMeasure, setSelectedMeasure] = React.useState('');
@@ -18,7 +19,6 @@ const Product = () => {
   React.useEffect(() => {
     setProduct(products.find((p) => p.id === id));
   }, [setProduct, products, id])
-
 
   function handleBuy(type) {
     if (!getValue('cart')) {
@@ -60,12 +60,11 @@ const Product = () => {
     }
   }
 
-
   if (product) return (
     <Container>
       <ImageWrapper>
         <Favorite id={id} />
-        <img src={product.image} alt="" />
+        <Image url={product.image} />
       </ImageWrapper>
 
       <InfoWrapper>
@@ -77,7 +76,7 @@ const Product = () => {
           <span>Escolha um tamanho</span>
 
           <ul>
-          {measures[product.subcategory]?.map((measure) => (
+          {product.sizes.map((measure) => (
             <MeasureButton key={measure} onClick={() => setSelectedMeasure(measure)} selectedMeasure={selectedMeasure === measure} >{measure}</MeasureButton>
           ))}
           </ul>

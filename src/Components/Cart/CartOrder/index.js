@@ -2,6 +2,7 @@ import React from 'react'
 import { ButtonsWrapper, Container, InfoWrapper, Products } from './styles';
 import { GlobalContext } from '../../Context';
 import { Link, useNavigate } from 'react-router-dom';
+import Image from '../../Helper/Image';
 
 const CartOrder = ({ productsDetails }) => {
   const { checkout } = React.useContext(GlobalContext);
@@ -47,7 +48,7 @@ const CartOrder = ({ productsDetails }) => {
         {checkout.items.map((m, i) => (
           <Products key={m.id}>
             <div>
-              <img src={productsDetails[i].data.image} alt="" width='100px'/>
+              <Image url={productsDetails[i].data.image} width='100px' />
               <div>
                 <span>Produto</span>
                 <span>{productsDetails[i].data.name}</span>

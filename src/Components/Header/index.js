@@ -130,46 +130,6 @@ const Header = () => {
               </SubMenus>
             </li>
 
-            {/* KIDS */}
-            <li>
-              <h3>Kids</h3>
-
-              <SubMenus>
-                <div>
-                  <span onClick={() => handleToggleSubMenu('kids-roupas')}>Kids</span>
-                  
-                  <Links toggleSubMenu={toggleSubMenu === 'kids-roupas'}>
-                      <li><Link to='/produtos/roupas/camisas?genre=kids'>Camisas</Link></li>
-                      <li><Link to='/produtos/roupas/camisetas?genre=kids'>Camisetas</Link></li>
-                      <li><Link to='/produtos/roupas/calcas?genre=kids'>Calças</Link></li>
-                      <li><Link to='/produtos/roupas/bermudas?genre=kids'>Bermudas</Link></li>
-                      <li><Link to='/produtos/roupas/moletons?genre=kids'>Moletons</Link></li>
-                      <li><Link to='/produtos/roupas/jaquetas?genre=kids'>Jaquetas</Link></li>
-                  </Links>
-                </div>
-
-                <div>
-                  <span onClick={() => handleToggleSubMenu('kids-calcados')}>Calçados</span>
-                  
-                  <Links toggleSubMenu={toggleSubMenu === 'kids-calcados'}>
-                    <li><Link to='/produtos/calcados/tenis?genre=kids'>Tênis</Link></li>
-                    <li><Link to='/produtos/calcados/chinelo?genre=kids'>Chinelos</Link></li>
-                    <li><Link to='/produtos/calcados/botas?genre=kids'>Botas</Link></li>
-                  </Links>
-                </div>
-
-                <div>
-                  <span onClick={() => handleToggleSubMenu('kids-acessorios')}>Kids</span>
-                  
-                  <Links toggleSubMenu={toggleSubMenu === 'kids-acessorios'}>
-                    <li><Link to='/produtos/acessorios/mochilas?genre=kids'>Mochilas</Link></li>
-                    <li><Link to='/produtos/acessorios/bones?genre=kids'>Bonés</Link></li>
-                    <li><Link to='/produtos/acessorios/meias?genre=kids'>Meias</Link></li>
-                  </Links>
-                </div>
-              </SubMenus>
-            </li>
-
             {/* ESPORTES */}
             <li>  
               <h3>Esportes</h3>
@@ -179,7 +139,7 @@ const Header = () => {
                   <span onClick={() => handleToggleSubMenu('longboard')}>Longboard</span>
                   
                   <Links toggleSubMenu={toggleSubMenu === 'longboard'}>
-                    <li><Link to='/produtos/longboard/completo'>Completo</Link></li>
+                    <li><Link to='/produtos/longboard/completo?genre=longboard'>Completo</Link></li>
                     <li><Link to='/produtos/longboard/shapes'>Shapes</Link></li>
                     <li><Link to='/produtos/longboard/trucks'>Trucks</Link></li>
                     <li><Link to='/produtos/longboard/rodas'>Rodas</Link></li>
@@ -198,18 +158,6 @@ const Header = () => {
                     <li><Link to='/produtos/skate/rodas'>Rodas</Link></li>
                     <li><Link to='/produtos/skate/rolamentos'>Rolamentos</Link></li>
                     <li><Link to='/produtos/skate/acessorios'>Acessórios</Link></li>
-                  </Links>
-                </div>
-
-                <div>
-                  <span onClick={() => handleToggleSubMenu('bmx')}>Bmx</span>
-                  
-                  <Links toggleSubMenu={toggleSubMenu === 'bmx'}>
-                    <li><Link to='/produtos/bmx/completo'>Completo</Link></li>
-                    <li><Link to='/produtos/bmx/quadro'>Quadro</Link></li>
-                    <li><Link to='/produtos/bmx/pneus'>Pneus</Link></li>
-                    <li><Link to='/produtos/bmx/pecas'>Peças</Link></li>
-                    <li><Link to='/produtos/bmx/acessorios'>Acessórios</Link></li>
                   </Links>
                 </div>
               </SubMenus>

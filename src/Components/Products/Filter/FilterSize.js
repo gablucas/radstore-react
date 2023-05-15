@@ -33,13 +33,15 @@ const FilterSize = () => {
   }, [size])
 
   React.useEffect(() => {
-    if (subcategory) {
+    if (subcategory && measures[subcategory]) {
       selectedMeasure.current = measures[subcategory];
     } else {
       selectedMeasure.current = measures[category];
     }
   }, [measures, subcategory, category])
 
+
+  if (selectedMeasure.current?.[0]?.length)
   return (
     <FilterWrapper>
     <span>Tamanho</span>

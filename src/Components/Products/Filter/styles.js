@@ -41,8 +41,8 @@ export const FilterWrapper = styled.div`
   }
 
   & > div {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
+    display: flex;
+    flex-wrap: wrap;
     justify-content: start;
     gap: 12px;
   }
@@ -65,13 +65,15 @@ export const FilterWrapper = styled.div`
 `
 
 export const ProductLabel = styled.button`
-  height: 42px;
-  width: 42px;
+  padding: 10px;
+  min-width: 42px;
+  min-height: 42px;
+  width: max-content;
   border: 2px solid #000000;
 `
 
 export const ProductSize = styled(ProductLabel)`
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   font: var(--font1-20-m);

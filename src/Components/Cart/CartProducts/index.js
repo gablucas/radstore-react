@@ -1,8 +1,9 @@
 import React from 'react';
-import { ListTitle, Product, ProductInfo } from './styles';
+import { Product, ProductInfo } from './styles';
 import Select from '../../Forms/Select';
 import FunctionButtons from './FunctionButtons';
 import { GlobalContext } from '../../Context';
+import Image from '../../Helper/Image';
 
 const CartProducts = ({ productsDetails }) => {
   const { cart, setCheckout } = React.useContext(GlobalContext);
@@ -18,8 +19,8 @@ const CartProducts = ({ productsDetails }) => {
       <Product key={index} >
 
         <ProductInfo>
-          <div><img src={m.data.image} alt="" /></div>
-          
+          <Image url={m.data.image} />
+
           <div>
             <span>Produto</span>
             <span>{m.data.name}</span>

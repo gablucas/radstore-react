@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { GlobalContext } from '../../Context';
 import { Container, OrderInfo, OrderProduct, OrderProducts } from './styles';
+import Image from '../../Helper/Image';
 
 const Order = () => {
   const { loggedUser, products } = React.useContext(GlobalContext);
@@ -39,7 +40,7 @@ const Order = () => {
           <OrderProduct key={m.id + m.measure}>
 
             <div>
-              <img src={products.find((f) => f.id === m.id).image} alt="" width="100" />
+              <Image url={products.find((f) => f.id === m.id).image} alt="" width="100" />
               <div><span>Produto</span><span>{products.find((f) => f.id === m.id).name}</span></div>
             </div>
 

@@ -5,7 +5,7 @@ import { GlobalContext } from '../../Context';
 import useFilter from '../../../hooks/useFilter';
 
 const FilterColor = () => {
-  const {data} = React.useContext(GlobalContext)
+  const { data } = React.useContext(GlobalContext)
   const [searchParams, setSearchParams] = useSearchParams();
   const colors = useRef([]);
   const selectedColor = useRef('');
@@ -31,10 +31,9 @@ const FilterColor = () => {
     colors.current = filterParams({subcategory: true, gender: true, size: true, price: true, color: false})
     colors.current = colors.current?.map((product) => product.color)
     colors.current = Array.from(new Set(colors.current?.map(JSON.stringify)), JSON.parse)
-
-
   }, [data, colors, searchParams, color, filterParams])
 
+  if (colors.current[0]?.length)
   return (
     <FilterWrapper>
     <span>Cores</span>

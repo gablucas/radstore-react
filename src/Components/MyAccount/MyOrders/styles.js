@@ -111,8 +111,8 @@ export const OrderProduct = styled.div`
   div {
     display: flex;
     flex-direction: column;
-    justify-self: center;
     align-items: center;
+    justify-content: center;
   }
 
   & > div:first-of-type {

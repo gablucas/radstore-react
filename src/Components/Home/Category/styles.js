@@ -17,7 +17,7 @@ export const Container = styled.section`
 
   & > div {
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(4, auto);
     justify-content: center;
     gap: 60px;
   }

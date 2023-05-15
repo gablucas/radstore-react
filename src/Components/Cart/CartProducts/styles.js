@@ -70,6 +70,7 @@ export const ProductInfo = styled.div`
   display: grid;
   grid-template-columns: minmax(80px, 180px) auto;
   justify-self: start;
+  align-items: center;
   gap: 20px;
   
   div:nth-of-type(2) {
