@@ -1,16 +1,10 @@
 {
   "files": {
-    "main.js": "/radstore-react/static/js/main.8f86a4c0.js",
+    "main.js": "/radstore-react/static/js/main.4e0a5875.js",
     "static/media/Banner.png": "/radstore-react/static/media/Banner.3b228aba4a1c2e358840.png",
     "static/media/Banner_768.png": "/radstore-react/static/media/Banner_768.471377ff45a690500721.png",
     "static/media/BGLogin.jpg": "/radstore-react/static/media/BGLogin.2c1740b8cdd842bfdd78.jpg",
     "static/media/Banner_425.png": "/radstore-react/static/media/Banner_425.e33f99559ca674e420b0.png",
-    "static/media/kids.jpg": "/radstore-react/static/media/kids.7d908f434e6f57ed585d.jpg",
-    "static/media/womans.jpg": "/radstore-react/static/media/womans.259a01d638a0728ff28d.jpg",
-    "static/media/mens.jpg": "/radstore-react/static/media/mens.f06004671b78a0692dba.jpg",
-    "static/media/longboard.jpg": "/radstore-react/static/media/longboard.969c012cc5e064d2df5d.jpg",
-    "static/media/bmx.jpg": "/radstore-react/static/media/bmx.347f716be68ab77db1f9.jpg",
-    "static/media/skate.jpg": "/radstore-react/static/media/skate.f3ef03aa0011774bc57c.jpg",
     "static/media/logo-black.svg": "/radstore-react/static/media/logo-black.d8959826f05fe1173ebdd3c16b42b78a.svg",
     "static/media/logo-white.svg": "/radstore-react/static/media/logo-white.747787edff967448890f31bed82a8e6f.svg",
     "static/media/login.svg": "/radstore-react/static/media/login.fc3fcb7d3c8ec1f2520fab70c7173dea.svg",
@@ -20,9 +14,9 @@
     "static/media/instagram.svg": "/radstore-react/static/media/instagram.af84923c555d5fde9a4808a66f0cd037.svg",
     "index.html": "/radstore-react/index.html",
     "static/media/facebook.svg": "/radstore-react/static/media/facebook.80a4ac51973eafa34480627ac6485396.svg",
-    "main.8f86a4c0.js.map": "/radstore-react/static/js/main.8f86a4c0.js.map"
+    "main.4e0a5875.js.map": "/radstore-react/static/js/main.4e0a5875.js.map"
   },
   "entrypoints": [
-    "static/js/main.8f86a4c0.js"
+    "static/js/main.4e0a5875.js"
   ]
 }
