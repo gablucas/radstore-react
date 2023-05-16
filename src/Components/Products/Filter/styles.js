@@ -76,7 +76,7 @@ export const ProductSize = styled(ProductLabel)`
   display: grid;
   justify-content: center;
   align-items: center;
-  font: var(--font1-20-m);
+  font: var(--font1-16-m);
 
 
   &:hover {

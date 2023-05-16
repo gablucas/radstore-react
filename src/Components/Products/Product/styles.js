@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   position: relative;
+  border: 1px solid #d8d8d8;
+  padding: 10px;
 
   a {
-    display: flex;
-    flex-direction: column;
+    display: grid;
   }
   
   span:first-of-type {
@@ -36,7 +37,6 @@ export const Container = styled.div`
       display: initial;
     }
   }
-
 
   @media (max-width: 425px) {
 

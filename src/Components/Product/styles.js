@@ -32,6 +32,7 @@ export const InfoWrapper = styled.div`
 
   ul {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     margin-top: 6px
   }
@@ -64,8 +65,8 @@ export const MeasureButton = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 42px;
-  font: var(--font1-20-m);
+  padding: 10px;
+  font: var(--font1-18-m);
   font-weight: ${props => props.selectedMeasure && "700"};
   border: 2px solid #000000;
   background-color: ${props => props.selectedMeasure && "#FFA700"};
@@ -75,7 +76,6 @@ export const MeasureButton = styled.li`
     background-color: #FFA700;
     font-weight: 700;
   }
-
 `
 
 export const ButtonWrapper = styled.div`

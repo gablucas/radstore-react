@@ -5,8 +5,6 @@ export const Container = styled.section`
   grid-template-columns: 240px 1fr;
   gap: 20px 80px;
   margin: 40px auto !important;
-  padding-left: 20px;
-  padding-right: 20px;
   max-width: 1440px;
 
   h1 {

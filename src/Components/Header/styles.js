@@ -4,6 +4,11 @@ export const HeaderBG = styled.header`
   border-bottom: 1px solid #C8C8C8;
   background: #FFFFFF;
   z-index: 999;
+
+  @media (max-width: 768px) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 `
 
 export const Container = styled.div`
@@ -16,6 +21,7 @@ export const Container = styled.div`
   @media (max-width: 768px) {
     margin-left: 20px;
     margin-right: 20px;
+    
 
     & > a:first-of-type img {
       width: 80px;
@@ -149,7 +155,7 @@ export const Menus = styled.ul`
     position: absolute;
     top: 130px;
     left: 0px;
-    height: 400px;
+    height: 340px;
     width: 100%;
     z-index: 999;
   }

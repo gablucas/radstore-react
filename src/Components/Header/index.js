@@ -66,7 +66,6 @@ const Header = () => {
                   <Links toggleSubMenu={toggleSubMenu === 'masculino-calcados'}>
                     <li><Link to='/produtos/calçados/tenis?genre=masculino'>Tênis</Link></li>
                     <li><Link to='/produtos/calçados/chinelos?genre=masculino'>Chinelos</Link></li>
-                    <li><Link to='/produtos/calçados/botas?genre=masculino'>Botas</Link></li>
                   </Links>
                 </div>
 
@@ -109,8 +108,7 @@ const Header = () => {
                     
                     <Links toggleSubMenu={toggleSubMenu === 'feminino-calcados'}>
                       <li><Link to='/produtos/calcados/tenis?genre=feminino'>Tênis</Link></li>
-                      <li><Link to='/produtos/calcados/chinelo?genre=feminino'>Chinelos</Link></li>
-                      <li><Link to='/produtos/calcados/botas?genre=feminino'>Botas</Link></li>
+                      <li><Link to='/produtos/calcados/chinelos?genre=feminino'>Chinelos</Link></li>
                     </Links>
                   </div>
 
@@ -144,20 +142,7 @@ const Header = () => {
                     <li><Link to='/produtos/longboard/trucks'>Trucks</Link></li>
                     <li><Link to='/produtos/longboard/rodas'>Rodas</Link></li>
                     <li><Link to='/produtos/longboard/rolamentos'>Rolamentos</Link></li>
-                    <li><Link to='/produtos/longboard/acessorios'>Acessórios</Link></li>
-                  </Links>
-                </div>
-
-                <div>
-                  <span onClick={() => handleToggleSubMenu('skate')}>Skate</span>
-                  
-                  <Links toggleSubMenu={toggleSubMenu === 'skate'}>
-                    <li><Link to='/produtos/skate/completo'>Completo</Link></li>
-                    <li><Link to='/produtos/skate/shapes'>Shapes</Link></li>
-                    <li><Link to='/produtos/skate/trucks'>Trucks</Link></li>
-                    <li><Link to='/produtos/skate/rodas'>Rodas</Link></li>
-                    <li><Link to='/produtos/skate/rolamentos'>Rolamentos</Link></li>
-                    <li><Link to='/produtos/skate/acessorios'>Acessórios</Link></li>
+                    <li><Link to='/produtos/longboard/amortecedores'>Amortecedores</Link></li>
                   </Links>
                 </div>
               </SubMenus>
