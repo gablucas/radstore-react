@@ -64,6 +64,11 @@ export const Container = styled.section`
     }
   }
 
+  @media (max-width: 425px) {
+    h2 {
+      font: var(--font2-20-m);
+    }
+  }
 `
 
 

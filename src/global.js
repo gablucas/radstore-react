@@ -30,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
     --font2-24-b: 800 1.5rem/1.1 'Rubik';
     --font2-24-sb: 600 1.5rem/1.1 'Rubik';
     --font2-24-m: 500 1.5rem/1.1 'Rubik';
+    --font2-20-m: 500 1.25rem/1.1 'Rubik';
     --font2-18-b: 800 1.125rem/1.1 'Rubik';
     --font2-18-sb: 600 1.125rem/1.1 'Rubik';
     --font2-16-m: 500 1rem/1.1 'Rubik';
