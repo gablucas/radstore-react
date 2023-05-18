@@ -19,8 +19,8 @@ const types = {
   }
 }
 
-const useForm = ({ type, password, empty, regex }) => {
-  const [value, setValue] = React.useState("");
+const useForm = ({ type, initialValue, password, empty, regex }) => {
+  const [value, setValue] = React.useState(initialValue);
   const [error, setError] = React.useState();
 
   function validate(value) {

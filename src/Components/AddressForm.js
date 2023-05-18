@@ -4,6 +4,7 @@ import useLocalStorage from '../hooks/useLocalStorage';
 import useForm from '../hooks/useForm';
 import Input from './Forms/Input';
 import { GlobalContext } from './Context';
+import { addressApi } from '../services/api';
 
 const Container = styled.div`
   & > div:last-of-type {
@@ -82,17 +83,17 @@ const AddressForm = ({ goback, saveAddress, editAddress }) => {
   const { loggedUser } = React.useContext(GlobalContext);
   const { getValue, setValue } = useLocalStorage();
 
-  const identificacao = useForm({type: 'text', empty: true, regex: true});
-  const cep = useForm({type: 'number', empty: true, regex: true});
-  const endereco = useForm({type: 'text', empty: true, regex: true});
-  const numero = useForm({type: 'number', empty: true, regex: true});
-  const cidade = useForm({type: 'text', empty: true, regex: true});
-  const bairro = useForm({type: 'text', empty: true, regex: true});
-  const uf = useForm({type: 'text', empty: true, regex: true});
-  const complemento = useForm({type: false});
-  const referencia = useForm({type: false});
-  const nome = useForm({type: 'text', empty: true, regex: true});
-  const telefone = useForm({type: 'number', empty: true, regex: true});
+  const identificacao = useForm({type: 'text', initialValue: editAddress?.edit ? editAddress.address.identification : "", empty: true, regex: true});
+  const cep = useForm({type: 'number', initialValue: editAddress?.edit ? editAddress.address.cep : "", empty: true, regex: true});
+  const endereco = useForm({type: 'text', initialValue: editAddress?.edit ? editAddress.address.address : "", empty: true, regex: true});
+  const numero = useForm({type: 'number', initialValue: editAddress?.edit ? editAddress.address.number : "", empty: true, regex: true});
+  const cidade = useForm({type: 'text', initialValue: editAddress?.edit ? editAddress.address.city : "", empty: true, regex: true});
+  const bairro = useForm({type: 'text', initialValue: editAddress?.edit ? editAddress.address.neighborhood : "", empty: true, regex: true});
+  const uf = useForm({type: 'text', initialValue: editAddress?.edit ? editAddress.address.uf : "", empty: true, regex: true});
+  const complemento = useForm({type: false, initialValue: editAddress?.edit ? editAddress.address.complement : ""});
+  const referencia = useForm({type: false,  initialValue: editAddress?.edit ? editAddress.address.reference : ""});
+  const nome = useForm({type: 'text', initialValue: editAddress?.edit ? editAddress.address.name : "", empty: true, regex: true});
+  const telefone = useForm({type: 'number', initialValue: editAddress?.edit ? editAddress.address.phone : "", empty: true, regex: true});
 
   function handleBack() {
     goback();
@@ -131,24 +132,6 @@ const AddressForm = ({ goback, saveAddress, editAddress }) => {
       saveAddress()    
     }
   }
-
-  // NÃO ESTA SENDO POSSÍVEL ALTERAR O VALOR DO INPUT QUANDO É ADICIONADO AS EDITADDRESS COMO DEPENDENCIA
-  React.useEffect(() => {
-    if (editAddress?.edit) {
-      identificacao.setValue(editAddress.address.identification)
-      cep.setValue(editAddress.address.cep)
-      endereco.setValue(editAddress.address.address)
-      numero.setValue(editAddress.address.number)
-      cidade.setValue(editAddress.address.city)
-      bairro.setValue(editAddress.address.neighborhood)
-      uf.setValue(editAddress.address.uf)
-      complemento.setValue(editAddress.address.complement)
-      referencia.setValue(editAddress.address.reference)
-      nome.setValue(editAddress.address.name)
-      telefone.setValue(editAddress.address.phone)
-    }
-  }, [])
-
 
   return (
     <Container>
