@@ -3,6 +3,7 @@ import AddressForm from '../../AddressForm'
 import { GlobalContext } from '../../Context'
 import { Title } from '../styles'
 import { Addresses, AddressWrapper, RegisterAddress } from './styles'
+import { Error } from '../../../global'
 
 const CartShipping = () => {
   const { loggedUser, setCheckout, checkout } = React.useContext(GlobalContext);
@@ -39,6 +40,7 @@ const CartShipping = () => {
           <AddressForm goback={() => setAltTab(false)} saveAddress={() => setAltTab(false)} />
         </RegisterAddress>
       )}
+      <Error></Error>
     </div>
   )
 }

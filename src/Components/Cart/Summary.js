@@ -77,13 +77,15 @@ const Summary = ({ backStep, selectedPage }) => {
   const navigate = useNavigate();
   
   function handleBuy() {
-    if (!selectedPage) {
+    if(!loggedUser) {
+      navigate('/login');
+    } else if (!selectedPage && checkout.items.length) {
       backStep.current.entrega = true;
       navigate('entrega');
     } else if (selectedPage === 'entrega' && checkout.address) {
       backStep.current.pagamento = true;
       navigate('pagamento');
-    } else if ((selectedPage === 'pagamento' && checkout.payment.type !== 'Cartão') || (selectedPage === 'pagamento' && checkout.payment.type === 'Cartão' && checkout.payment.card)) {
+    } else if (checkout.payment.type && ((selectedPage === 'pagamento' && checkout.payment.type !== 'Cartão') || (selectedPage === 'pagamento' && checkout.payment.type === 'Cartão' && checkout.payment.card))) {
       const orderDate = new Date();
       const user = loggedUser;
       user.orders.unshift({...checkout, id: Object.keys(user.orders).length + 1, date:`${orderDate.getDate()}/${orderDate.getMonth()}/${orderDate.getFullYear()}`});
@@ -110,7 +112,7 @@ const Summary = ({ backStep, selectedPage }) => {
       <div><span>Frete</span> <span>R$ {checkout.payment.shipping},00</span></div>
       <div><span>Total</span> <span>R$ {checkout.payment.subtotal + checkout.payment.shipping},00</span></div>
 
-      <button onClick={handleBuy}>{!selectedPage || selectedPage === 'entrega' ? 'Continuar compra' : 'Finalizar compra'}</button>
+      <button onClick={handleBuy}>{!loggedUser ? 'Faça o login' : !selectedPage || selectedPage === 'entrega' ? 'Continuar compra' : 'Finalizar compra'}</button>
     </Container>
   )
 }

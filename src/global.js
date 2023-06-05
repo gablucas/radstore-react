@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -90,4 +90,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-export { GlobalStyle }
+const Error = styled.p`
+  margin-top: 4px;
+  font: var(--font1-14-m);
+  color: red;
+  max-width: 300px;
+`
+
+
+
+export { GlobalStyle, Error }

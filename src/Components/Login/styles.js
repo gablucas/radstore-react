@@ -1,13 +1,10 @@
 import styled from "styled-components";
-import LoginBG from '../../assets/BGLogin.jpg';
 
 export const Container = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 300px;
   padding-top: 40px;
-  background: url(${LoginBG}) center no-repeat;
-  height: 1000px;
 
   h2 {
     font: var(--font2-24-b);
@@ -29,7 +26,11 @@ export const Container = styled.section`
 
   label {
     font: var(--font1-18-sb);
-    color: #FFFFFF;
+    color: #2B2B2B;
+  }
+
+  &::after {
+    content: '';
   }
 
 

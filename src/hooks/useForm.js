@@ -6,8 +6,8 @@ const types = {
     message: 'Preencha um email válido',
   },
   password: {
-    regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
-    message: 'A senha precisa ter 1 caracter maíusculo, 1 minúsculo e 1 dígito. Com no mínino 8 caracteres.'
+    regex: /^.{8,}$/,
+    message: 'A senha precisa ter no mínino 8 caracteres.'
   },
   number: {
     regex: /^\d+$/,
@@ -20,7 +20,7 @@ const types = {
 }
 
 const useForm = ({ type, initialValue, password, empty, regex }) => {
-  const [value, setValue] = React.useState(initialValue);
+  const [value, setValue] = React.useState(initialValue || '');
   const [error, setError] = React.useState();
 
   function validate(value) {
@@ -29,7 +29,8 @@ const useForm = ({ type, initialValue, password, empty, regex }) => {
     if(type === 'confirmpassword' && value !== password) {
       setError('As senhas não estão iguais')
       return false;
-    }else if(empty && value.length === 0) {
+    }else if(empty && !value) {
+      console.log(value)
       setError('Preencha um valor.');
       return false;
     } else if (regex && types[type] && !types[type].regex.test(value)) {

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Error } from '../../global';
+
 
 const Input = ({ label, type, placeholder, name, value, onChange, onBlur, error }) => {
   return (
@@ -13,7 +15,7 @@ const Input = ({ label, type, placeholder, name, value, onChange, onBlur, error 
         onChange={onChange}
         onBlur={onBlur}
         />
-        {error && <p>{error}</p>}
+        {error && <Error>{error}</Error>}
 
     </div>
   )

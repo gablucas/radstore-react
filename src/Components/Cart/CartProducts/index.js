@@ -6,13 +6,14 @@ import { GlobalContext } from '../../Context';
 import Image from '../../Helper/Image';
 
 const CartProducts = ({ productsDetails }) => {
-  const { cart, setCheckout } = React.useContext(GlobalContext);
+  const { cart, checkout, setCheckout } = React.useContext(GlobalContext);
 
   React.useEffect(() => {
 
     setCheckout(checkout => ({...checkout, items: cart, payment: {...checkout.payment, subtotal: productsDetails.reduce((acc, cur) => acc + cur.quantity * parseInt(cur.data.price), 0)}}))
   }, [cart, setCheckout, productsDetails])
 
+  if (checkout.items.length)
   return (
     <div>
     {productsDetails?.map((m, index) => (
@@ -51,6 +52,7 @@ const CartProducts = ({ productsDetails }) => {
 
     </div>
   )
+  return (<h1>Seu carrinho está vazio</h1>)
 }
 
 export default CartProducts
