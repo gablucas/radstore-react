@@ -63,7 +63,7 @@ const Product = () => {
   if (product) return (
     <Container>
       <ImageWrapper>
-        <Favorite id={id} />
+        <Favorite id={id} topPosition='20px' rightPosition='20px' />
         <Image url={product.image} />
       </ImageWrapper>
 

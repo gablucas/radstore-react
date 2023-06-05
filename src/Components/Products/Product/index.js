@@ -8,7 +8,7 @@ const Product = ({ product }) => {
 
   return (
     <Container>
-      <Favorite id={product.id} />
+      <Favorite id={product.id} topPosition='20px' rightPosition='20px' />
       <Link to={`/produto/${product.id}`}>
         <Image url={product.image} />
         <span>{product.name}</span>

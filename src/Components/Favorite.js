@@ -6,8 +6,8 @@ import {ReactComponent as FavoriteLogo} from '../../src/assets/favorite.svg';
 
 const Button = styled.button`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: ${props => props.topPosition};
+  right: ${props => props.rightPosition};
 
   &:hover svg > * {
     fill: ${props => props.favorite ? '#ffbd42' : '#FFA700'}
@@ -16,10 +16,9 @@ const Button = styled.button`
   svg > * {
     fill: ${props => props.favorite ? '#FFA700' : '#B2B2B2'}
   }
-
 `
 
-const Favorite = ({ id }) => {
+const Favorite = ({ id, topPosition, rightPosition }) => {
   const { loggedUser } = React.useContext(GlobalContext);
   const { getValue, setValue } = useLocalStorage();
   const [favorite, setFavorite] = React.useState(false);
@@ -53,7 +52,7 @@ const Favorite = ({ id }) => {
 
 
   return (
-    <Button onClick={handleFavorite} favorite={favorite} ><FavoriteLogo /></Button>
+    <Button onClick={handleFavorite} favorite={favorite} topPosition={topPosition} rightPosition={rightPosition} ><FavoriteLogo /></Button>
   )
 }
 

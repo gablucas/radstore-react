@@ -21,10 +21,10 @@ const MyFavorites = () => {
       <div>
         {loggedUser.favorites.map((m) => (
           <Product key={m}>
-            <Favorite id={m} />
+            <Favorite id={m} topPosition='10px' rightPosition='10px'/>
             <img src={data.find((f) => f.id === m).image} alt="" />
             <span>{data.find((f) => f.id === m).name}</span>
-            <span>{data.find((f) => f.id === m).price}</span>
+            <span>R$ {data.find((f) => f.id === m).price}</span>
           </Product>
         ))}
       </div>
