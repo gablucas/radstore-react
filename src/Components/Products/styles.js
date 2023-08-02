@@ -30,6 +30,7 @@ export const Container = styled.section`
 export const ShowProducts = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(255px, 1fr));
+  align-items: start;
   gap: 40px;
 
   @media (max-width: 768px) {
