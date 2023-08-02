@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/radstore-react/static/js/main.1509c966.js",
+    "main.js": "/radstore-react/static/js/main.e72d7ab1.js",
     "static/media/Banner.png": "/radstore-react/static/media/Banner.3b228aba4a1c2e358840.png",
     "static/media/Banner_768.png": "/radstore-react/static/media/Banner_768.471377ff45a690500721.png",
     "static/media/Banner_425.png": "/radstore-react/static/media/Banner_425.e33f99559ca674e420b0.png",
@@ -13,9 +13,9 @@
     "static/media/instagram.svg": "/radstore-react/static/media/instagram.af84923c555d5fde9a4808a66f0cd037.svg",
     "index.html": "/radstore-react/index.html",
     "static/media/facebook.svg": "/radstore-react/static/media/facebook.80a4ac51973eafa34480627ac6485396.svg",
-    "main.1509c966.js.map": "/radstore-react/static/js/main.1509c966.js.map"
+    "main.e72d7ab1.js.map": "/radstore-react/static/js/main.e72d7ab1.js.map"
   },
   "entrypoints": [
-    "static/js/main.1509c966.js"
+    "static/js/main.e72d7ab1.js"
   ]
 }
