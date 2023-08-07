@@ -1,9 +1,10 @@
-import React, { useCallback, useRef } from 'react'
+import { useCallback, useContext, useRef } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom';
 import { GlobalContext } from '../components/Context';
 
+
 export const useFilter = () => {
-  const { products } = React.useContext(GlobalContext);
+  const { products } = useContext(GlobalContext);
   const [searchParams] = useSearchParams();
   const { subcategory } = useParams();
   const genre = searchParams.get('genre');

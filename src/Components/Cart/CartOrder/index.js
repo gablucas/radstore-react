@@ -1,20 +1,17 @@
 import React from 'react'
 import { ButtonsWrapper, Container, InfoWrapper, Products } from './styles';
-import { GlobalContext } from '../../Context';
 import { Link, useNavigate } from 'react-router-dom';
 import Image from '../../Helper/Image';
+import useLocalStorage from '../../../hooks/useLocalStorage';
 
 const CartOrder = ({ productsDetails }) => {
-  const { checkout } = React.useContext(GlobalContext);
+  const { getValue, setValue } = useLocalStorage();
   const navigate = useNavigate();
-
-  React.useEffect(() => {
-    if (!productsDetails.length) {
-      navigate('/');
-    }
-  }, [productsDetails.length, navigate])
+  const checkout = JSON.parse(getValue('radstoreCheckout'));
+  setValue('radstoreCheckout', JSON.stringify({}))
 
 
+  if (!checkout) return navigate('/');
   return (
     <Container>
       <h1>Pedido efetuado com sucesso</h1>
@@ -48,16 +45,16 @@ const CartOrder = ({ productsDetails }) => {
         {checkout.items.map((m, i) => (
           <Products key={m.id}>
             <div>
-              <Image url={productsDetails[i].data.image} width='100px' />
+              <Image url={productsDetails[i]?.image} width='100px' />
               <div>
                 <span>Produto</span>
-                <span>{productsDetails[i].data.name}</span>
+                <span>{productsDetails[i]?.name}</span>
               </div>
             </div>
 
-            <div><span>Preço</span><span>R$ {productsDetails[i].data.price}</span></div>
+            <div><span>Preço</span><span>R$ {productsDetails[i]?.price}</span></div>
             <div><span>Tamanho</span><span>{m.measure}</span></div>
-            <div><span>Cor</span><span>{productsDetails[i].data.color[0]}</span></div>
+            <div><span>Cor</span><span>{productsDetails[i]?.color[0]}</span></div>
             <div><span>Quantidade</span><span>{m.quantity}</span></div>
 
           </Products>

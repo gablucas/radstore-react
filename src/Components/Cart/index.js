@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useContext, useMemo, useRef } from 'react';
 import { BuySteps, Container } from './styles';
 import { Link, Route, Routes, useNavigate, useParams } from 'react-router-dom';
 import CartProducts from './CartProducts';
@@ -7,12 +7,11 @@ import Summary from './Summary';
 import CartPayment from './CartPayment';
 import { GlobalContext } from '../Context';
 import CartOrder from './CartOrder';
-import useLocalStorage from '../../hooks/useLocalStorage';
+
 
 const Cart = () => {
-  const { setBgColor, cart, products, setToggleMenuMobile } = React.useContext(GlobalContext);
-  const [productsDetails, setProductsDetails] = React.useState([]);
-  const { getValue } = useLocalStorage();
+  const { setBgColor, cart, setToggleMenuMobile } = React.useContext(GlobalContext);
+  const { products } = useContext(GlobalContext);
   const selectedPage = useParams()["*"];
   const backStep = useRef({entrega: false, pagamento: false});
   const navigate = useNavigate();
@@ -21,11 +20,9 @@ const Cart = () => {
     setToggleMenuMobile('');
   }, [setToggleMenuMobile])
 
-  React.useEffect(() => {
-    if (products.length) {
-      setProductsDetails(cart.map((m) =>  ({...m, data: products.find((f) => f.id === m.id)})));
-    }
-  }, [getValue, products, cart])
+  const productsDetails = useMemo(() => {
+    return products ? cart.map((m) =>  ({...m, data: products.find((f) => f.id === m.id)})) : undefined;
+  }, [products, cart]);
 
 
   React.useEffect(() => {
@@ -40,7 +37,7 @@ const Cart = () => {
   }, [setBgColor])
 
   
-
+  if (productsDetails)
   return (
     <Container selectedPage={selectedPage}>
         {selectedPage !== 'pedido-realizado' && (<BuySteps selectedPage={selectedPage} >

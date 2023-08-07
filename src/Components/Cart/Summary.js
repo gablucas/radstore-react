@@ -71,11 +71,11 @@ const Container = styled.div`
 `
 
 const Summary = ({ backStep, selectedPage }) => {
-  const { loggedUser, checkout } = React.useContext(GlobalContext);
+  const { loggedUser, checkout, setCheckout, setCart } = React.useContext(GlobalContext);
   const { getValue, setValue } = useLocalStorage();
 
   const navigate = useNavigate();
-  
+
   function handleBuy() {
     if(!loggedUser) {
       navigate('/login');
@@ -100,6 +100,9 @@ const Summary = ({ backStep, selectedPage }) => {
       setValue('radstore', JSON.stringify(users));
       setValue('radstoreLoggedUser', JSON.stringify(user));
       setValue('radstoreCart', JSON.stringify([]));
+      setValue('radstoreCheckout', JSON.stringify(checkout));
+      setCart([]);
+      setCheckout({subtotal: 0, shipping: 0, total: 0})
       backStep.current.entrega = false;
       backStep.current.pagamento = false;
       navigate('pedido-realizado');

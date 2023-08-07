@@ -2,19 +2,19 @@
 import React from 'react'
 import { useSearchParams } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
-import { api } from '../services/api';
+import useProducts from '../hooks/useProducts';
 export const GlobalContext = React.createContext();
 
 const ContextProvider = ({ children }) => {
-  const [products, setProducts] = React.useState([]);
   const [filteredProducts, setFilteredProducts] = React.useState();
   const [bgColor, setBgColor] = React.useState(true);
   const [cart, setCart] = React.useState([]);
   const [loggedUser, setLoggedUser] = React.useState();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { getValue, setValue } = useLocalStorage();
   const [checkout, setCheckout] = React.useState({items: [], address: 0, payment: {subtotal: 0, shipping: 0, installments: 1}});
   const [toggleMenuMobile, setToggleMenuMobile] = React.useState(false);
+  const { getValue, setValue } = useLocalStorage();
+  const { products } = useProducts()
 
   const measures = {
     roupas: ["PP", "P", "M", "G", "GG", "38", "40", "42", "44", "46", "48", "50"],
@@ -44,11 +44,6 @@ const ContextProvider = ({ children }) => {
 
   }, [setCart, getValue, setValue])
 
-  
-  React.useEffect(() => {
-    api.get('data.json').then(response => setProducts(response.data));
-  }, [])
-
   React.useEffect(() => {
     const user = JSON.parse(getValue('radstoreLoggedUser'));
 
@@ -56,15 +51,17 @@ const ContextProvider = ({ children }) => {
       setLoggedUser(user)
     }
 
-  }, [])
+  }, [getValue])
 
   React.useEffect(() => {
     document.body.style.backgroundColor = bgColor ? '#FFFFFF' : "#F7F7F7";
   }, [bgColor])
 
 
+  console.log('Context Renderizou')
+
   return (
-    <GlobalContext.Provider value={{bgColor, setBgColor, loggedUser, setLoggedUser, filteredProducts, setFilteredProducts, searchParams, setSearchParams, measures, cart, setCart, checkout, setCheckout, products, setProducts, toggleMenuMobile, setToggleMenuMobile}}>
+    <GlobalContext.Provider value={{products, bgColor, setBgColor, loggedUser, setLoggedUser, filteredProducts, setFilteredProducts, searchParams, setSearchParams, measures, cart, setCart, checkout, setCheckout, toggleMenuMobile, setToggleMenuMobile}}>
       {children}
     </GlobalContext.Provider>
   )

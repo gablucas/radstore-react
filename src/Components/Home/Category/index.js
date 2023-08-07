@@ -1,34 +1,21 @@
-import React, { useRef } from 'react';
+import React, { useContext } from 'react';
 import { Container } from './styles';
-import { GlobalContext } from '../../Context';
 import Product from '../../Products/Product';
+import { useRandomItems } from '../../../hooks/useRandomItems';
+import { GlobalContext } from '../../Context';
+
 
 const Category = () => {
-  const { products } = React.useContext(GlobalContext);
-  const [randomProducts, setRandomProducts] = React.useState([]);
-  const index = useRef();
-  
-  React.useEffect(() => {
-    if (products.length) {
-      const random = [];
-      for (let i = 0; i < 8; i++) {
-        do {
-          index.current = Math.floor(Math.random() * products.length)
-        } while (random.some((s) => s === index.current))
-        random.push(products[index.current])
-      }
-      setRandomProducts(random)
-      console.log(random)
-    }
-  }, [products])
+  const { products } = useContext(GlobalContext);
+  const { randomItems } = useRandomItems();
 
-  
+  if (products)
   return (
     <Container>
         <h2>Conheça alguns produtos</h2>
 
         <div>
-          {randomProducts?.map(product => (
+          {randomItems(products, 8).map(product => (
           <Product key={product.id} product={product} />
         ))}
         </div>
