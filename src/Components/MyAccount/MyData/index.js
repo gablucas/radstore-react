@@ -63,15 +63,15 @@ const MyData = () => {
     }
 
     if (didAnyDataChange) {
-      const users = JSON.parse(getValue('users')).map((m) => {
+      const users = JSON.parse(getValue('radstore')).map((m) => {
         if (m.email === user.email) {
           return user;
         }
         return m;
       })
       
-      setValue('loggeduser', JSON.stringify(user));
-      setValue('users', JSON.stringify(users));
+      setValue('radstoreLoggedUser', JSON.stringify(user));
+      setValue('radstore', JSON.stringify(users));
       window.location.reload();
     }
   }

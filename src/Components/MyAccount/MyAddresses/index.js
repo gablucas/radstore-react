@@ -15,15 +15,15 @@ const MyAddresses = () => {
     const newMainAdress = user.addresses.splice(index, 1);
     user.addresses.unshift(...newMainAdress);
 
-    const users = JSON.parse(getValue('users')).map((m) => {
+    const users = JSON.parse(getValue('radstore')).map((m) => {
       if (m.email === user.email) {
         return user;
       }
       return m;
     })
 
-    setValue('users', JSON.stringify(users));
-    setValue('loggeduser', JSON.stringify(user));
+    setValue('radstore', JSON.stringify(users));
+    setValue('radstoreLoggedUser', JSON.stringify(user));
     window.location.reload();
   }
 
@@ -31,15 +31,15 @@ const MyAddresses = () => {
     const user = loggedUser;
     user.addresses = user.addresses.filter((f) => f.id !== id);
 
-    const users = JSON.parse(getValue('users')).map((m) => {
+    const users = JSON.parse(getValue('radstore')).map((m) => {
       if (m.email === user.email) {
         return user;
       }
       return m;
     })
 
-    setValue('users', JSON.stringify(users));
-    setValue('loggeduser', JSON.stringify(user));
+    setValue('radstore', JSON.stringify(users));
+    setValue('radstoreLoggedUser', JSON.stringify(user));
     window.location.reload();
   }
 

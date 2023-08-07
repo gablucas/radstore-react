@@ -17,15 +17,15 @@ const MyPayments = () => {
     const user = loggedUser;
     user.payment = user.payment.filter((f) => f.id !== id);
 
-    const users = JSON.parse(getValue('users')).map((m) => {
+    const users = JSON.parse(getValue('radstore')).map((m) => {
       if (m.email === user.email) {
         return user;
       }
       return m;
     })
 
-    setValue('users', JSON.stringify(users));
-    setValue('loggeduser', JSON.stringify(user));
+    setValue('radstore', JSON.stringify(users));
+    setValue('radstoreLoggedUser', JSON.stringify(user));
     window.location.reload();
   }
 
@@ -34,15 +34,15 @@ const MyPayments = () => {
     const newMainAdress = user.payment.splice(index, 1);
     user.payment.unshift(...newMainAdress);
 
-    const users = JSON.parse(getValue('users')).map((m) => {
+    const users = JSON.parse(getValue('radstore')).map((m) => {
       if (m.email === user.email) {
         return user;
       }
       return m;
     })
 
-    setValue('users', JSON.stringify(users));
-    setValue('loggeduser', JSON.stringify(user));
+    setValue('radstore', JSON.stringify(users));
+    setValue('radstoreLoggedUser', JSON.stringify(user));
     window.location.reload();
   }
 

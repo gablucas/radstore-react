@@ -21,8 +21,8 @@ const Product = () => {
   }, [setProduct, products, id])
 
   function handleBuy(type) {
-    if (!getValue('cart')) {
-      setValue('cart', JSON.stringify([]))
+    if (!getValue('radstoreCart')) {
+      setValue('radstoreCart', JSON.stringify([]))
     }
 
     if (!selectedMeasure) {
@@ -32,7 +32,7 @@ const Product = () => {
     if (selectedMeasure) {
       setError("")
 
-      let cart = JSON.parse(getValue('cart'));
+      let cart = JSON.parse(getValue('radstoreCart'));
       if (cart.find((f) => f.id === id && f.measure === selectedMeasure)) {
         cart = cart.map((m) => {
           if (m.id === id && m.measure === selectedMeasure) {
@@ -42,13 +42,13 @@ const Product = () => {
           return m;
         })
 
-        setValue('cart', JSON.stringify(cart));
+        setValue('radstoreCart', JSON.stringify(cart));
 
       } else {
-        pushValue('cart', {id, measure: selectedMeasure, quantity: 1});
+        pushValue('radstoreCart', {id, measure: selectedMeasure, quantity: 1});
       }
       
-      setCart(JSON.parse(getValue('cart')));
+      setCart(JSON.parse(getValue('radstoreCart')));
 
       if (type === 'buy') {
         navigate('/carrinho')

@@ -103,7 +103,7 @@ const AddressForm = ({ goback, saveAddress, editAddress }) => {
     if (identificacao.validate() && cep.validate() && endereco.validate() && numero.validate() && cidade.validate() && bairro.validate() && uf.validate() && nome.validate() && telefone.validate()) {
 
       const user = loggedUser;
-      const users = JSON.parse(getValue('users'));
+      const users = JSON.parse(getValue('radstore'));
       const address = {identification: identificacao.value, cep: cep.value, address: endereco.value, number: numero.value, city: cidade.value, neighborhood: bairro.value, uf: uf.value, complement: complemento.value, reference: referencia.value, name: nome.value, phone: telefone.value};
 
       if (!editAddress?.edit) {
@@ -127,8 +127,8 @@ const AddressForm = ({ goback, saveAddress, editAddress }) => {
         return m;
       })
       
-      setValue('loggeduser', JSON.stringify(user));
-      setValue('users', JSON.stringify(users));
+      setValue('radstoreLoggedUser', JSON.stringify(user));
+      setValue('radstore', JSON.stringify(users));
       saveAddress()    
     }
   }

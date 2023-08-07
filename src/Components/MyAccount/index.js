@@ -17,7 +17,7 @@ const MyAccount = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (!getValue('loggeduser')) {
+    if (!getValue('radstoreLoggedUser')) {
       navigate('/')
     }
   }, [navigate, getValue])

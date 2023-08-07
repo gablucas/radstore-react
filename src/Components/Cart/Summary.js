@@ -90,16 +90,16 @@ const Summary = ({ backStep, selectedPage }) => {
       const user = loggedUser;
       user.orders.unshift({...checkout, id: Object.keys(user.orders).length + 1, date:`${orderDate.getDate()}/${orderDate.getMonth()}/${orderDate.getFullYear()}`});
 
-      const users = JSON.parse(getValue('users')).map((m) => {
+      const users = JSON.parse(getValue('radstore')).map((m) => {
         if (m.email === user.email) {
           return user;
         }
         return m;
       })
       
-      setValue('users', JSON.stringify(users));
-      setValue('loggeduser', JSON.stringify(user));
-      setValue('cart', JSON.stringify([]));
+      setValue('radstore', JSON.stringify(users));
+      setValue('radstoreLoggedUser', JSON.stringify(user));
+      setValue('radstoreCart', JSON.stringify([]));
       backStep.current.entrega = false;
       backStep.current.pagamento = false;
       navigate('pedido-realizado');

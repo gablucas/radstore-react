@@ -13,7 +13,7 @@ const Select = ({saveValue, options, index, names }) => {
     }
 
     setQuantity(target.value)
-    let cart = JSON.parse(getValue('cart'));
+    let cart = JSON.parse(getValue('radstoreCart'));
 
     cart = cart.map((m, i) => {
       if (i === index) {
@@ -23,7 +23,7 @@ const Select = ({saveValue, options, index, names }) => {
       return m;
     })
 
-    setValue('cart', JSON.stringify(cart));
+    setValue('radstoreCart', JSON.stringify(cart));
     setCart(cart);
   }
 

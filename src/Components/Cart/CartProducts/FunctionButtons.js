@@ -18,9 +18,9 @@ const FunctionButtons = ({ index }) => {
   const { getValue, setValue } = useLocalStorage();
 
   function handleRemove() {
-    let cart = JSON.parse(getValue('cart'));
+    let cart = JSON.parse(getValue('radstoreCart'));
     cart = cart.filter((f, i) => i !== index);
-    setValue('cart', JSON.stringify(cart));
+    setValue('radstoreCart', JSON.stringify(cart));
     setCart(cart);
   }
 

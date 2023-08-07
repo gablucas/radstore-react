@@ -19,12 +19,12 @@ const LoginAccount = () => {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const users = JSON.parse(getValue('users')) || [];
+    const users = JSON.parse(getValue('radstore')) || [];
     const user = users.find((user) => user.email === email.value && user.password === password.value);
 
     if (user) {
       setError('');
-      setValue('loggeduser', JSON.stringify(user));
+      setValue('radstoreLoggedUser', JSON.stringify(user));
       setLoggedUser(user);
       navigate(-1);
     } else {

@@ -95,15 +95,15 @@ const CreditCardForm = ({ goback, savePayment }) => {
       const card = { id: user.payment[user.payment.length - 1]?.id + 1 || 1, cardnumber: cardnumber.value, cardname: cardname.value, validity: [validityMonth.value, validityYear.value], cvv: cvv.value }
       user.payment.push(card);
 
-      const users = JSON.parse(getValue('users')).map((m) => {
+      const users = JSON.parse(getValue('radstore')).map((m) => {
         if (m.email === user.email) {
           return user;
         }
         return m;
       })
       
-      setValue('loggeduser', JSON.stringify(user));
-      setValue('users', JSON.stringify(users));
+      setValue('radstoreLoggedUser', JSON.stringify(user));
+      setValue('radstore', JSON.stringify(users));
       savePayment(); 
     }
   }

@@ -34,12 +34,12 @@ const ContextProvider = ({ children }) => {
   }
 
   React.useEffect(() => {
-    const cartStorage = getValue('cart');
+    const cartStorage = getValue('radstoreCart');
 
     if (cartStorage) {
       setCart(JSON.parse(cartStorage));
     } else {
-      setValue('cart', [])
+      setValue('radstoreCart', [])
     }
 
   }, [setCart, getValue, setValue])
@@ -50,7 +50,7 @@ const ContextProvider = ({ children }) => {
   }, [])
 
   React.useEffect(() => {
-    const user = JSON.parse(window.localStorage.getItem('loggeduser'));
+    const user = JSON.parse(getValue('radstoreLoggedUser'));
 
     if (user) {
       setLoggedUser(user)
