@@ -1,16 +1,16 @@
-import { HashRouter, Route, Routes, useParams } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { GlobalStyle } from "./global";
 import Header from "./components/Header";
 import Notice from "./components/Notice";
-import Home from "./components/Home";
+import Home from "./pages/Home";
 import Footer from "./components/Footer";
-import Products from "./components/Products";
-import Product from "./components/Product";
+import Products from "./pages/Products";
+import Product from "./pages/Product";
 import ContextProvider from "./components/Context";
-import Login from "./components/Login";
-import Cart from "./components/Cart";
+import Login from "./pages/Login";
+import Cart from "./pages/Cart";
 import { QueryClient, QueryClientProvider } from "react-query";
-import MyAccount from "./components/MyAccount";
+import MyAccount from "./pages/MyAccount";
 import React from "react";
 
 const queryClient = new QueryClient();
