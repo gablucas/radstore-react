@@ -16,16 +16,10 @@ export const useFilter = () => {
 
   const filterParams = useCallback((filter) => {
     if (products) {
-      filterData.current = Array.from(products);
-
-      if (subcategory && filter.subcategory) {
-        filterData.current = filterData.current.filter((d) => d.subcategory === subcategory);
-      }
-
-      if (genre && filter.genre) {
-        filterData.current = filterData.current.filter((d) => d.genre === genre || d.genre === 'unissex');
-      }
-
+      filterData.current = products;
+      filterData.current = filterData.current.filter((d) => d.subcategory === subcategory);
+      filterData.current = filterData.current.filter((d) => d.genre === genre || d.genre === 'unissex');
+      
       if (size && filter.size) {
         filterData.current = filterData.current.filter((s) => s.sizes.some((ss) => ss === size));
       }
@@ -37,8 +31,10 @@ export const useFilter = () => {
 
       if (color && filter.color) {
         filterData.current = filterData.current.filter((d) => d.color[0] === color);
+        console.log(filterData.current)
       }
     }
+    console.log(filterData.current)
     return filterData.current;
   }, [products, subcategory, genre, size, price, color])
 

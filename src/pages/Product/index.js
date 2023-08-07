@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AboutWrapper, ButtonWrapper, BuyButton, CartButton, Container, ImageWrapper, InfoWrapper, Installments, MeasureButton, Price } from './styles';
 import { GlobalContext } from '../../components/Context';
@@ -7,8 +7,7 @@ import Favorite from '../../components/Favorite';
 import Image from '../../components/Helper/Image';
 
 const Product = () => {
-  const { setCart } = React.useContext(GlobalContext);
-  const { products } = useContext(GlobalContext);
+  const { setCart, products } = React.useContext(GlobalContext);
   const { getValue, setValue, pushValue } = useLocalStorage();
   const [selectedMeasure, setSelectedMeasure] = React.useState('');
   const [error, setError] = React.useState("");
@@ -18,15 +17,10 @@ const Product = () => {
   const product = products ? products.find((p) => p.id === id) : undefined;
   
   function handleBuy(type) {
-    if (!getValue('radstoreCart')) {
-      setValue('radstoreCart', JSON.stringify([]))
-    }
-
+    
     if (!selectedMeasure) {
       setError('Selecione um tamanho')
-    }
-
-    if (selectedMeasure) {
+    } else {
       setError("")
 
       let cart = JSON.parse(getValue('radstoreCart'));

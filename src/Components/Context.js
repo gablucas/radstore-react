@@ -57,9 +57,6 @@ const ContextProvider = ({ children }) => {
     document.body.style.backgroundColor = bgColor ? '#FFFFFF' : "#F7F7F7";
   }, [bgColor])
 
-
-  console.log('Context Renderizou')
-
   return (
     <GlobalContext.Provider value={{products, bgColor, setBgColor, loggedUser, setLoggedUser, filteredProducts, setFilteredProducts, searchParams, setSearchParams, measures, cart, setCart, checkout, setCheckout, toggleMenuMobile, setToggleMenuMobile}}>
       {children}

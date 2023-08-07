@@ -1,15 +1,14 @@
 import React, { useRef } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { FilterWrapper, ProductColor } from './styles'
-import { GlobalContext } from '../../../components/Context';
 import useFilter from '../../../hooks/useFilter';
 
 const FilterColor = () => {
-  const { data } = React.useContext(GlobalContext)
   const [searchParams, setSearchParams] = useSearchParams();
   const colors = useRef([]);
   const selectedColor = useRef('');
   const {filterParams, color} = useFilter()
+  const filteredColors = filterParams({size: true, price: true, color: false});
 
   function handleColor(color) {
     const param = searchParams.get('color');
@@ -27,11 +26,16 @@ const FilterColor = () => {
   }
 
   React.useEffect(() => {
+    if (filteredColors) {
+      // console.log(filteredColors);
+      colors.current = filteredColors.map((product) => product.color);
+      colors.current = Array.from(new Set(colors.current?.map(JSON.stringify)), JSON.parse);
+    }
+  }, [colors, filterParams, filteredColors])
+
+  React.useEffect(() => {
     if (color) selectedColor.current = color;
-    colors.current = filterParams({subcategory: true, gender: true, size: true, price: true, color: false})
-    colors.current = colors.current?.map((product) => product.color)
-    colors.current = Array.from(new Set(colors.current?.map(JSON.stringify)), JSON.parse)
-  }, [data, colors, searchParams, color, filterParams])
+  }, [color])
 
   if (colors.current[0]?.length)
   return (
