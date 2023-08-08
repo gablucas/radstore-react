@@ -1,21 +1,15 @@
 import React from 'react';
-import GlobalContext from '../../../components/Context';
 import { Link, useParams } from 'react-router-dom';
 import { Container, OrderInfo, OrderProduct, OrderProducts } from './styles';
 import Image from '../../../components/Helper/Image';
+import { GlobalContext } from '../../../components/Context';
 
 const Order = () => {
   const { loggedUser, products } = React.useContext(GlobalContext);
-  const [order, setOrder] = React.useState();
   const { id } = useParams();
-  
-  React.useEffect(() => {
-    if (loggedUser) {
-      setOrder(loggedUser.orders.find((f) => f.id === parseInt(id)))
-    }
-  }, [id, loggedUser])
-  
 
+  const order = loggedUser ? loggedUser.orders.find((f) => f.id === parseInt(id)) : {};
+  
   if (order && products)
   return (
     <Container>

@@ -100,12 +100,11 @@ const Summary = ({ backStep, selectedPage }) => {
       setValue('radstore', JSON.stringify(users));
       setValue('radstoreLoggedUser', JSON.stringify(user));
       setValue('radstoreCart', JSON.stringify([]));
-      setValue('radstoreCheckout', JSON.stringify(checkout));
       setCart([]);
-      setCheckout({subtotal: 0, shipping: 0, total: 0})
+      setCheckout({subtotal: 0, shipping: 0, total: 0});
       backStep.current.entrega = false;
       backStep.current.pagamento = false;
-      navigate('pedido-realizado');
+      navigate(`/minha-conta/pedido/${user.orders[0].id}`);
     }
   } 
 

@@ -19,9 +19,9 @@ const Product = () => {
   function handleBuy(type) {
     
     if (!selectedMeasure) {
-      setError('Selecione um tamanho')
+      setError('Selecione um tamanho');
     } else {
-      setError("")
+      setError("");
 
       let cart = JSON.parse(getValue('radstoreCart'));
       if (cart.find((f) => f.id === id && f.measure === selectedMeasure)) {

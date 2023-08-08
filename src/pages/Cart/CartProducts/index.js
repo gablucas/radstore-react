@@ -5,8 +5,12 @@ import FunctionButtons from './FunctionButtons';
 import Image from '../../../components/Helper/Image';
 import { GlobalContext } from '../../../components/Context';
 
-const CartProducts = ({ productsDetails }) => {
-  const { cart, setCheckout } = React.useContext(GlobalContext);
+const CartProducts = () => {
+  const { cart, products, setCheckout } = React.useContext(GlobalContext);
+
+  const productsDetails = React.useMemo(() => {
+    return products ? cart.map((m) =>  ({...m, data: products.find((f) => f.id === m.id)})) : undefined;
+  }, [products, cart]);
 
 
   React.useEffect(() => {

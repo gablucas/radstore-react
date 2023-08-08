@@ -39,7 +39,7 @@ const ContextProvider = ({ children }) => {
     if (cartStorage) {
       setCart(JSON.parse(cartStorage));
     } else {
-      setValue('radstoreCart', [])
+      setValue('radstoreCart', JSON.stringify([]))
     }
 
   }, [setCart, getValue, setValue])
