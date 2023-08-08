@@ -47,8 +47,8 @@ const RegisterAccount = () => {
 
       <form onSubmit={handleSubmit}>
         <Input label="Email" type="text" name="email" {...email} />
-        <Input label="Senha" type="text" name="password" {...password} />
-        <Input label="Confirmar senha" type="text" name="password" {...confirmPassword} />
+        <Input label="Senha" type="password" name="password" {...password} />
+        <Input label="Confirmar senha" type="password" name="password" {...confirmPassword} />
         <Input label="Nome" type="text" name="name" {...name} />
         <Input label="Sobrenome" type="text" name="lastname" {...lastName} />
 

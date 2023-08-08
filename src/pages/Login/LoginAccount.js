@@ -38,7 +38,7 @@ const LoginAccount = () => {
       
       <form onSubmit={handleSubmit}>
         <Input label="Email" type="text" name="email" {...email} />
-        <Input label="Senha" type="text" name="password" {...password} />
+        <Input label="Senha" type="password" name="password" {...password} />
 
         <ButtonAccount>Entrar</ButtonAccount>
       </form>

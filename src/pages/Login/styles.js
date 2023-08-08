@@ -1,10 +1,13 @@
 import styled from "styled-components";
+import Bhangra from '../../assets/bhangra.jpg'
 
 export const Container = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 300px;
   padding-top: 40px;
+  background: no-repeat center url(${Bhangra});
+  background-size: contain;
 
   h2 {
     font: var(--font2-24-b);
@@ -37,6 +40,8 @@ export const Container = styled.section`
   @media (max-width: 768px) {
     grid-template-columns: auto;
     justify-content: center;
+    gap: 40px;
+    background: none;
 
     &::before {
       display: none;
@@ -60,26 +65,6 @@ export const ButtonAccount = styled.button`
 
 export const LoginWrapper = styled.div`
   justify-self: end;
-
-
-  &::after {
-    content: "";
-    display: block;
-    height: 640px;
-    width: 1px;
-    background-color: #FFFFFF;
-    box-shadow: 0px 0px 4px #FFFFFF;
-
-    position: absolute;
-    top: 162px;
-    left: 50%;
-  }
-
-  @media (max-width: 768px) {
-    &::after {
-      display: none;
-    }
-  }
 `
 
 export const RegisterWrapper = styled.div`
