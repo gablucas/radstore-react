@@ -137,7 +137,7 @@ const Header = () => {
                   <span onClick={() => handleToggleSubMenu('longboard')}>Longboard</span>
                   
                   <Links toggleSubMenu={toggleSubMenu === 'longboard'}>
-                    <li><Link to='/produtos/longboard/completo?genre=longboard'>Completo</Link></li>
+                    <li><Link to='/produtos/longboard/completo'>Completo</Link></li>
                     <li><Link to='/produtos/longboard/shapes'>Shapes</Link></li>
                     <li><Link to='/produtos/longboard/trucks'>Trucks</Link></li>
                     <li><Link to='/produtos/longboard/rodas'>Rodas</Link></li>

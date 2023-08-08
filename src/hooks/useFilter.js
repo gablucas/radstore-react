@@ -13,12 +13,14 @@ export const useFilter = () => {
   const price = searchParams.get('price');
   let filterData = useRef();
 
-
   const filterParams = useCallback((filter) => {
     if (products) {
       filterData.current = products;
       filterData.current = filterData.current.filter((d) => d.subcategory === subcategory);
-      filterData.current = filterData.current.filter((d) => d.genre === genre || d.genre === 'unissex');
+
+      if (genre === 'masculino' || genre === 'feminino' || genre === 'unissex') {
+        filterData.current = filterData.current.filter((d) => d.genre === genre || d.genre === 'unissex');
+      }
       
       if (size && filter.size) {
         filterData.current = filterData.current.filter((s) => s.sizes.some((ss) => ss === size));

@@ -3,7 +3,7 @@ import { GlobalContext } from '../../../components/Context'
 import { ButtonPrice, FilterWrapper, ProductPrice } from './styles';
 import useFilter from '../../../hooks/useFilter';
 
-let pricerange = [[50, 100], [100, 150], [150, 200], [200, 250], [250, 300], [300, 350], [350, 400], [400, 1000]]
+let pricerange = [[50, 100], [100, 150], [150, 200], [200, 250], [250, 300], [300, 350], [350, 400], [400, 1000], [1000, 1500], [1500, 3000]]
 
 const FilterPrice = () => {
   const { searchParams, setSearchParams } = React.useContext(GlobalContext);

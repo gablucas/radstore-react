@@ -5,7 +5,6 @@ import CartProducts from './CartProducts';
 import CartShipping from './CartShipping';
 import Summary from './Summary';
 import CartPayment from './CartPayment';
-import CartOrder from './CartOrder';
 import { GlobalContext } from '../../components/Context';
 
 const Cart = () => {
@@ -42,7 +41,6 @@ const Cart = () => {
         <Route path='/' element={<CartProducts />} />
         <Route path='entrega' element={<CartShipping />} />
         <Route path='pagamento' element={<CartPayment />} />
-        <Route path='pedido-realizado' element={<CartOrder />} />
       </Routes>
       
       {selectedPage !== 'pedido-realizado' && (<Summary backStep={backStep} selectedPage={selectedPage} />)}

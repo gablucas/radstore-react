@@ -11,7 +11,7 @@ const FilterSize = () => {
   let { category, subcategory } = useParams();
   
   const selectedSize = useRef(size ? size : '');
-  const measureType = useRef(subcategory && measures[subcategory] ? measures[subcategory] : measures[category]);
+  const measureType = subcategory && measures[subcategory] ? measures[subcategory] : measures[category]
 
   function handleSize(size) {
     const param = searchParams.get('size');
@@ -28,13 +28,12 @@ const FilterSize = () => {
     }
   }
 
-
   return (
     <FilterWrapper>
     <span>Tamanho</span>
     
     <div>
-      {measureType.current.map((measure => (
+      {measureType.map((measure => (
         <ProductSize key={measure} onClick={() => handleSize(measure)} selected={selectedSize.current === measure}>{measure}</ProductSize>)))}
     </div>
 
