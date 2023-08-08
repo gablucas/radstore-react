@@ -37,8 +37,8 @@ const Header = () => {
   return (
     <HeaderBG>
       <Container>
-          <a href="/"><img src={LogoBlack} alt="" /></a>
-          <MenuMobile onClick={() => setToggleMenuMobile(!toggleMenuMobile)} toggleMenuMobile={toggleMenuMobile}></MenuMobile>
+        <Link to='/'><img src={LogoBlack} alt="" /></Link>
+        <MenuMobile onClick={() => setToggleMenuMobile(!toggleMenuMobile)} toggleMenuMobile={toggleMenuMobile}></MenuMobile>
 
         <Nav toggleMenuMobile={toggleMenuMobile}>
           <Menus>
