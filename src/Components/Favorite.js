@@ -9,12 +9,13 @@ const Button = styled.button`
   top: ${props => props.topPosition};
   right: ${props => props.rightPosition};
 
+
   &:hover svg > * {
-    fill: ${props => props.favorite ? '#ffbd42' : '#FFA700'}
+    fill: ${props => !props.user ? '#B2B2B2' : props.favorite ? '#ffbd42' : '#FFA700'}
   }
 
   svg > * {
-    fill: ${props => props.favorite ? '#FFA700' : '#B2B2B2'}
+    fill: ${props => !props.user ? '#B2B2B2' : props.favorite ? '#FFA700' : '#B2B2B2'}
   }
 
   &:hover + div {
@@ -70,7 +71,7 @@ const Favorite = ({ id, topPosition, rightPosition }) => {
 
   return (
     <>
-      <Button onClick={handleFavorite} favorite={favorite} topPosition={topPosition} rightPosition={rightPosition} ><FavoriteLogo /></Button>
+      <Button onClick={handleFavorite} favorite={favorite} topPosition={topPosition} rightPosition={rightPosition} user={user} ><FavoriteLogo /></Button>
       {!user && (<LoginToFavorite>Faça o login para favoritar</LoginToFavorite>)}
     </>
   )

@@ -13,7 +13,7 @@ const Header = () => {
   const [toggleSubMenu, setToggleSubMenu] = React.useState('');
 
   function handleLogout() {
-    removeValue('loggeduser');
+    removeValue('radstoreLoggedUser');
     setLoggedUser(false);
   }
 
